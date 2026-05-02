@@ -1,0 +1,7 @@
+scenario,description,probability
+S1_expected,q50 baseline,0.35
+S2_high_demand,q90 high,0.15
+S3_low_demand,q10 low,0.15
+S4_monsoon,q10 with rain dampening,0.15
+S5_peak_surge,q90 +15% on trunk during peak,0.1
+S6_festival_dip,q50 x 0.75 all routes,0.1
