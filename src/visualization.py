@@ -243,23 +243,55 @@ def fig_vss_evpi(vss_evpi):
 
 # 8. Decision-focused
 
-def fig_decision_focused(df_results):
-    df = df_results.copy()
+def fig_decision_focused(df_results, multiseed_df=None):
+    """Two panels:
+      (left)  test RMSE per method (mean over seeds, with SE error bars when
+              multiseed_df is provided);
+      (right) regret distribution per method as boxplots over seeds (or bars
+              if only single-seed data is provided).
+    """
     pred_methods = ['xgb_mse', 'xgb_weighted', 'nn_mse', 'nn_spo']
-    colors = {m: PALETTE[i] for i, m in enumerate(pred_methods)}
+    colors = [PALETTE[i] for i in range(len(pred_methods))]
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    rmse_vals = [df[df['method'] == m]['prediction_rmse'].iloc[0] for m in pred_methods]
-    axes[0].bar(pred_methods, rmse_vals, color=[colors[m] for m in pred_methods])
-    axes[0].set_ylabel('Test RMSE')
-    axes[0].set_title('Prediction error')
+
+    if multiseed_df is not None and not multiseed_df.empty:
+        # RMSE bars with SE
+        rmse_means = [multiseed_df[multiseed_df['method'] == m]['prediction_rmse'].mean()
+                      for m in pred_methods]
+        rmse_ses = [multiseed_df[multiseed_df['method'] == m]['prediction_rmse'].std(ddof=1)
+                    / max(1, multiseed_df[multiseed_df['method'] == m].shape[0]) ** 0.5
+                    for m in pred_methods]
+        axes[0].bar(pred_methods, rmse_means, yerr=rmse_ses, color=colors, capsize=4)
+        axes[0].set_ylabel('Test RMSE (mean over seeds $\\pm$ SE)')
+        axes[0].set_title('Prediction error (multi-seed)')
+
+        # Regret boxplot across seeds
+        regrets_by_method = [multiseed_df[multiseed_df['method'] == m]['regret'].values
+                             for m in pred_methods]
+        bp = axes[1].boxplot(regrets_by_method, labels=pred_methods, patch_artist=True,
+                             showmeans=True, meanline=True)
+        for patch, c in zip(bp['boxes'], colors):
+            patch.set_facecolor(c)
+            patch.set_alpha(0.6)
+        axes[1].axhline(0, ls='--', color='gray', label='oracle')
+        axes[1].set_ylabel('Regret across seeds (passenger-hours)')
+        axes[1].set_title('Decision quality (boxplot over seeds)')
+        axes[1].legend(loc='upper right')
+    else:
+        df = df_results.copy()
+        rmse_vals = [df[df['method'] == m]['prediction_rmse'].iloc[0] for m in pred_methods]
+        axes[0].bar(pred_methods, rmse_vals, color=colors)
+        axes[0].set_ylabel('Test RMSE')
+        axes[0].set_title('Prediction error')
+        regrets = [df[df['method'] == m]['regret'].iloc[0] for m in pred_methods]
+        axes[1].bar(pred_methods, regrets, color=colors)
+        axes[1].axhline(0, ls='--', color='gray', label='oracle')
+        axes[1].set_ylabel('Regret (vs oracle)')
+        axes[1].set_title('Decision quality')
+        axes[1].legend()
+
     axes[0].tick_params(axis='x', rotation=20)
-    regrets = [df[df['method'] == m]['regret'].iloc[0] for m in pred_methods]
-    axes[1].bar(pred_methods, regrets, color=[colors[m] for m in pred_methods])
-    axes[1].axhline(0, ls='--', color='gray', label='oracle')
-    axes[1].set_ylabel('Regret (vs oracle)')
-    axes[1].set_title('Decision quality')
     axes[1].tick_params(axis='x', rotation=20)
-    axes[1].legend()
     fig.tight_layout()
     save_fig(fig, 'fig_decision_focused')
 
@@ -320,6 +352,65 @@ def fig_pareto_frontier(pareto_df):
     ax.set_title('Equity-efficiency Pareto frontier')
     ax.legend()
     save_fig(fig, 'fig_pareto_frontier')
+
+
+# 11c. Cost-wait frontier
+
+def fig_cost_wait_frontier(cost_df):
+    df = cost_df.dropna(subset=['total_wait_time']).sort_values('bus_periods_used')
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.plot(df['bus_periods_used'], df['total_wait_time'], 'o-',
+            color=PALETTE[0], lw=2, ms=7)
+    for _, row in df.iterrows():
+        ax.annotate(f"$\\lambda$={row['lambda_op']:g}",
+                    xy=(row['bus_periods_used'], row['total_wait_time']),
+                    xytext=(6, 4), textcoords='offset points', fontsize=8,
+                    color='gray')
+    ax.set_xlabel('Operator bus-periods used')
+    ax.set_ylabel('Total rider waiting time (passenger-hours)')
+    ax.set_title('Rider wait vs operator cost: Pareto frontier')
+    ax.grid(alpha=0.3)
+    save_fig(fig, 'fig_cost_wait_frontier')
+
+
+# 11b. PI reliability diagram
+
+def fig_pi_reliability(reliability_df, test_predictions):
+    """Two-panel: (left) reliability of trained quantile heads on test set;
+    (right) 80% PI coverage before vs after split-conformal calibration."""
+    rel = reliability_df[reliability_df['split'] == 'test'].sort_values('nominal')
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+
+    axes[0].plot([0, 1], [0, 1], 'k--', lw=1, label='ideal')
+    axes[0].plot(rel['nominal'], rel['empirical'], 'o-',
+                 color=PALETTE[0], lw=2, ms=7, label='XGBoost quantile heads')
+    axes[0].set_xlabel('Nominal level $\\alpha$')
+    axes[0].set_ylabel('Empirical $P(y \\leq \\hat q_\\alpha)$')
+    axes[0].set_title('Reliability diagram (test fold)')
+    axes[0].set_xlim(0, 1); axes[0].set_ylim(0, 1)
+    axes[0].legend(loc='lower right')
+    axes[0].grid(alpha=0.3)
+
+    p = test_predictions
+    raw = float(((p['actual'] >= p['q10']) & (p['actual'] <= p['q90'])).mean())
+    if 'q10_cal' in p.columns and 'q90_cal' in p.columns:
+        cal = float(((p['actual'] >= p['q10_cal']) & (p['actual'] <= p['q90_cal'])).mean())
+    else:
+        cal = raw
+    bars = axes[1].bar(['raw\n80\\% PI', 'split-conformal\n80\\% PI'],
+                       [raw, cal], color=[PALETTE[3], PALETTE[2]])
+    axes[1].axhline(0.80, ls='--', color='gray', label='nominal 80\\%')
+    for b, v in zip(bars, [raw, cal]):
+        axes[1].text(b.get_x() + b.get_width() / 2, v, f"{v:.1%}",
+                     ha='center', va='bottom')
+    axes[1].set_ylabel('Empirical coverage')
+    axes[1].set_ylim(0, 1.0)
+    axes[1].set_title('80\\% PI: raw vs conformally calibrated')
+    axes[1].legend(loc='lower right')
+
+    fig.tight_layout()
+    save_fig(fig, 'fig_pi_reliability')
 
 
 # 11. Equity boxplot
@@ -385,10 +476,22 @@ def generate_all_figures(project_root="."):
     print("Figure 5/11: forecast timeseries"); fig_forecast_timeseries(test_predictions, routes_df)
     print("Figure 6/11: scenario comparison"); fig_scenario_comparison(stoch_results)
     print("Figure 7/11: VSS/EVPI"); fig_vss_evpi(vss_evpi)
-    print("Figure 8/11: decision-focused"); fig_decision_focused(df_results)
-    print("Figure 9/11: fleet sensitivity"); fig_fleet_sensitivity(fleet_df)
-    print("Figure 10/11: Pareto frontier"); fig_pareto_frontier(pareto_df)
-    print("Figure 11/11: equity boxplot"); fig_equity_boxplot(routes_df, allocation)
+    multiseed_path = os.path.join(project_root, 'results/tables/decision_focused_multiseed.csv')
+    multiseed_df = pd.read_csv(multiseed_path) if os.path.exists(multiseed_path) else None
+    print("Figure 8/13: decision-focused"); fig_decision_focused(df_results, multiseed_df)
+    print("Figure 9/13: fleet sensitivity"); fig_fleet_sensitivity(fleet_df)
+    print("Figure 10/13: Pareto frontier"); fig_pareto_frontier(pareto_df)
+    print("Figure 11/13: equity boxplot"); fig_equity_boxplot(routes_df, allocation)
+
+    rel_path = os.path.join(project_root, 'results/tables/pi_reliability.csv')
+    if os.path.exists(rel_path):
+        reliability_df = pd.read_csv(rel_path)
+        print("Figure 12/13: PI reliability"); fig_pi_reliability(reliability_df, test_predictions)
+
+    cost_path = os.path.join(project_root, 'results/tables/cost_wait_frontier.csv')
+    if os.path.exists(cost_path):
+        cost_df = pd.read_csv(cost_path)
+        print("Figure 13/13: cost-wait frontier"); fig_cost_wait_frontier(cost_df)
 
 
 if __name__ == "__main__":
@@ -405,6 +508,7 @@ if __name__ == "__main__":
         'fig_shap_importance', 'fig_shap_beeswarm', 'fig_forecast_timeseries',
         'fig_scenario_comparison', 'fig_vss_evpi', 'fig_decision_focused',
         'fig_fleet_sensitivity', 'fig_pareto_frontier', 'fig_equity_boxplot',
+        'fig_pi_reliability', 'fig_cost_wait_frontier',
     ]
     fig_dir = os.path.join(project_root, 'results/figures')
     paper_fig_dir = os.path.join(project_root, 'paper/figures')

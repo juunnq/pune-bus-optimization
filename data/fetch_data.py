@@ -95,12 +95,21 @@ def generate_routes(n_routes=340):
 
     df = pd.DataFrame(rows)
 
-    # Tune frequencies so peak fleet ~ 1800 buses
+    # Calibrate frequencies so the status-quo peak fleet leaves headroom for
+    # the MIP's equity floor (priority routes at k>=3 during peaks). With the
+    # round-trip cycle time tau = 2 * avg_trip + dwell (must match
+    # deterministic_model.DWELL_MIN), bus consumption per route is ~2x what it
+    # was under the old one-way-time approximation. Targeting peak_fleet ~1500
+    # gives the MIP roughly 300 buses of room for the equity-floor lift before
+    # hitting the operational fleet cap of B=1800.
+    DWELL_MIN = 7.5
+
     def fleet(d):
-        return int(np.ceil(d['current_peak_freq'] * d['avg_trip_time_min'] / 60).sum())
+        tau = 2.0 * d['avg_trip_time_min'] + DWELL_MIN
+        return int(np.ceil(d['current_peak_freq'] * tau / 60).sum())
 
     cur = fleet(df)
-    target = 1800
+    target = 1500
     if abs(cur - target) > 100:
         scale = target / cur
         df['current_peak_freq'] = np.clip(
@@ -198,16 +207,29 @@ def is_festival(d):
 
 
 def generate_demand(routes_df, weather_df):
-    """Top 50 routes by current peak frequency, full year 2024, hourly."""
-    top50 = routes_df.nlargest(50, 'current_peak_freq').copy()
-    # Daily ridership baseline: peak-hours pax + off-peak-hours pax
+    """Top 50 routes by current peak frequency, full year 2024, hourly.
+
+    The DGP includes three sources of irreducible noise that test the
+    decision-focused learning claim more honestly than i.i.d. small-sigma
+    Gaussian noise would:
+      (i)   a latent per-day factor correlated across routes (unobserved by
+            the predictor);
+      (ii)  per-(route, date) hidden surge events (also unobserved);
+      (iii) heavy-tailed (Student-t) multiplicative noise on a "volatile"
+            subset of routes, light Gaussian noise on the rest.
+    The latent variables are NOT included in the output feature columns, so a
+    learner cannot recover them by inspection.
+    """
+    top50 = routes_df.nlargest(50, 'current_peak_freq').copy().reset_index(drop=True)
     top50['base_per_hour'] = (
         top50['current_peak_freq'] * 4 * 45
         + top50['current_offpeak_freq'] * 13 * 25
     ) / 17.0
 
-    # Use 2024 only (~366 days for leap year)
-    w24 = weather_df[weather_df['date'].dt.year == 2024].copy()
+    # Mark every 5th route (10 of 50) as volatile — heavy-tailed noise.
+    volatile_routes = set(top50.iloc[::5]['route_id'].tolist())
+
+    w24 = weather_df[weather_df['date'].dt.year == 2024].copy().reset_index(drop=True)
     w24['day_of_week'] = w24['date'].dt.dayofweek
     w24['is_weekend'] = (w24['day_of_week'] >= 5).astype(int)
     w24['month'] = w24['date'].dt.month
@@ -215,6 +237,10 @@ def generate_demand(routes_df, weather_df):
     w24['is_monsoon'] = ((w24['month'] >= 6) & (w24['month'] <= 9)).astype(int)
     w24['is_exam_season'] = w24['month'].isin([3, 4]).astype(int)
     w24['is_festival'] = w24['date'].apply(is_festival).astype(int)
+
+    # Latent per-date factor (correlated demand shock across all routes).
+    rng_day = np.random.default_rng(43)
+    w24['_day_factor'] = rng_day.normal(0, 0.08, len(w24))
 
     hours_df = pd.DataFrame({'hour': list(range(24))})
     hours_df['profile'] = hours_df['hour'].map(lambda h: HOUR_PROFILE.get(h, 0.05))
@@ -228,7 +254,21 @@ def generate_demand(routes_df, weather_df):
                      .merge(hours_df, on='_k')
                      .drop(columns='_k'))
 
-    # Vectorized modifiers
+    # Per-(route, date) hidden surge events: ~3% of pairs get a 1.5-2.5x boost.
+    rng_event = np.random.default_rng(44)
+    n_routes = len(top50)
+    n_dates = len(w24)
+    event_mask = rng_event.random((n_routes, n_dates)) < 0.03
+    event_size = rng_event.uniform(1.5, 2.5, (n_routes, n_dates))
+    # Map (route_id, date) -> (i, j) indices for broadcast.
+    route_idx = {r: i for i, r in enumerate(top50['route_id'].values)}
+    date_idx = {pd.Timestamp(d): j for j, d in enumerate(w24['date'].values)}
+    df['_ridx'] = df['route_id'].map(route_idx)
+    df['_didx'] = df['date'].map(lambda d: date_idx[pd.Timestamp(d)])
+    event_mult = np.where(event_mask[df['_ridx'].values, df['_didx'].values],
+                          event_size[df['_ridx'].values, df['_didx'].values],
+                          1.0)
+
     df['ridership'] = df['base_per_hour'] * df['profile']
     rain_mult = np.where(df['precipitation_mm'] > 10,
                          np.maximum(0.7, 1 - df['precipitation_mm'] / 100), 1.0)
@@ -238,7 +278,18 @@ def generate_demand(routes_df, weather_df):
     df['ridership'] *= np.where(df['is_exam_season'] == 1, 1.15, 1.0)
     df['ridership'] *= np.where(df['is_festival'] == 1, 0.75, 1.0)
     df['ridership'] *= np.where(df['temperature_max'] > 40, 0.9, 1.0)
-    df['ridership'] *= (1 + np.random.normal(0, 0.05, len(df)))
+    df['ridership'] *= (1 + df['_day_factor'])  # correlated latent shock
+    df['ridership'] *= event_mult               # hidden surge events
+
+    # Heavy-tailed Student-t noise on volatile routes; light Normal on rest.
+    is_vol = df['route_id'].isin(volatile_routes).values
+    rng_noise = np.random.default_rng(45)
+    n = len(df)
+    light = rng_noise.normal(0, 0.05, n)
+    heavy = rng_noise.standard_t(df=3, size=n) * 0.10
+    noise = np.where(is_vol, heavy, light)
+    df['ridership'] *= (1 + noise)
+
     df['ridership'] = np.maximum(df['ridership'], 0).round(2)
 
     cols = ['route_id', 'date', 'hour', 'day_of_week', 'is_weekend', 'is_holiday',
@@ -265,16 +316,50 @@ def hour_to_period(h):
 
 
 def generate_demand_matrix(routes_df, demand_df):
-    """340 routes x 5 periods. Aggregate detailed routes, estimate the rest."""
-    # 50 detailed routes
+    """340 routes x 5 periods.
+
+    Modeled routes (50): per-(route, period) mean observed ridership.
+
+    Unmodeled routes (290): parametric base_per_hour x period_profile, then
+    multiplied by a per-period RESIDUAL RATIO estimated on the modeled subset.
+    The residual ratio for period t is the empirical mean of
+    (observed_demand_t / parametric_baseline_t) across modeled routes; it
+    corrects the parametric baseline for systematic period-level effects that
+    the hourly-profile constants alone do not capture.
+    """
     d = demand_df.copy()
     d['period'] = d['hour'].apply(hour_to_period)
     d = d.dropna(subset=['period'])
     detailed = d.groupby(['route_id', 'period'])['ridership'].mean().unstack('period')
 
-    # Estimated for remaining 290
     period_avg = {name: float(np.mean([HOUR_PROFILE.get(h, 0.05) for h in range(lo, hi)]))
                   for name, lo, hi in PERIOD_BOUNDS}
+    period_cols = [name for name, _, _ in PERIOD_BOUNDS]
+
+    # Parametric baseline for the modeled 50 (same formula used for unmodeled).
+    modeled = routes_df[routes_df['route_id'].isin(detailed.index)].copy()
+    modeled['base_per_hour'] = (
+        modeled['current_peak_freq'] * 4 * 45
+        + modeled['current_offpeak_freq'] * 13 * 25
+    ) / 17.0
+    base_modeled = pd.DataFrame(index=modeled.set_index('route_id').index,
+                                columns=period_cols, dtype=float)
+    for _, r in modeled.iterrows():
+        for name in period_cols:
+            base_modeled.loc[r['route_id'], name] = r['base_per_hour'] * period_avg[name]
+
+    # Per-period residual ratio = mean(observed / parametric_baseline).
+    aligned = detailed.reindex(columns=period_cols)
+    residual_ratio = {}
+    for name in period_cols:
+        actual = aligned[name]
+        base = base_modeled[name]
+        common = actual.notna() & (base > 0)
+        if common.sum() > 0:
+            residual_ratio[name] = float((actual[common] / base[common]).mean())
+        else:
+            residual_ratio[name] = 1.0
+    print(f"  residual ratios (modeled subset): {residual_ratio}")
 
     other_ids = sorted(set(routes_df['route_id']) - set(detailed.index))
     other = routes_df[routes_df['route_id'].isin(other_ids)].copy()
@@ -286,13 +371,12 @@ def generate_demand_matrix(routes_df, demand_df):
     other_rows = []
     for _, r in other.iterrows():
         row = {'route_id': r['route_id']}
-        for name, prof in period_avg.items():
-            row[name] = round(r['base_per_hour'] * prof, 2)
+        for name in period_cols:
+            row[name] = round(r['base_per_hour'] * period_avg[name] * residual_ratio[name], 2)
         other_rows.append(row)
     other_df = pd.DataFrame(other_rows).set_index('route_id')
 
     full = pd.concat([detailed, other_df]).round(2)
-    period_cols = [name for name, _, _ in PERIOD_BOUNDS]
     full = full[period_cols].reset_index().rename(columns={'index': 'route_id'})
     return full
 
@@ -305,7 +389,8 @@ def main():
     routes_df = generate_routes(340)
     routes_path = os.path.join(PROCESSED_DIR, "routes.csv")
     routes_df.to_csv(routes_path, index=False)
-    fleet = int(np.ceil(routes_df['current_peak_freq'] * routes_df['avg_trip_time_min'] / 60).sum())
+    tau = 2.0 * routes_df['avg_trip_time_min'] + 7.5
+    fleet = int(np.ceil(routes_df['current_peak_freq'] * tau / 60).sum())
     print(f"  routes={len(routes_df)}, peak_fleet={fleet}")
 
     print("Fetching weather...")

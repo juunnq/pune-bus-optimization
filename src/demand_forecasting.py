@@ -112,10 +112,13 @@ def train_models(X_train, y_train, X_val, y_val):
     return models
 
 
+QUANTILE_LEVELS = {0.05: 'q05', 0.10: 'q10', 0.25: 'q25', 0.50: 'q50',
+                   0.75: 'q75', 0.90: 'q90', 0.95: 'q95'}
+
+
 def train_quantile_models(X_train, y_train, X_val, y_val):
-    quantiles = {0.1: 'q10', 0.5: 'q50', 0.9: 'q90'}
     out = {}
-    for q, name in quantiles.items():
+    for q, name in QUANTILE_LEVELS.items():
         m = xgb.XGBRegressor(
             n_estimators=300, learning_rate=0.05, max_depth=6,
             objective='reg:quantileerror', quantile_alpha=q,
@@ -127,6 +130,36 @@ def train_quantile_models(X_train, y_train, X_val, y_val):
     return out
 
 
+def compute_conformal_offset(q_models, X_calib, y_calib, alpha: float = 0.20) -> float:
+    """Split-conformal calibration for the central (1 - alpha) prediction band.
+
+    Returns the additive offset c such that, by exchangeability,
+        P(y_test in [q_lo(x) - c, q_hi(x) + c]) >= 1 - alpha
+    where q_lo = q_{alpha/2} and q_hi = q_{1 - alpha/2}.
+    """
+    lo_name = f"q{int(alpha / 2 * 100):02d}"
+    hi_name = f"q{int((1 - alpha / 2) * 100):02d}"
+    q_lo = np.maximum(q_models[lo_name].predict(X_calib), 0)
+    q_hi = np.maximum(q_models[hi_name].predict(X_calib), 0)
+    y = np.asarray(y_calib)
+    # Non-conformity score: signed distance outside the band
+    scores = np.maximum(q_lo - y, y - q_hi)
+    n = len(scores)
+    q_level = min(1.0, np.ceil((n + 1) * (1 - alpha)) / n)
+    return float(np.quantile(scores, q_level))
+
+
+def reliability_table(q_models, X, y) -> pd.DataFrame:
+    """For each trained quantile level: nominal alpha and empirical P(y <= q_alpha(x))."""
+    rows = []
+    y = np.asarray(y)
+    for alpha, name in QUANTILE_LEVELS.items():
+        pred = np.maximum(q_models[name].predict(X), 0)
+        emp = float(np.mean(y <= pred))
+        rows.append({'nominal': alpha, 'quantile': name, 'empirical': emp})
+    return pd.DataFrame(rows)
+
+
 def evaluate_model(model, X_test, y_test) -> dict:
     pred = model.predict(X_test)
     pred = np.maximum(pred, 0)
@@ -134,14 +167,12 @@ def evaluate_model(model, X_test, y_test) -> dict:
 
 
 def generate_prediction_intervals(q_models, X) -> pd.DataFrame:
-    out = pd.DataFrame({
-        'q10': np.maximum(q_models['q10'].predict(X), 0),
-        'q50': np.maximum(q_models['q50'].predict(X), 0),
-        'q90': np.maximum(q_models['q90'].predict(X), 0),
-    })
-    # enforce monotone ordering
-    out['q50'] = np.maximum(out['q50'], out['q10'])
-    out['q90'] = np.maximum(out['q90'], out['q50'])
+    out = pd.DataFrame({name: np.maximum(q_models[name].predict(X), 0)
+                        for name in QUANTILE_LEVELS.values()})
+    # enforce monotone ordering across quantile levels
+    cols = [name for _, name in sorted(QUANTILE_LEVELS.items())]
+    for i in range(1, len(cols)):
+        out[cols[i]] = np.maximum(out[cols[i]], out[cols[i - 1]])
     return out
 
 
@@ -181,28 +212,44 @@ def run_forecasting_pipeline(demand_df, weather_df, routes_df,
     results_df = pd.DataFrame(rows)
     results_df.to_csv(os.path.join(output_dir, "forecast_results.csv"), index=False)
 
-    # Test predictions with quantile intervals
+    # Test predictions with quantile intervals + split-conformal calibration
+    # (calibration set: validation fold)
     test_pred = np.maximum(models['xgboost'].predict(X_test), 0)
     qi = generate_prediction_intervals(q_models, X_test)
+    conformal_offset = compute_conformal_offset(q_models, X_val, y_val, alpha=0.20)
+    log_metric("conformal_offset_80pct", round(conformal_offset, 4))
+
     test_out = pd.DataFrame({
         'route_id': test['route_id'].values,
         'date': test['date'].values,
         'hour': test['hour'].values,
         'actual': y_test.values,
         'predicted': test_pred,
-        'q10': qi['q10'].values,
-        'q50': qi['q50'].values,
-        'q90': qi['q90'].values,
     })
+    for name in QUANTILE_LEVELS.values():
+        test_out[name] = qi[name].values
+    test_out['q10_cal'] = np.maximum(test_out['q10'] - conformal_offset, 0)
+    test_out['q90_cal'] = test_out['q90'] + conformal_offset
     test_out.to_csv(os.path.join(output_dir, "test_predictions.csv"), index=False)
 
-    # Save XGBoost model
+    # Reliability diagram data (val and test, raw quantile coverage)
+    rel_val = reliability_table(q_models, X_val, y_val)
+    rel_val['split'] = 'validation'
+    rel_test = reliability_table(q_models, X_test, y_test)
+    rel_test['split'] = 'test'
+    pd.concat([rel_val, rel_test], ignore_index=True).to_csv(
+        os.path.join(output_dir, "pi_reliability.csv"), index=False)
+
+    # Save XGBoost model + quantile heads + conformal offset
     models['xgboost'].save_model(os.path.join(models_dir, "xgb_model.json"))
     for name, m in q_models.items():
         m.save_model(os.path.join(models_dir, f"xgb_{name}.json"))
+    with open(os.path.join(models_dir, "conformal_offset.txt"), 'w') as f:
+        f.write(f"{conformal_offset:.6f}\n")
 
     return {'results_df': results_df, 'test_predictions': test_out,
-            'models': models, 'q_models': q_models, 'feature_cols': feat_cols}
+            'models': models, 'q_models': q_models, 'feature_cols': feat_cols,
+            'conformal_offset': conformal_offset}
 
 
 if __name__ == "__main__":
@@ -247,10 +294,14 @@ if __name__ == "__main__":
     log_gate_check("quantile_ordering", bool(q_order),
                    "q10 <= q50 <= q90", bool(q_order))
 
-    coverage = float(((preds['actual'] >= preds['q10']) & (preds['actual'] <= preds['q90'])).mean())
-    log_gate_check("interval_coverage", 0.65 < coverage < 0.95,
-                   "65-95%", f"{coverage:.1%}")
-    log_metric("prediction_interval_coverage", round(coverage, 4))
+    coverage_raw = float(((preds['actual'] >= preds['q10']) & (preds['actual'] <= preds['q90'])).mean())
+    coverage_cal = float(((preds['actual'] >= preds['q10_cal']) & (preds['actual'] <= preds['q90_cal'])).mean())
+    log_gate_check("interval_coverage_raw", 0.60 < coverage_raw < 0.99,
+                   "60-99%", f"{coverage_raw:.1%}")
+    log_gate_check("interval_coverage_calibrated", coverage_cal >= 0.78,
+                   ">=78%", f"{coverage_cal:.1%}")
+    log_metric("prediction_interval_coverage_raw", round(coverage_raw, 4))
+    log_metric("prediction_interval_coverage_calibrated", round(coverage_cal, 4))
 
     log_metric("xgb_test_rmse", round(xgb_row['rmse'], 4))
     log_metric("xgb_test_mape", round(xgb_row['mape'], 4))

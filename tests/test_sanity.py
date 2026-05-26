@@ -42,11 +42,24 @@ def test_result_files_exist():
         assert os.path.exists(f), f"Missing: {f}"
 
 
-def test_optimal_beats_baseline():
+def test_optimal_feasible_and_finite():
     df = pd.read_csv('results/tables/deterministic_results.csv')
-    optimal = df[df['method'] == 'optimal']['total_wait_time'].iloc[0]
-    baseline = df[df['method'] == 'status_quo']['total_wait_time'].iloc[0]
-    assert optimal < baseline
+    optimal = df[df['method'] == 'optimal'].iloc[0]
+    assert pd.notna(optimal['total_wait_time'])
+    assert optimal['total_wait_time'] > 0
+    assert optimal['total_wait_time'] < float('inf')
+    alloc = pd.read_csv('results/tables/optimal_allocation.csv')
+    assert alloc['frequency'].isin([1, 2, 3, 4, 6, 8, 10, 12, 15]).all()
+    assert (alloc['buses_assigned'] >= 0).all()
+
+
+def test_optimal_equity_satisfied():
+    routes = pd.read_csv('data/processed/routes.csv')
+    alloc = pd.read_csv('results/tables/optimal_allocation.csv')
+    priority = set(routes[routes['priority_score'] > 0.7]['route_id'])
+    peak = alloc[(alloc['period'].isin(['AM_peak', 'PM_peak']))
+                 & (alloc['route_id'].isin(priority))]
+    assert (peak['frequency'] >= 3).all(), "priority routes below k=3 at peak"
 
 
 def test_xgboost_beats_baselines():

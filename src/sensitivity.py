@@ -24,6 +24,41 @@ from src.deterministic_model import (
 )
 
 
+# 6D. Cost-wait Pareto frontier (operator cost lambda sweep)
+
+def cost_wait_frontier(routes_df: pd.DataFrame,
+                       demand_matrix: pd.DataFrame,
+                       lambdas: list,
+                       fleet_size: int = 1800) -> pd.DataFrame:
+    """Sweep lambda_op; record rider waiting time and bus-periods used.
+
+    Without an operator-cost penalty the optimum saturates the fleet whenever
+    waiting time can be reduced, which inflates the headline gain vs. status
+    quo. Sweeping lambda_op > 0 traces the rider-wait / operator-cost frontier.
+    """
+    rows = []
+    for lam in lambdas:
+        res = build_deterministic_model(routes_df, demand_matrix,
+                                        fleet_size=fleet_size,
+                                        lambda_op=float(lam),
+                                        time_limit_sec=180)
+        alloc = res['allocation_df']
+        if alloc.empty or res['status'] == 'Infeasible':
+            log_warning(f"cost frontier lambda={lam}: infeasible (status={res['status']})")
+            rows.append({'lambda_op': lam, 'total_wait_time': float('nan'),
+                         'bus_periods_used': 0, 'avg_frequency': 0.0,
+                         'status': res['status'], 'solve_time': res['solve_time']})
+            continue
+        ev = evaluate_allocation(alloc, demand_matrix, routes_df)
+        rows.append({'lambda_op': lam,
+                     'total_wait_time': ev['total_wait_time'],
+                     'bus_periods_used': ev['fleet_used'],
+                     'avg_frequency': ev['avg_frequency'],
+                     'status': res['status'],
+                     'solve_time': res['solve_time']})
+    return pd.DataFrame(rows)
+
+
 # 6A. Fleet sensitivity
 
 def fleet_sensitivity_analysis(routes_df: pd.DataFrame,
@@ -246,7 +281,12 @@ def run_sensitivity_pipeline(routes_df, demand_matrix, output_dir="results/table
     shadow_df = shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800)
     shadow_df.to_csv(os.path.join(output_dir, "shadow_prices.csv"), index=False)
 
-    return {'fleet': fleet_df, 'pareto': pareto_df, 'shadow': shadow_df}
+    lambdas = [0.0, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0]
+    cost_df = cost_wait_frontier(routes_df, demand_matrix, lambdas, fleet_size=1800)
+    cost_df.to_csv(os.path.join(output_dir, "cost_wait_frontier.csv"), index=False)
+
+    return {'fleet': fleet_df, 'pareto': pareto_df, 'shadow': shadow_df,
+            'cost_frontier': cost_df}
 
 
 if __name__ == "__main__":
@@ -308,6 +348,7 @@ if __name__ == "__main__":
 
     log_file_created(os.path.join(project_root, "results/tables/fleet_sensitivity.csv"))
     log_file_created(os.path.join(project_root, "results/tables/pareto_frontier.csv"))
+    log_file_created(os.path.join(project_root, "results/tables/cost_wait_frontier.csv"))
     log_file_created(shadow_path)
 
     log_phase_end("PHASE_6_SENSITIVITY", "PASS")

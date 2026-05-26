@@ -8,8 +8,14 @@ Compares 5 approaches:
   4) NN (SPO+ surrogate) -> Optimize
   5) Oracle (true demand) -> Optimize   [regret = 0]
 
-For each method we:
-  (a) train the predictor (or load it)
+Each method is trained over a sweep of random seeds and the per-seed regret
+distribution is reported. A paired Wilcoxon signed-rank test compares
+NN-SPO+ regret to XGB-MSE regret across seeds (same test demand each time, so
+samples are paired). Reporting a single-seed regret was the dominant source
+of unstated variance in earlier drafts.
+
+For each (method, seed) we:
+  (a) train the predictor on a fixed train fold with that seed
   (b) build a (route x period) demand matrix from predicted hourly demand
       for the 50 modeled routes; non-modeled routes use the original
       demand_matrix.csv values as a fixed baseline
@@ -28,6 +34,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import xgboost as xgb
+from scipy.stats import wilcoxon
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -150,10 +157,11 @@ def _make_loaders(X, y, w, batch_size, device, shuffle=True):
 
 def train_nn(X_train, y_train, w_train, X_val, y_val,
              input_dim, epochs=40, batch_size=512, lr=1e-3,
-             device='cpu', use_weighted_loss=False):
+             device='cpu', use_weighted_loss=False, seed: int = 42):
     """Train DemandPredictor with weighted MSE if use_weighted_loss
     else plain MSE. Returns trained model + history."""
-    torch.manual_seed(42)
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     model = DemandPredictor(input_dim).to(device)
     opt = torch.optim.Adam(model.parameters(), lr=lr)
 
@@ -194,20 +202,104 @@ def nn_predict(model, X, device='cpu') -> np.ndarray:
     return np.maximum(out, 0)
 
 
+# Per-seed runner
+
+def _run_one_seed(seed, X_train, y_train, X_val, y_val, X_test, y_test,
+                  train_df, val_df, test_df, sample_weights, val_weights,
+                  routes_df, demand_matrix, truth_matrix, oracle_obj,
+                  fleet_size, nn_epochs, device):
+    """Train all four predictors with `seed`, return one row per method."""
+    rows = []
+
+    # 1) XGBoost MSE (subsampling makes seed matter)
+    xgb_mse = xgb.XGBRegressor(
+        n_estimators=2000, learning_rate=0.03, max_depth=8,
+        subsample=0.85, colsample_bytree=0.85, min_child_weight=5,
+        objective='reg:squarederror', n_jobs=-1, random_state=int(seed),
+        early_stopping_rounds=50, eval_metric='rmse', verbosity=0,
+    )
+    xgb_mse.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
+    xgb_pred = np.maximum(xgb_mse.predict(X_test), 0)
+    xgb_m = _metrics(y_test.values, xgb_pred)
+    res_xgb = predict_then_optimize(xgb_pred, test_df, truth_matrix, demand_matrix,
+                                    routes_df, fleet_size=fleet_size)
+
+    # 2) XGBoost weighted (decision-aware)
+    xgb_w = xgb.XGBRegressor(
+        n_estimators=2000, learning_rate=0.03, max_depth=8,
+        subsample=0.85, colsample_bytree=0.85, min_child_weight=5,
+        objective='reg:squarederror', n_jobs=-1, random_state=int(seed),
+        early_stopping_rounds=50, eval_metric='rmse', verbosity=0,
+    )
+    xgb_w.fit(X_train, y_train, sample_weight=sample_weights,
+              eval_set=[(X_val, y_val)], sample_weight_eval_set=[val_weights],
+              verbose=False)
+    xgb_w_pred = np.maximum(xgb_w.predict(X_test), 0)
+    xgb_w_m = _metrics(y_test.values, xgb_w_pred)
+    res_xgb_w = predict_then_optimize(xgb_w_pred, test_df, truth_matrix, demand_matrix,
+                                       routes_df, fleet_size=fleet_size)
+
+    # 3) NN MSE
+    flat_w = np.ones(len(y_train), dtype=np.float32)
+    nn_mse, _ = train_nn(X_train, y_train, flat_w, X_val, y_val,
+                         input_dim=X_train.shape[1],
+                         epochs=nn_epochs, batch_size=512, lr=1e-3,
+                         device=device, use_weighted_loss=False, seed=int(seed))
+    nn_mse_pred = nn_predict(nn_mse, X_test, device=device)
+    nn_mse_m = _metrics(y_test.values, nn_mse_pred)
+    res_nn_mse = predict_then_optimize(nn_mse_pred, test_df, truth_matrix, demand_matrix,
+                                       routes_df, fleet_size=fleet_size)
+
+    # 4) NN SPO+ surrogate
+    nn_spo, _ = train_nn(X_train, y_train, sample_weights, X_val, y_val,
+                         input_dim=X_train.shape[1],
+                         epochs=nn_epochs, batch_size=512, lr=1e-3,
+                         device=device, use_weighted_loss=True, seed=int(seed))
+    nn_spo_pred = nn_predict(nn_spo, X_test, device=device)
+    nn_spo_m = _metrics(y_test.values, nn_spo_pred)
+    res_nn_spo = predict_then_optimize(nn_spo_pred, test_df, truth_matrix, demand_matrix,
+                                       routes_df, fleet_size=fleet_size)
+
+    for name, m, res in [('xgb_mse', xgb_m, res_xgb),
+                         ('xgb_weighted', xgb_w_m, res_xgb_w),
+                         ('nn_mse', nn_mse_m, res_nn_mse),
+                         ('nn_spo', nn_spo_m, res_nn_spo)]:
+        rows.append({
+            'seed': int(seed), 'method': name,
+            'prediction_rmse': m['rmse'], 'prediction_mae': m['mae'],
+            'prediction_mape': m['mape'], 'prediction_r2': m['r2'],
+            'predicted_objective': res['predicted_objective'],
+            'decision_quality': res['true_objective'],
+            'regret': res['true_objective'] - oracle_obj,
+        })
+    return rows, {'nn_mse': nn_mse, 'nn_spo': nn_spo}
+
+
 # Pipeline
 
 def run_decision_focused_pipeline(routes_df, demand_df, weather_df, demand_matrix,
                                   output_dir="results/tables",
                                   models_dir="results/models",
                                   fleet_size=1800,
-                                  nn_epochs=30):
+                                  nn_epochs=30,
+                                  seeds=None):
+    """Multi-seed sweep over the four predictors plus oracle baseline.
+
+    seeds: iterable of ints. Default: range(20). The 0.058 pass-hr SPO+
+    advantage reported in earlier single-seed runs was below typical
+    seed-to-seed variance for these 30-epoch NNs; the sweep makes that
+    visible rather than relying on luck.
+    """
+    if seeds is None:
+        seeds = list(range(20))
     os.makedirs(output_dir, exist_ok=True)
     os.makedirs(models_dir, exist_ok=True)
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     log_metric("decision_focused_device", device)
+    log_metric("decision_focused_n_seeds", len(list(seeds)))
 
-    # Features
+    # Shared features and target
     df_full = prepare_features(demand_df, weather_df, routes_df)
     feat_cols = get_feature_cols(df_full)
     train_df, val_df, test_df = chronological_split(df_full)
@@ -218,100 +310,109 @@ def run_decision_focused_pipeline(routes_df, demand_df, weather_df, demand_matri
     X_test = test_df[feat_cols].values.astype(np.float32)
     y_test = test_df['ridership']
 
-    # Truth matrix from test actuals
     truth_matrix = build_demand_matrix(test_df, 'ridership', demand_matrix)
 
-    # Oracle: solve MIP on truth, evaluate on truth
+    # Oracle: solve MIP on truth (deterministic; once).
     oracle_res = build_deterministic_model(routes_df, truth_matrix,
                                            fleet_size=fleet_size, time_limit_sec=120)
     oracle_obj = evaluate_allocation(oracle_res['allocation_df'],
                                      truth_matrix, routes_df)['total_wait_time']
     log_metric("oracle_objective", round(oracle_obj, 2))
 
-    # 1) XGBoost MSE
-    xgb_mse = xgb.XGBRegressor()
-    xgb_mse.load_model(os.path.join(models_dir, "xgb_model.json"))
-    xgb_pred = np.maximum(xgb_mse.predict(X_test), 0)
-    xgb_metrics = _metrics(y_test.values, xgb_pred)
-    res_xgb = predict_then_optimize(xgb_pred, test_df, truth_matrix, demand_matrix,
-                                    routes_df, fleet_size=fleet_size)
-
-    # 2) XGBoost weighted (decision-aware)
+    # Sample weights for SPO+ surrogate, computed once from the seed=42
+    # reference allocation. Holding weights fixed across seeds keeps the
+    # comparison clean: the only thing that varies is training randomness.
     optimal_alloc = pd.read_csv(os.path.join(output_dir, "optimal_allocation.csv"))
     weights_dict = compute_decision_weights(routes_df, optimal_alloc, demand_matrix)
     sample_weights = map_weights_to_samples(train_df, weights_dict)
     val_weights = map_weights_to_samples(val_df, weights_dict)
 
-    xgb_w = xgb.XGBRegressor(
-        n_estimators=2000, learning_rate=0.03, max_depth=8,
-        subsample=0.85, colsample_bytree=0.85, min_child_weight=5,
-        objective='reg:squarederror', n_jobs=-1, random_state=42,
-        early_stopping_rounds=50, eval_metric='rmse', verbosity=0,
-    )
-    xgb_w.fit(X_train, y_train, sample_weight=sample_weights,
-              eval_set=[(X_val, y_val)],
-              sample_weight_eval_set=[val_weights],
-              verbose=False)
-    xgb_w_pred = np.maximum(xgb_w.predict(X_test), 0)
-    xgb_w_metrics = _metrics(y_test.values, xgb_w_pred)
-    res_xgb_w = predict_then_optimize(xgb_w_pred, test_df, truth_matrix, demand_matrix,
-                                       routes_df, fleet_size=fleet_size)
+    seeds = list(seeds)
+    all_rows = []
+    last_models = {}
+    for i, seed in enumerate(seeds):
+        t0 = time.time()
+        rows, mdl = _run_one_seed(
+            seed, X_train, y_train, X_val, y_val, X_test, y_test,
+            train_df, val_df, test_df, sample_weights, val_weights,
+            routes_df, demand_matrix, truth_matrix, oracle_obj,
+            fleet_size, nn_epochs, device,
+        )
+        elapsed = time.time() - t0
+        print(f"  seed {seed} ({i+1}/{len(seeds)}): {elapsed:.1f}s")
+        all_rows.extend(rows)
+        last_models = mdl  # save final-seed models for backward compat
 
-    # 3) NN MSE
-    flat_w = np.ones(len(y_train), dtype=np.float32)
-    nn_mse, nn_mse_hist = train_nn(X_train, y_train, flat_w, X_val, y_val,
-                                   input_dim=X_train.shape[1],
-                                   epochs=nn_epochs, batch_size=512, lr=1e-3,
-                                   device=device, use_weighted_loss=False)
-    nn_mse_pred = nn_predict(nn_mse, X_test, device=device)
-    nn_mse_metrics = _metrics(y_test.values, nn_mse_pred)
-    res_nn_mse = predict_then_optimize(nn_mse_pred, test_df, truth_matrix, demand_matrix,
-                                       routes_df, fleet_size=fleet_size)
-    torch.save(nn_mse.state_dict(), os.path.join(models_dir, "nn_mse_model.pt"))
+    multiseed_df = pd.DataFrame(all_rows)
+    multiseed_df.to_csv(os.path.join(output_dir, "decision_focused_multiseed.csv"),
+                        index=False)
 
-    # 4) NN SPO+ surrogate (decision-aware weighted L1)
-    nn_spo, nn_spo_hist = train_nn(X_train, y_train, sample_weights, X_val, y_val,
-                                   input_dim=X_train.shape[1],
-                                   epochs=nn_epochs, batch_size=512, lr=1e-3,
-                                   device=device, use_weighted_loss=True)
-    nn_spo_pred = nn_predict(nn_spo, X_test, device=device)
-    nn_spo_metrics = _metrics(y_test.values, nn_spo_pred)
-    res_nn_spo = predict_then_optimize(nn_spo_pred, test_df, truth_matrix, demand_matrix,
-                                       routes_df, fleet_size=fleet_size)
-    torch.save(nn_spo.state_dict(), os.path.join(models_dir, "nn_spo_model.pt"))
+    # Aggregate: mean, SE, n
+    grp = multiseed_df.groupby('method')
+    agg = grp['regret'].agg(['mean', 'std', 'count']).reset_index()
+    agg['se'] = agg['std'] / np.sqrt(agg['count'])
+    pred_metrics = grp[['prediction_rmse', 'prediction_mae',
+                        'prediction_mape', 'prediction_r2']].mean().reset_index()
+    summary = agg.merge(pred_metrics, on='method')
+    summary = summary.rename(columns={'mean': 'regret_mean', 'std': 'regret_std',
+                                       'se': 'regret_se', 'count': 'n_seeds'})
 
-    # Compose results
-    rows = []
-    methods = [
-        ('xgb_mse', xgb_metrics, res_xgb),
-        ('xgb_weighted', xgb_w_metrics, res_xgb_w),
-        ('nn_mse', nn_mse_metrics, res_nn_mse),
-        ('nn_spo', nn_spo_metrics, res_nn_spo),
-    ]
-    for name, m, res in methods:
-        rows.append({
-            'method': name,
-            'prediction_rmse': m['rmse'],
-            'prediction_mae': m['mae'],
-            'prediction_mape': m['mape'],
-            'prediction_r2': m['r2'],
-            'predicted_objective': res['predicted_objective'],
-            'decision_quality': res['true_objective'],
-            'regret': res['true_objective'] - oracle_obj,
-        })
-    rows.append({
+    # Add oracle row
+    summary = pd.concat([summary, pd.DataFrame([{
+        'method': 'oracle', 'regret_mean': 0.0, 'regret_std': 0.0,
+        'regret_se': 0.0, 'n_seeds': len(seeds),
+        'prediction_rmse': 0.0, 'prediction_mae': 0.0,
+        'prediction_mape': 0.0, 'prediction_r2': 1.0,
+    }])], ignore_index=True)
+    summary.to_csv(os.path.join(output_dir, "decision_focused_summary.csv"),
+                   index=False)
+
+    # Paired Wilcoxon: NN-SPO+ regret vs XGB-MSE regret across seeds
+    xgb_regrets = (multiseed_df[multiseed_df['method'] == 'xgb_mse']
+                   .sort_values('seed')['regret'].values)
+    spo_regrets = (multiseed_df[multiseed_df['method'] == 'nn_spo']
+                   .sort_values('seed')['regret'].values)
+    if len(xgb_regrets) >= 2 and not np.allclose(xgb_regrets, spo_regrets):
+        stat, pval = wilcoxon(spo_regrets, xgb_regrets, alternative='less')
+    else:
+        stat, pval = float('nan'), float('nan')
+    test_df_out = pd.DataFrame([{
+        'comparison': 'nn_spo < xgb_mse (one-sided Wilcoxon signed-rank)',
+        'n_seeds': len(xgb_regrets),
+        'xgb_mse_regret_mean': float(np.mean(xgb_regrets)) if len(xgb_regrets) else float('nan'),
+        'nn_spo_regret_mean': float(np.mean(spo_regrets)) if len(spo_regrets) else float('nan'),
+        'mean_difference': float(np.mean(spo_regrets - xgb_regrets)) if len(spo_regrets) else float('nan'),
+        'statistic': float(stat) if not np.isnan(stat) else float('nan'),
+        'p_value': float(pval) if not np.isnan(pval) else float('nan'),
+    }])
+    test_df_out.to_csv(os.path.join(output_dir, "decision_focused_wilcoxon.csv"),
+                       index=False)
+    log_metric("decision_focused_wilcoxon_p", round(float(pval), 6) if not np.isnan(pval) else 'NaN')
+
+    # Backward-compat CSV: report seed=42 row per method (or first seed if 42 not in set)
+    pick_seed = 42 if 42 in seeds else seeds[0]
+    single = multiseed_df[multiseed_df['seed'] == pick_seed].copy()
+    single = single.drop(columns=['seed'])
+    single = pd.concat([single, pd.DataFrame([{
         'method': 'oracle',
-        'prediction_rmse': 0.0,
-        'prediction_mae': 0.0,
-        'prediction_mape': 0.0,
-        'prediction_r2': 1.0,
+        'prediction_rmse': 0.0, 'prediction_mae': 0.0,
+        'prediction_mape': 0.0, 'prediction_r2': 1.0,
         'predicted_objective': oracle_obj,
         'decision_quality': oracle_obj,
         'regret': 0.0,
-    })
-    df_out = pd.DataFrame(rows)
-    df_out.to_csv(os.path.join(output_dir, "decision_focused_results.csv"), index=False)
-    return df_out
+    }])], ignore_index=True)
+    single.to_csv(os.path.join(output_dir, "decision_focused_results.csv"), index=False)
+
+    if 'nn_mse' in last_models:
+        torch.save(last_models['nn_mse'].state_dict(),
+                   os.path.join(models_dir, "nn_mse_model.pt"))
+    if 'nn_spo' in last_models:
+        torch.save(last_models['nn_spo'].state_dict(),
+                   os.path.join(models_dir, "nn_spo_model.pt"))
+
+    return {'single_seed': single, 'multiseed': multiseed_df,
+            'summary': summary, 'wilcoxon': test_df_out,
+            'oracle_objective': oracle_obj}
 
 
 if __name__ == "__main__":
@@ -327,51 +428,55 @@ if __name__ == "__main__":
     weather_df = load_weather(os.path.join(project_root, "data/processed/weather.csv"))
     demand_matrix = load_demand_matrix(os.path.join(project_root, "data/processed/demand_matrix.csv"))
 
-    df_out = run_decision_focused_pipeline(
+    n_seeds = int(os.environ.get("DF_N_SEEDS", "20"))
+    out = run_decision_focused_pipeline(
         routes_df, demand_df, weather_df, demand_matrix,
         output_dir=os.path.join(project_root, "results/tables"),
         models_dir=os.path.join(project_root, "results/models"),
-        fleet_size=1800, nn_epochs=30,
+        fleet_size=1800, nn_epochs=30, seeds=list(range(n_seeds)),
     )
-    print(df_out.to_string(index=False))
+    summary = out['summary']
+    multiseed = out['multiseed']
+    wilcoxon_row = out['wilcoxon'].iloc[0]
+    print("\nSummary (mean regret over seeds):")
+    print(summary.to_string(index=False))
+    print("\nWilcoxon (one-sided): nn_spo < xgb_mse")
+    print(out['wilcoxon'].to_string(index=False))
 
     expected_methods = ['xgb_mse', 'xgb_weighted', 'nn_mse', 'nn_spo', 'oracle']
     for m in expected_methods:
-        log_gate_check(f"method_present_{m}", m in df_out['method'].values, "present",
-                       m in df_out['method'].values)
+        present = m in summary['method'].values
+        log_gate_check(f"method_present_{m}", present, "present", present)
 
-    oracle_obj = df_out[df_out['method'] == 'oracle']['decision_quality'].iloc[0]
-    for _, row in df_out.iterrows():
-        if row['method'] != 'oracle':
-            log_gate_check(f"oracle_best_vs_{row['method']}",
-                           oracle_obj <= row['decision_quality'] + 0.01,
-                           f"<= {row['decision_quality']:.2f}", round(float(oracle_obj), 2))
-
-    for _, row in df_out.iterrows():
-        if row['method'] != 'oracle':
-            log_gate_check(f"regret_nonneg_{row['method']}",
-                           row['regret'] >= -0.01, ">=0", round(float(row['regret']), 4))
-
-    for _, row in df_out.iterrows():
-        if row['method'] != 'oracle':
-            log_gate_check(f"rmse_valid_{row['method']}",
-                           0 < row['prediction_rmse'] < 1e6,
-                           "positive finite", round(float(row['prediction_rmse']), 2))
+    for _, row in summary.iterrows():
+        if row['method'] == 'oracle':
+            continue
+        log_gate_check(f"regret_nonneg_{row['method']}",
+                       row['regret_mean'] >= -0.01, ">=0",
+                       round(float(row['regret_mean']), 4))
+        log_gate_check(f"rmse_valid_{row['method']}",
+                       0 < row['prediction_rmse'] < 1e6,
+                       "positive finite", round(float(row['prediction_rmse']), 2))
 
     for f_path in ['results/models/nn_spo_model.pt', 'results/models/nn_mse_model.pt']:
         full = os.path.join(project_root, f_path)
         log_gate_check(f"model_saved_{os.path.basename(f_path)}",
                        os.path.exists(full), "True", str(os.path.exists(full)))
 
-    xgb_mse_regret = df_out[df_out['method'] == 'xgb_mse']['regret'].iloc[0]
-    best_df_regret = df_out[df_out['method'].isin(['xgb_weighted', 'nn_spo'])]['regret'].min()
-    log_metric("xgb_mse_regret", round(float(xgb_mse_regret), 4))
-    log_metric("best_decision_focused_regret", round(float(best_df_regret), 4))
-    if abs(xgb_mse_regret) > 1e-6:
-        log_metric("df_improvement_pct",
-                   round(float((xgb_mse_regret - best_df_regret) / xgb_mse_regret * 100), 2))
+    xgb_mse_mean = float(summary[summary['method'] == 'xgb_mse']['regret_mean'].iloc[0])
+    spo_mean = float(summary[summary['method'] == 'nn_spo']['regret_mean'].iloc[0])
+    log_metric("xgb_mse_regret_mean", round(xgb_mse_mean, 4))
+    log_metric("nn_spo_regret_mean", round(spo_mean, 4))
+    log_metric("regret_mean_difference", round(spo_mean - xgb_mse_mean, 6))
+    p = float(wilcoxon_row['p_value'])
+    log_metric("decision_focused_wilcoxon_p",
+               round(p, 6) if not np.isnan(p) else 'NaN')
+    log_gate_check("wilcoxon_computed", not np.isnan(p), "non-NaN", round(p, 6))
 
-    for f in ["decision_focused_results.csv"]:
+    for f in ["decision_focused_results.csv",
+              "decision_focused_multiseed.csv",
+              "decision_focused_summary.csv",
+              "decision_focused_wilcoxon.csv"]:
         log_file_created(os.path.join(project_root, "results/tables", f))
     log_phase_end("PHASE_5_DECISION_FOCUSED", "PASS")
     print("PHASE 5 COMPLETE")
