@@ -22,7 +22,12 @@
 \providecommand{\SetAlCapHSkip}[1]{}
 \providecommand{\SetAlCapNameFnt}[1]{}
 \usepackage{SCITEPRESS}
-\hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={}}
+\hypersetup{%
+  pdfauthor={Arjun Veluri},%
+  pdftitle={Decision-Focused Demand Learning for Equitable Bus Frequency Optimization},%
+  pdfsubject={Predict-then-optimize evaluation on the Pune PMPML bus network},%
+  pdfkeywords={mixed-integer programming, predict-then-optimize, decision-focused learning, public transportation, stochastic optimization, robust optimization, demand forecasting, equity}%
+}
 
 \begin{document}
 
@@ -30,7 +35,7 @@
 Optimization}
 
 \author{\authorname{Arjun Veluri}
-\affiliation{}
+\affiliation{Independent Researcher}
 \email{arjunsveluri@gmail.com}
 }
 
@@ -142,9 +147,10 @@ between RMSE and regret is genuine, but in this regime
 decision-focused training is making a sub-second difference per
 rider per day. The methodological contribution is that
 demonstrating this requires multi-seed paired tests and absolute
-reporting units: a single-seed framing of the same experiment
-(an earlier draft of this paper reported a 44.7\% regret
-reduction at seed 42) tells the wrong story in both magnitude and
+reporting units: a single-seed comparison at seed 42 would have
+suggested a 44.7\% NN-SPO$^+$ regret reduction over MSE-XGBoost,
+but the 20-seed paired protocol reveals this as a sampling
+artifact that tells the wrong story in both magnitude and
 direction.
 
 We contribute (i) a deterministic frequency-allocation MIP with
@@ -796,10 +802,10 @@ neural-network variants do not beat XGBoost on this network: the
 analogous test
 $\mathrm{regret}(\text{NN-SPO}^+) < \mathrm{regret}(\text{XGB-MSE})$
 gives $p = 0.75$, i.e., NN-SPO$^+$ does \emph{not} significantly
-beat the XGBoost baseline on regret. Earlier single-seed framings
-of this experiment (an earlier draft of this paper reported a
-44.7\% NN-SPO$^+$ advantage from one seed) do not survive
-multi-seed evaluation.
+beat the XGBoost baseline on regret. A single-seed comparison at
+seed 42 would have suggested a 44.7\% NN-SPO$^+$ advantage; the
+20-seed paired protocol reveals this as a sampling artifact that
+flips direction across seeds.
 
 Three substantive readings follow. First, prediction RMSE and
 decision regret genuinely dissociate. XGB-weighted has the worst
@@ -848,7 +854,8 @@ regret depending on training seed.
 \includegraphics[width=0.95\columnwidth]{figures/fig_fleet_sensitivity.pdf}
 \caption{Fleet-size sensitivity. Left axis: total waiting time.
 Right axis: number of route-periods with frequency at least
-three. Vertical dashed line: current fleet $B = 2{,}000$.}
+three. Vertical dashed line: peak-deployable fleet cap $B = 2{,}000$ (the
+status-quo schedule uses approximately 1{,}800 of these at peak).}
 \label{fig:fleet}
 \end{figure}
 
@@ -1196,6 +1203,21 @@ data, in which the synthetic pieces (ridership, hourly profile,
 per-depot fleet capacity) are explicitly demarcated from the
 empirical ones, so downstream work can replace them as more
 operational data becomes available.
+
+%% ============================================================
+%% CODE AND DATA AVAILABILITY
+%% ============================================================
+\paragraph{Code and data availability.}
+All code (data generation, MIP formulation, demand forecasting,
+decision-focused training, sensitivity analyses, and figure-generation
+scripts), the public-data inputs used for the real PMPML instance
+(OpenCity Pune Bus Stops and Routes; Pune Census 2011 PMC ward-level),
+and every result table referenced in this paper are available at
+\url{https://github.com/juunnq/pune-bus-optimization}. The full pipeline
+including the 20-seed decision-focused sweep reproduces in approximately
+three hours on commodity hardware; \texttt{pytest tests/test\_sanity.py}
+provides 17 regression checks and \texttt{scripts/gate\_check\_phase1.py}
+gates the synthetic-data inputs against the published PMPML scale.
 
 %% ============================================================
 %% REFERENCES

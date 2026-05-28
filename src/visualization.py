@@ -313,7 +313,7 @@ def fig_fleet_sensitivity(fleet_df):
     ax2.tick_params(axis='y', labelcolor=PALETTE[1])
     ax2.spines['top'].set_visible(False)
     ax1.axvline(2000, ls='--', color='gray', alpha=0.7)
-    ax1.text(2000, ax1.get_ylim()[1] * 0.97, 'current fleet (B=2000)',
+    ax1.text(2000, ax1.get_ylim()[1] * 0.97, 'fleet cap (B=2000)',
              ha='center', va='top', color='gray')
     ax1.set_title('Fleet-size sensitivity')
     save_fig(fig, 'fig_fleet_sensitivity')
