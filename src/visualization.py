@@ -357,15 +357,61 @@ def fig_pareto_frontier(pareto_df):
 # 11c. Cost-wait frontier
 
 def fig_cost_wait_frontier(cost_df):
-    df = cost_df.dropna(subset=['total_wait_time']).sort_values('bus_periods_used')
+    """Cost-wait Pareto frontier with collision-avoiding annotations.
+
+    Multiple low-lambda points saturate the fleet at the same (x, y); we
+    collapse coincident points to a single annotation listing all lambdas
+    that land there. Saturation at the top-right and floor at the bottom-
+    left both get this treatment.
+    """
+    df = (cost_df.dropna(subset=['total_wait_time'])
+                  .sort_values('bus_periods_used')
+                  .reset_index(drop=True))
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.plot(df['bus_periods_used'], df['total_wait_time'], 'o-',
             color=PALETTE[0], lw=2, ms=7)
+
+    # Group lambdas that share the same optimum (within 1 bus-period
+    # and 0.5 pass-hr) into a single annotation.
+    groups = []
     for _, row in df.iterrows():
-        ax.annotate(f"$\\lambda$={row['lambda_op']:g}",
-                    xy=(row['bus_periods_used'], row['total_wait_time']),
-                    xytext=(6, 4), textcoords='offset points', fontsize=8,
-                    color='gray')
+        placed = False
+        for g in groups:
+            if (abs(row['bus_periods_used'] - g['x']) < 1
+                    and abs(row['total_wait_time'] - g['y']) < 0.5):
+                g['lambdas'].append(row['lambda_op'])
+                placed = True
+                break
+        if not placed:
+            groups.append({'x': row['bus_periods_used'],
+                           'y': row['total_wait_time'],
+                           'lambdas': [row['lambda_op']]})
+
+    # Annotate each group once; alternate offset direction so labels do
+    # not run off the chart at extreme points.
+    for g in groups:
+        lambdas = sorted(g['lambdas'])
+        if len(lambdas) == 1:
+            label = f"$\\lambda$={lambdas[0]:g}"
+        else:
+            label = "$\\lambda \\in \\{" + ", ".join(f"{lam:g}" for lam in lambdas) + "\\}$"
+        # Push labels away from chart edges
+        x_frac = (g['x'] - df['bus_periods_used'].min()) / (
+            df['bus_periods_used'].max() - df['bus_periods_used'].min() + 1e-9)
+        if x_frac > 0.7:
+            xytext = (-10, 12)
+            ha = 'right'
+        elif x_frac < 0.15:
+            xytext = (10, -14)
+            ha = 'left'
+        else:
+            xytext = (6, 8)
+            ha = 'left'
+        ax.annotate(label,
+                    xy=(g['x'], g['y']),
+                    xytext=xytext, textcoords='offset points',
+                    ha=ha, fontsize=8, color='gray')
+
     ax.set_xlabel('Operator bus-periods used')
     ax.set_ylabel('Total rider waiting time (passenger-hours)')
     ax.set_title('Rider wait vs operator cost: Pareto frontier')
@@ -398,15 +444,15 @@ def fig_pi_reliability(reliability_df, test_predictions):
         cal = float(((p['actual'] >= p['q10_cal']) & (p['actual'] <= p['q90_cal'])).mean())
     else:
         cal = raw
-    bars = axes[1].bar(['raw\n80\\% PI', 'split-conformal\n80\\% PI'],
+    bars = axes[1].bar(['raw\n80% PI', 'split-conformal\n80% PI'],
                        [raw, cal], color=[PALETTE[3], PALETTE[2]])
-    axes[1].axhline(0.80, ls='--', color='gray', label='nominal 80\\%')
+    axes[1].axhline(0.80, ls='--', color='gray', label='nominal 80%')
     for b, v in zip(bars, [raw, cal]):
         axes[1].text(b.get_x() + b.get_width() / 2, v, f"{v:.1%}",
                      ha='center', va='bottom')
     axes[1].set_ylabel('Empirical coverage')
     axes[1].set_ylim(0, 1.0)
-    axes[1].set_title('80\\% PI: raw vs conformally calibrated')
+    axes[1].set_title('80% PI: raw vs conformally calibrated')
     axes[1].legend(loc='lower right')
 
     fig.tight_layout()

@@ -33,6 +33,9 @@ def run_phase(label, fn):
 def phase1_data():
     import subprocess
     subprocess.run([sys.executable, "data/fetch_data.py"], check=True)
+    # Phase-1 gate: data exists, sizes / thresholds match the real PMPML
+    # instance. Halts the pipeline (sys.exit non-zero) on any FAIL.
+    subprocess.run([sys.executable, "scripts/gate_check_phase1.py"], check=True)
 
 
 def phase2_deterministic():

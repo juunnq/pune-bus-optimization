@@ -242,11 +242,20 @@ Routes are anchored to one of thirteen depots: nine CNG depots
 (Aundh, Bhosari, Dhankawadi, Hadapsar, Katraj, Kothrud, Nigdi,
 Pimpri, Swargate) and four electric depots (Balewadi,
 Maan-Hinjewadi, Shewalewadi, Charholi) per published PMPML
-statistics. Per-depot fleet capacity is allocated proportional to
-each depot's minimum bus need (priority routes at the equity floor
-plus non-priority at $k = 1$) with $\pm 20\%$ jitter -- PMPML does
-not publish per-depot fleet counts and the alternative of an
-equal $1/|J|$ split produces infeasibilities, because priority
+statistics. The fleet cap used in the optimisation, $B = 2{,}000$,
+is the peak-deployable capacity reported by PMPML; the
+status-quo schedule encoded in the loaded route data uses
+approximately $1{,}800$ buses at peak (verified by
+\texttt{scripts/gate\_check\_phase1.py}: 1799 with the round-trip
+cycle time), leaving roughly 200 buses in reserve / maintenance /
+spare margin. The optimisation reports headline gains relative to
+this $\sim 1{,}800$-bus status quo, not relative to the
+theoretical $2{,}000$-bus saturation point. Per-depot fleet
+capacity is allocated proportional to each depot's minimum bus
+need (priority routes at the equity floor plus non-priority at
+$k = 1$) with $\pm 20\%$ jitter -- PMPML does not publish
+per-depot fleet counts and the alternative of an equal $1/|J|$
+split produces infeasibilities, because priority
 routes (defined below) cluster geographically.
 
 Operating hours span 06:00--23:00 and are discretised into five
@@ -490,7 +499,13 @@ applying a split-conformal correction
 fold raises empirical coverage to 80.4\%, essentially matching
 the nominal 80\% target. The reliability diagram
 (Figure~\ref{fig:pi}) summarises coverage at all seven trained
-quantile levels.
+quantile levels. The conformal correction is reported here as a
+forecasting-pipeline diagnostic; the calibrated bands are not
+fed into the stochastic / robust optimisation downstream, which
+uses the raw $q_{0.1} / q_{0.5} / q_{0.9}$ quantiles in
+\S\ref{sec:stoch}. Threading the conformal adjustment through to
+scenario generation is a clean extension we leave to future
+work.
 
 \begin{figure}[h]
 \centering
