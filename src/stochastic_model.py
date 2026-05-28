@@ -121,7 +121,7 @@ def generate_scenarios(demand_matrix: pd.DataFrame,
 def build_stochastic_model(routes_df: pd.DataFrame,
                            scenarios: dict,
                            probabilities: dict,
-                           fleet_size: int = 1800,
+                           fleet_size: int = 2000,
                            depot_caps: dict = None,
                            time_limit_sec: int = 300) -> dict:
     routes = list(routes_df['route_id'])
@@ -194,7 +194,7 @@ def build_stochastic_model(routes_df: pd.DataFrame,
 
 def build_robust_model(routes_df: pd.DataFrame,
                        scenarios: dict,
-                       fleet_size: int = 1800,
+                       fleet_size: int = 2000,
                        depot_caps: dict = None,
                        time_limit_sec: int = 300) -> dict:
     routes = list(routes_df['route_id'])
@@ -276,7 +276,7 @@ def evaluate_solution_across_scenarios(allocation_df: pd.DataFrame,
 def compute_ws(scenarios: dict,
                probabilities: dict,
                routes_df: pd.DataFrame,
-               fleet_size: int = 1800,
+               fleet_size: int = 2000,
                depot_caps: dict = None) -> dict:
     """Solve each scenario independently. WS = sum_s p_s * z_s*."""
     if depot_caps is None:
@@ -296,7 +296,7 @@ def compute_vss_evpi(det_alloc: pd.DataFrame,
                      scenarios: dict,
                      probabilities: dict,
                      routes_df: pd.DataFrame,
-                     fleet_size: int = 1800,
+                     fleet_size: int = 2000,
                      depot_caps: dict = None) -> dict:
     eev_per = evaluate_solution_across_scenarios(det_alloc, scenarios, routes_df)
     rp_per = evaluate_solution_across_scenarios(stoch_alloc, scenarios, routes_df)
@@ -316,7 +316,7 @@ def compute_vss_evpi(det_alloc: pd.DataFrame,
 # Driver
 
 def run_stochastic_pipeline(routes_df, demand_matrix, test_predictions,
-                            fleet_size=1800,
+                            fleet_size=2000,
                             output_dir="results/tables"):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -399,7 +399,7 @@ if __name__ == "__main__":
 
     out = run_stochastic_pipeline(
         routes_df, demand_matrix, test_predictions,
-        fleet_size=1800,
+        fleet_size=2000,
         output_dir=os.path.join(project_root, "results/tables"),
     )
     stoch_results = out['stochastic_results']

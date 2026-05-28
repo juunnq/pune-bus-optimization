@@ -29,7 +29,7 @@ from src.deterministic_model import (
 def cost_wait_frontier(routes_df: pd.DataFrame,
                        demand_matrix: pd.DataFrame,
                        lambdas: list,
-                       fleet_size: int = 1800) -> pd.DataFrame:
+                       fleet_size: int = 2000) -> pd.DataFrame:
     """Sweep lambda_op; record rider waiting time and bus-periods used.
 
     Without an operator-cost penalty the optimum saturates the fleet whenever
@@ -157,7 +157,7 @@ def _build_mip_with_equity_threshold(routes_df, demand_matrix, fleet_size, thres
             'objective': float(pulp.value(model.objective))}
 
 
-def pareto_analysis(routes_df, demand_matrix, equity_thresholds, fleet_size=1800):
+def pareto_analysis(routes_df, demand_matrix, equity_thresholds, fleet_size=2000):
     rows = []
     priority_routes = routes_df[routes_df['priority_score'] > PRIORITY_THRESHOLD]['route_id'].tolist()
     stop = False
@@ -193,7 +193,7 @@ def pareto_analysis(routes_df, demand_matrix, equity_thresholds, fleet_size=1800
 
 # 6C. Shadow prices via LP relaxation
 
-def shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800) -> pd.DataFrame:
+def shadow_price_analysis(routes_df, demand_matrix, fleet_size=2000) -> pd.DataFrame:
     routes = list(routes_df['route_id'])
     tau = _cycle_time_min(routes_df)
     priority = routes_df.set_index('route_id')['priority_score'].astype(float)
@@ -222,11 +222,17 @@ def shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800) -> pd.DataF
         for t in TIME_PERIODS:
             model += pulp.lpSum(x[(r, t, k)] for k in FREQ_LEVELS) == 1, f"assign_{r}_{t}"
 
+    # PuLP sanitises hyphens in constraint names (e.g. "203-NGT" -> "203_NGT").
+    # Strip them at construction time so lookups by name succeed on real
+    # PMPML route IDs that contain dashes.
+    def _safe(s):
+        return str(s).replace('-', '_').replace(' ', '_')
+
     equity_constraints = {}
     for r in routes:
         if priority[r] > PRIORITY_THRESHOLD:
             for t in PEAK_PERIODS:
-                cn = f"equity_{r}_{t}"
+                cn = f"equity_{_safe(r)}_{_safe(t)}"
                 model += pulp.lpSum(x[(r, t, k)] for k in FREQ_LEVELS
                                     if k >= PRIORITY_MIN_FREQ_PEAK) == 1, cn
                 equity_constraints[(r, t)] = cn
@@ -235,7 +241,7 @@ def shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800) -> pd.DataF
     for d_id, cap in depot_caps.items():
         depot_routes = [r for r in routes if depot_of[r] == d_id]
         for t in TIME_PERIODS:
-            cn = f"depot_{d_id}_{t}"
+            cn = f"depot_{_safe(d_id)}_{_safe(t)}"
             model += pulp.lpSum(b[(r, k)] * x[(r, t, k)]
                                 for r in depot_routes for k in FREQ_LEVELS) <= cap, cn
             depot_constraints[(d_id, t)] = cn
@@ -270,19 +276,19 @@ def shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800) -> pd.DataF
 def run_sensitivity_pipeline(routes_df, demand_matrix, output_dir="results/tables"):
     os.makedirs(output_dir, exist_ok=True)
 
-    fleet_sizes = [800, 1000, 1200, 1400, 1600, 1800, 2000, 2200]
+    fleet_sizes = [1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600]
     fleet_df = fleet_sensitivity_analysis(routes_df, demand_matrix, fleet_sizes)
     fleet_df.to_csv(os.path.join(output_dir, "fleet_sensitivity.csv"), index=False)
 
     equity_thresholds = [1, 2, 3, 4, 5, 6, 8, 10]
-    pareto_df = pareto_analysis(routes_df, demand_matrix, equity_thresholds, fleet_size=1800)
+    pareto_df = pareto_analysis(routes_df, demand_matrix, equity_thresholds, fleet_size=2000)
     pareto_df.to_csv(os.path.join(output_dir, "pareto_frontier.csv"), index=False)
 
-    shadow_df = shadow_price_analysis(routes_df, demand_matrix, fleet_size=1800)
+    shadow_df = shadow_price_analysis(routes_df, demand_matrix, fleet_size=2000)
     shadow_df.to_csv(os.path.join(output_dir, "shadow_prices.csv"), index=False)
 
     lambdas = [0.0, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0]
-    cost_df = cost_wait_frontier(routes_df, demand_matrix, lambdas, fleet_size=1800)
+    cost_df = cost_wait_frontier(routes_df, demand_matrix, lambdas, fleet_size=2000)
     cost_df.to_csv(os.path.join(output_dir, "cost_wait_frontier.csv"), index=False)
 
     return {'fleet': fleet_df, 'pareto': pareto_df, 'shadow': shadow_df,
@@ -318,11 +324,11 @@ if __name__ == "__main__":
     is_monotonic = all(objectives[i] >= objectives[i+1] for i in range(len(objectives)-1))
     log_gate_check("fleet_monotonic", bool(is_monotonic), "decreasing", bool(is_monotonic))
 
-    fleet_1800_obj = fleet_df[fleet_df['fleet_size'] == 1800]['objective'].iloc[0]
+    fleet_default_obj = fleet_df[fleet_df['fleet_size'] == 2000]['objective'].iloc[0]
     det_results = pd.read_csv(os.path.join(project_root, "results/tables/deterministic_results.csv"))
     phase2_obj = det_results[det_results['method'] == 'optimal']['total_wait_time'].iloc[0]
-    ratio = abs(fleet_1800_obj - phase2_obj) / phase2_obj
-    log_gate_check("fleet_1800_matches_phase2", bool(ratio < 0.01),
+    ratio = abs(fleet_default_obj - phase2_obj) / phase2_obj
+    log_gate_check("fleet_default_matches_phase2", bool(ratio < 0.01),
                    "<1% difference", f"{ratio:.4f}")
 
     feasible_pareto = pareto_df[pareto_df['feasible']].sort_values('equity_threshold')

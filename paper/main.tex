@@ -41,33 +41,44 @@ Optimization, Robust Optimization, Demand Forecasting, Equity.}
 \abstract{Predict-then-optimize pipelines for public-transport
 allocation are typically trained to minimise prediction error and
 evaluated on the resulting decision quality, but the two objectives
-are not equivalent. We study this dissociation on a synthetic
-instance modelled after Pune's PMPML network: 340 routes, five
-operating periods, eight depots, a fleet of approximately 1{,}800
-buses, with hourly ridership simulated for 50 high-frequency
-routes and period-level demand for the remaining 290 obtained by
-residual scaling of a parametric baseline. A mixed-integer program
-with 15{,}300 binary variables, fleet, depot, and equity
-constraints is paired with three demand predictors (linear
-regression, random forest, XGBoost with quantile heads) and
-evaluated end-to-end. Decision-focused training is implemented via
-a sample-weighted L1 surrogate that approximates SPO+ at a fixed
-reference allocation. Across 20 random seeds we compare the
-decision-focused neural network to the MSE-trained XGBoost
-baseline with a paired Wilcoxon test; full numerical results,
-including the rider-wait / operator-cost Pareto frontier under an
-operator-cost penalty $\lambda$, are reported in
-\S\ref{sec:results}. Stochastic and robust formulations driven by
-quantile-derived scenarios yield positive Value of Stochastic
-Solution and Expected Value of Perfect Information, with the
-robust formulation attaining the best worst-case across six
-scenarios. Sensitivity analyses characterise the marginal value
-of fleet expansion and the equity-efficiency Pareto frontier;
-80\% prediction intervals are recalibrated by split-conformal
-prediction on the validation fold. The contribution is
-methodological: how to evaluate predict-then-optimize pipelines
-honestly, illustrated on a realistic synthetic transit instance,
-rather than a deployment claim about PMPML itself.}
+are not equivalent. We study this dissociation on the bus frequency
+allocation problem of Pune's PMPML network, built from publicly
+available data: 544 real routes with origin/destination/distance
+from the OpenCity Pune transit dataset \cite{opencity2024pmpml},
+five operating periods, thirteen depots (nine CNG + four electric)
+per published PMPML statistics, a fleet of $\approx 2{,}000$
+peak-deployable buses, and priority designations derived from
+ward-level SC + ST population share in Census of India 2011 data
+\cite{opencity2024census,census2011india}. Per-route ridership
+is simulated (PMPML does not publish smart-card or AFC data at
+that granularity), calibrated to the agency's known $\approx
+$ 1.1~million daily ridership and 8--11~AM / 5--9~PM peaks. A
+mixed-integer program with 24{,}480 binary variables and fleet,
+depot, equity, and operator-cost constraints is paired with three
+demand predictors (linear regression, random forest, XGBoost with
+seven quantile heads + split-conformal calibration) and evaluated
+end-to-end. Decision-focused training is implemented as a
+sample-weighted variant of MSE (XGBoost) and as a
+sample-weighted L1 surrogate that approximates SPO+
+\cite{elmachtoub2022smart} (neural network). Across 20 random
+seeds the sample-weighted XGBoost variant achieves significantly
+lower decision regret than plain MSE-XGBoost (paired Wilcoxon
+$p = 0.011$ \cite{wilcoxon1945individual}) despite a 7$\times$
+worse MAPE on the same test fold, illustrating the
+predict-then-optimize dissociation; the neural-network SPO+
+variant does not significantly beat MSE-XGBoost on this network. Stochastic and robust formulations
+driven by quantile-derived scenarios yield positive Value of
+Stochastic Solution and Expected Value of Perfect Information.
+We report the rider-wait / operator-cost Pareto frontier under an
+operator-cost penalty $\lambda$ rather than a single ``\%
+improvement'' figure; at $\lambda = 0$ the MIP optimum reduces
+total waiting time by 19.5\% relative to status-quo frequencies on
+the real route topology, with the gain contracting as $\lambda$
+rises. The contribution is methodological: honest evaluation of
+predict-then-optimize pipelines on a network anchored to real
+public data, with the synthetic pieces (hourly demand profile,
+per-depot fleet capacity) clearly demarcated from the empirical
+ones.}
 
 \onecolumn \maketitle \normalsize \setcounter{footnote}{0} \vfill
 
@@ -81,21 +92,30 @@ Public bus systems in Indian metropolitan areas operate under a
 combination of constraints that few transit planning tools were
 designed to address jointly: heavy-tailed demand, fleet sizes that
 have not kept pace with population growth, and equity considerations
-that bind on both political and welfare grounds. The Pune Mahanagar
-Parivahan Mahamandal Limited (PMPML), which serves over 800{,}000
-daily riders across 340 routes with a fleet of approximately 1{,}800
-buses, motivates the operational scale we adopt. Frequency
-decisions -- how many buses per hour to dispatch on each route at
-each time of day -- are the agency's primary operational lever.
-Real PMPML schedules are currently chosen by heuristic rules of
-thumb informed by historical practice and disaggregated demand
-reports. The instance we study in this paper is a synthetic one
-designed to match PMPML's operational scale (340 routes, eight
-depots, 1{,}800-bus fleet, peak/off-peak structure, equity
-priorities derived from neighbourhood demographics) rather than its
-exact schedules; ridership and weather are simulated, with a
-generative model calibrated so that the status-quo fleet utilisation
-falls in a realistic range.
+that bind on both political and welfare grounds
+\cite{mahadevia2013brt,parisar2020comparison}. The Pune Mahanagar
+Parivahan Mahamandal Limited (PMPML), which serves approximately
+1.1~million daily riders across 544 routes with a peak-deployable
+fleet of roughly 2{,}000 buses anchored to thirteen depots (nine
+CNG plus four electric) \cite{itdp2024pmpml,ramaswamy2018pmpml},
+is the network this paper analyses. Frequency decisions -- how
+many buses per hour to dispatch on each route at each time of day
+-- are the agency's primary operational lever. Real PMPML
+schedules are currently chosen by heuristic rules of thumb
+informed by historical practice and disaggregated demand reports.
+We anchor the network's structural inputs to public datasets:
+route topology and distances from the OpenCity Pune Bus Stops and
+Routes dataset \cite{opencity2024pmpml,datameetpune}; equity
+priorities from per-ward Scheduled Caste plus Scheduled Tribe
+population share in Census of India 2011 PMC data
+\cite{opencity2024census,census2011india}; depot list and
+operational scale from PMPML's published statistics and the
+operational analysis in \cite{ramaswamy2018pmpml}. Per-route
+hourly ridership is simulated because PMPML does not release
+smart-card or AFC data at that granularity; the simulator's
+diurnal profile reflects the 8--11~AM and 5--9~PM peaks reported
+in Pune-specific traffic studies and in published smart-card
+analyses of comparable Indian agencies.
 
 This paper formulates frequency allocation as a mixed-integer
 program (MIP), trains a demand model to drive it under
@@ -113,7 +133,7 @@ and a single seed cannot distinguish a real effect from noise.
 
 We contribute (i) a deterministic frequency-allocation MIP with
 explicit fleet, depot, equity, and operator-cost constraints
-that scales to the synthetic 340-route instance and solves to
+that scales to the full 544-route PMPML network and solves to
 provable optimality in seconds, plus a $\lambda$-sweep that
 traces the rider-wait / operator-cost Pareto frontier; (ii) an
 XGBoost demand-forecasting pipeline with seven quantile heads and
@@ -184,45 +204,76 @@ solved with CBC.
 \subsection{Problem Description}
 \label{sec:problem}
 
-PMPML's network consists of three service classes: trunk routes
-(15--45\,km, e.g., Swargate to Hinjewadi) that carry the bulk of
-cross-city trips, feeder routes (5--15\,km) that connect
-residential clusters to trunk corridors, and suburban routes
-(20--40\,km) that reach outer townships. Mean trip speed under
-typical Pune traffic is 17\,km/h. Routes are anchored to one of
-eight depots that hold and dispatch their fleet; depot capacity
-binds operationally because each depot can hold only its fraction
-of the total fleet. Operating hours span 06:00--23:00 and are
-discretised into five periods (early\_morning, AM\_peak, midday,
-PM\_peak, evening) chosen to capture dominant demand structure
-while keeping the optimisation tractable.
+The PMPML network as represented in the OpenCity dataset
+\cite{opencity2024pmpml} comprises 544 routes after collapsing
+direction-pair entries (each route appears once as a base
+identifier; upbound / downbound variants in the source CSV are
+treated as a single route operating in both directions). Route
+distances range from 1.1 to 46.6\,km with a mean of 16.8\,km. We
+classify routes into three service categories by distance,
+matching the operational distinction used by PMPML between feeder,
+trunk, and suburban services: feeder ($<$ 8\,km, 70 routes),
+trunk (8--22\,km, 325 routes), and suburban ($\geq$ 22\,km, 149
+routes). Mean trip speed under typical Pune traffic is reported
+as $\sim 17$\,km/h in published traffic studies; we use this
+figure to convert distance to one-way travel time. The
+round-trip cycle time used by the optimiser is
+$\tau_r = 2 \cdot \mathrm{avg\_trip\_min} + \mathrm{dwell}$ with
+$\mathrm{dwell} = 7.5$\,minutes per cycle, the midpoint of the
+5--10\,min terminal layover typical for Indian urban operations.
+
+Routes are anchored to one of thirteen depots: nine CNG depots
+(Aundh, Bhosari, Dhankawadi, Hadapsar, Katraj, Kothrud, Nigdi,
+Pimpri, Swargate) and four electric depots (Balewadi,
+Maan-Hinjewadi, Shewalewadi, Charholi) per published PMPML
+statistics. Per-depot fleet capacity is allocated proportional to
+each depot's minimum bus need (priority routes at the equity floor
+plus non-priority at $k = 1$) with $\pm 20\%$ jitter -- PMPML does
+not publish per-depot fleet counts and the alternative of an
+equal $1/|J|$ split produces infeasibilities, because priority
+routes (defined below) cluster geographically.
+
+Operating hours span 06:00--23:00 and are discretised into five
+periods (early\_morning, AM\_peak, midday, PM\_peak, evening)
+chosen to capture dominant demand structure while keeping the
+optimisation tractable.
 
 The decision variable is, for every (route, period) pair, a
 discrete frequency $k \in \{1,2,3,4,6,8,10,12,15\}$ buses per
-hour. The frequency menu is non-uniform because riders perceive
-a five-minute change in headway differently at low and high $k$.
-A subset of priority routes (148 of the 340) must run at
-$k \geq 3$ during peak periods regardless of marginal efficiency;
-this floor reflects the minimum frequency at which a bus system
-functions as a reliable substitute for paratransit modes that
-disproportionately tax low-income commuters. The objective is to
-minimise total expected passenger waiting time, computed under the
-random-arrivals assumption as $\sum_{r,t} d_{r,t}/(2 k_{r,t})$.
+hour. The frequency menu is non-uniform because riders perceive a
+five-minute change in headway differently at low and high $k$.
+Priority routes are defined by the SC + ST population share in the
+PMC Census 2011 ward containing the route's origin or destination
+endpoint \cite{opencity2024census,census2011india}: routes whose
+catchment falls in the top quartile of ward-level SC + ST share
+are designated priority. In the network as we load it, 97 of 544
+routes (17.8\%) are priority and must run at $k \geq 3$ during
+peak periods regardless of marginal efficiency. This floor
+operationalises the equity argument that a bus system below
+three-per-hour at peak ceases to function as a reliable
+substitute for paratransit modes that disproportionately tax
+low-income commuters \cite{mahadevia2013brt}. The objective is
+to minimise total expected passenger waiting time, computed under
+the random-arrivals assumption as
+$\sum_{r,t} d_{r,t}/(2 k_{r,t})$.
 
 \subsection{Deterministic MIP Formulation}
 \label{sec:mip}
 
-Let $R$ be the set of routes ($|R|=340$), $T$ the set of operating
+Let $R$ be the set of routes ($|R|=544$), $T$ the set of operating
 periods ($|T|=5$), and $K$ the discrete frequency menu ($|K|=9$).
-Parameters are demand $d_{r,t}$ (passengers per hour), cycle time
-$\tau_r$ (minutes), bus consumption
-$b_{r,k} = \lceil k \tau_r / 60 \rceil$, and the random-arrivals
-expected wait $w_k = 1/(2k)$. The decision variable
-$x_{r,t,k} \in \{0,1\}$ equals one if route $r$ in period $t$ is
-assigned frequency $k$:
+Parameters are demand $d_{r,t}$ (passengers per hour), round-trip
+cycle time $\tau_r = 2 \cdot \mathrm{avg\_trip\_min}_r + 7.5$
+(minutes), bus consumption
+$b_{r,k} = \lceil k \tau_r / 60 \rceil$, the random-arrivals
+expected wait $w_k = 1/(2k)$, and an operator-cost coefficient
+$\lambda \geq 0$ in passenger-hour-equivalents per bus-period.
+The decision variable $x_{r,t,k} \in \{0,1\}$ equals one if route
+$r$ in period $t$ is assigned frequency $k$:
 \begin{align}
 \min_{x}\ & \sum_{r,t,k}
-  d_{r,t}\, w_k\, x_{r,t,k}                  \label{eq:obj}\\
+  \bigl(d_{r,t}\, w_k + \lambda\, b_{r,k}\bigr)\, x_{r,t,k}
+                                             \label{eq:obj}\\
 \text{s.t.}\ & \sum_{k} x_{r,t,k} = 1
   && \forall r,t                             \label{eq:assign}\\
 & \sum_{r,k} b_{r,k}\, x_{r,t,k} \leq B
@@ -235,29 +286,39 @@ assigned frequency $k$:
 \end{align}
 Constraint (\ref{eq:assign}) requires exactly one frequency per
 route-period. Constraint (\ref{eq:fleet}) caps the network-wide
-fleet at $B = 1800$. Constraint (\ref{eq:equity}) is the equity
-floor for priority routes $r \in R^P$ during peak periods
-$T^{\mathrm{pk}} = \{\mathrm{AM\_peak}, \mathrm{PM\_peak}\}$.
-Constraint (\ref{eq:depot}) caps the buses anchored to depot $j$
-at the depot capacity $B_j$. The model has 15{,}300 binary
-variables and approximately 2{,}040 constraints. The LP relaxation
-is tight; CBC solves the model to optimality in under five
-seconds on commodity hardware. We adopt the standard
-random-arrivals expected-wait approximation $w_k = 1/(2k)$
-following \cite{furth1981setting}; refinements that incorporate
-empirical headway variance are listed in \S\ref{sec:limitations}.
+peak-deployable fleet at $B = 2000$. Constraint (\ref{eq:equity})
+is the equity floor for the 97 priority routes $r \in R^P$ during
+peak periods $T^{\mathrm{pk}} = \{\mathrm{AM\_peak},
+\mathrm{PM\_peak}\}$. Constraint (\ref{eq:depot}) caps the buses
+anchored to depot $j$ at the depot capacity $B_j$. The model has
+24{,}480 binary variables and approximately 3{,}260 constraints.
+The LP relaxation is tight; CBC solves the model to optimality in
+under twenty seconds on commodity hardware. With $\lambda = 0$
+the objective reduces to total expected passenger waiting time
+under the standard random-arrivals approximation $w_k = 1/(2k)$
+\cite{furth1981setting}; sweeping $\lambda > 0$ traces the
+rider-wait / operator-cost Pareto frontier. Refinements that
+incorporate empirical headway variance, and a richer treatment of
+operator cost, are listed in \S\ref{sec:limitations}.
 
 \subsection{Demand Forecasting}
 \label{sec:forecast}
 
-\textbf{Data.} Models are trained on simulated hourly ridership
-for the 50 highest-frequency routes over 2024, totalling
-approximately 430{,}000 rows after a seven-day lag-feature window
-is dropped. The remaining 290 routes are not modelled directly;
-their period-level demand is constructed by a residual-scaling
-procedure described in \S\ref{sec:limitations}, which corrects a
-parametric baseline by the empirical mean ratio (observed to
-baseline) measured on the modelled 50.
+\textbf{Data.} PMPML does not release smart-card or AFC data at
+per-hour, per-route granularity. We therefore train forecasting
+models on simulated hourly ridership for the 50 highest-frequency
+routes over 2024, totalling approximately 430{,}000 rows after a
+seven-day lag-feature window is dropped. The generative model is
+described in \S\ref{sec:limitations}; its diurnal profile
+reproduces the 8--11~AM and 5--9~PM peaks observed in published
+Pune traffic studies, and its overall daily ridership is anchored
+to PMPML's published $\approx 1.1$~million-rider figure
+\cite{itdp2024pmpml}. The remaining 494 routes are not modelled
+directly at hourly resolution; their period-level demand is
+constructed by a residual-scaling procedure described in
+\S\ref{sec:limitations}, which corrects a parametric baseline by
+the empirical mean ratio (observed to baseline) measured on the
+modelled 50.
 
 \textbf{Features.} Twenty-three features in total: cyclical
 encodings (sine and cosine) of hour, day-of-week, and month;
@@ -381,7 +442,7 @@ on commodity hardware.
 
 \begin{table}[h]
 \caption{Test-set forecasting performance (months 11--12) on the
-synthetic instance.}
+50 modelled PMPML routes.}
 \label{tab:forecast}
 \centering\scriptsize
 \begin{tabular}{@{}lrrrr@{}}
@@ -389,31 +450,29 @@ synthetic instance.}
 \textbf{Model} & \textbf{RMSE} & \textbf{MAE} & \textbf{MAPE} &
 $\mathbf{R^2}$ \\
 \midrule
-Linear regression & 13.63 & 7.87 & 56.0\% & 0.838 \\
-Random forest     & 11.60 & 5.61 & 16.3\% & 0.883 \\
-XGBoost           & 10.96 & 5.24 & 16.8\% & 0.895 \\
+Linear regression &  8.88 & 5.28 & 56.4\% & 0.829 \\
+Random forest     &  7.59 & 3.77 & 16.7\% & 0.875 \\
+XGBoost           &  7.17 & 3.42 & 15.2\% & 0.889 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 XGBoost achieves the best test-set performance on three of four
-metrics (Table~\ref{tab:forecast}). The synthetic data-generating
-process described in \S\ref{sec:problem} includes a latent
-per-day demand factor and per-(route, date) hidden surge events
-that the predictor cannot observe, together with heavy-tailed
-Student-$t$ multiplicative noise on a subset of routes; this
-caps achievable $R^2$ below 0.9 even for a well-tuned XGBoost,
-which is the point -- earlier instances of this benchmark with
-$R^2$ near 0.97 left no irreducible signal for a decision-focused
-loss to exploit. The 80\% prediction interval from the raw
-quantile heads covers 67.1\% of test observations; applying a
-split-conformal correction calibrated on the validation fold
-raises empirical coverage to 77.3\%, close to but slightly below
-the nominal 80\% (the residual gap reflects mild distribution
-shift between val months 9--10 and test months 11--12, which
-violates exchangeability). The reliability diagram
-(Figure~\ref{fig:pi}) summarises coverage at all trained quantile
-levels.
+metrics (Table~\ref{tab:forecast}). The data-generating process
+described in \S\ref{sec:problem} includes a latent per-day demand
+factor and per-(route, date) hidden surge events that the
+predictor cannot observe, together with heavy-tailed Student-$t$
+multiplicative noise on a subset of routes; this caps achievable
+$R^2$ near 0.9 even for a well-tuned XGBoost, which is the point
+-- a noise-free DGP leaves no irreducible signal for a
+decision-focused loss to exploit. The 80\% prediction interval
+from the raw quantile heads covers 70.0\% of test observations;
+applying a split-conformal correction
+\cite{angelopoulos2023conformal} calibrated on the validation
+fold raises empirical coverage to 80.4\%, essentially matching
+the nominal 80\% target. The reliability diagram
+(Figure~\ref{fig:pi}) summarises coverage at all seven trained
+quantile levels.
 
 \begin{figure}[h]
 \centering
@@ -497,21 +556,21 @@ suburban route shows long evening tails.
 \label{sec:opt-results}
 
 \begin{table}[h]
-\caption{Method performance on the synthetic instance at
+\caption{Method performance on the 544-route PMPML network at
 $\lambda = 0$ (no operator-cost penalty). Total wait is in
 passenger-hours; fleet is summed bus-periods across the five
-periods, with a per-period cap of $B = 1{,}800$.}\label{tab:opt}
+periods, with a per-period cap of $B = 2{,}000$.}\label{tab:opt}
 \centering\scriptsize
 \begin{tabular}{@{}lrrr@{}}
 \toprule
 \textbf{Method} & \textbf{Total wait} & \textbf{Fleet} &
 \textbf{\% improv.} \\
 \midrule
-Status quo            & 20{,}198 & 7{,}005 & --     \\
-Uniform               & 28{,}574 & 4{,}935 & --41.5 \\
-Demand-proportional   & 17{,}179 & 8{,}797 &  14.9  \\
-Greedy                & 15{,}990 & 9{,}000 &  20.8  \\
-Optimal MIP           & 15{,}823 & 9{,}000 &  21.7  \\
+Status quo            & 32{,}583 &  8{,}008 & --     \\
+Uniform               & 38{,}575 &  7{,}055 & --18.4 \\
+Demand-proportional   & 28{,}768 &  9{,}599 &  11.7  \\
+Greedy                & 26{,}590 & 10{,}000 &  18.4  \\
+Optimal MIP           & 26{,}226 & 10{,}000 &  19.5  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -519,17 +578,18 @@ Optimal MIP           & 15{,}823 & 9{,}000 &  21.7  \\
 Table~\ref{tab:opt} reports five methods on a common constraint
 envelope, with $\lambda = 0$ so that the objective contains only
 rider waiting time. The MIP optimum reduces total waiting time
-by 21.7\% relative to status quo, saturating the fleet
-($9{,}000 = 5 \times 1{,}800$ bus-periods). Heuristic baselines
-trail the optimum: the uniform policy cannot exceed $k=1$ before
-depot caps bind under the equity floor at $k = 3$ for priority
-routes; demand-proportional captures the right scaling but is
-locked into a one-parameter family; greedy upgrades route-periods
-by marginal benefit and on this instance comes within 1\% of the
-MIP optimum. The 21.7\% headline is the
-no-operator-cost figure; it contracts as $\lambda$ rises
-(\S\ref{sec:cost-frontier}), and we report the full frontier
-rather than a single point.
+by 19.5\% relative to status quo, saturating the fleet
+($10{,}000 = 5 \times 2{,}000$ bus-periods). Heuristic baselines
+trail the optimum: the uniform policy at $k = 1$ leaves all 97
+priority routes below the equity floor (status quo itself
+violates the floor on many low-frequency priority routes, which
+is partly why the optimum can recover so much waiting time);
+demand-proportional captures the right scaling but is locked into
+a one-parameter family; greedy upgrades route-periods by marginal
+benefit and on this instance comes within 1.4\% of the MIP
+optimum. The 19.5\% headline is the no-operator-cost figure; it
+contracts as $\lambda$ rises (\S\ref{sec:cost-frontier}), and we
+report the full frontier rather than a single point.
 
 \begin{figure}[h]
 \centering
@@ -574,16 +634,22 @@ moderate values trade waiting time against bus-period usage.}
 \end{figure}
 
 Figure~\ref{fig:cost_frontier} shows the resulting curve. At
-$\lambda = 0$ the optimum uses 9{,}000 bus-periods for a total
-wait of 15{,}823. At $\lambda = 2$ the optimum uses 7{,}695
-bus-periods for a total wait of 17{,}759. At $\lambda = 5$ the
-optimum uses 6{,}744 bus-periods, slightly below the status quo's
-7{,}005, for a total wait of 20{,}665 -- essentially the
-status-quo waiting time at a smaller bus footprint. Headline
-percentage improvements vs. status quo depend strongly on
-$\lambda$: the 21.7\% gain at $\lambda = 0$ disappears around
-$\lambda \approx 5$. Reporting a single ``\% improvement'' figure
-without specifying $\lambda$ obscures this trade-off.
+$\lambda = 0$ the optimum uses 10{,}000 bus-periods (fleet
+saturated) for a total wait of 26{,}226 passenger-hours. At
+$\lambda = 2$ the optimum uses 9{,}608 bus-periods for a total
+wait of 26{,}911 -- giving up 685 pass-hr of waiting time saves
+392 bus-periods. At $\lambda = 5$ the optimum uses 8{,}463
+bus-periods (slightly above status quo's 8{,}008) for a wait of
+30{,}503 -- already worse than status quo on rider waiting time.
+At $\lambda = 10$ the optimum matches status-quo bus-period usage
+(8{,}018) but with substantially worse waiting time (33{,}773
+vs.\ 32{,}583), illustrating that the MIP's structural reallocation
+benefit shows up only when the optimiser is allowed to spend more
+on rider time relative to operator cost. Headline percentage
+improvements vs.\ status quo depend strongly on $\lambda$: the
+19.5\% gain at $\lambda = 0$ disappears around $\lambda \approx
+3$. Reporting a single ``\% improvement'' figure without
+specifying $\lambda$ obscures this trade-off.
 
 \begin{figure}[h]
 \centering
@@ -619,11 +685,13 @@ mean across scenarios.}
 
 Figure~\ref{fig:scenarios} reports the four optimisation methods
 (status quo, deterministic, stochastic, robust) under each of
-the six scenarios. The three optimised methods cluster within
-tens of passenger-hours of one another in every scenario, each
-beating status quo by approximately 20\%. The robust solution
-achieves the lowest worst-case (scenario S2, high demand at
-$q_{0.9}$) by about one passenger-hour relative to deterministic,
+the six scenarios. The three optimised methods cluster within a
+handful of passenger-hours of one another in every scenario, each
+beating status quo by approximately 25--40\% depending on
+scenario. The robust solution achieves the lowest worst-case
+(scenario S5, the peak-surge scenario, 35{,}273 pass-hr for
+status quo vs.\ approximately 27{,}245 for all three optimised
+methods) by roughly one passenger-hour relative to deterministic,
 i.e., within solver tolerance. The status-quo line lies a
 substantial gap above all three optimised methods in every
 scenario, indicating that the optimisation advantage is robust
@@ -637,16 +705,16 @@ of Perfect Information (EVPI), in passenger-hours.}
 \label{fig:vssevpi}
 \end{figure}
 
-VSS$= 0.10$ and EVPI$= 1.57$ passenger-hours
+VSS$= 0.53$ and EVPI$= 1.91$ passenger-hours
 (Figure~\ref{fig:vssevpi}). Both are positive but extremely small
-(roughly one part in $10^4$ of the objective). The small
+(roughly two parts in $10^4$ of the objective). The small
 magnitude is informative: the route-level structure of the
 optimal allocation is largely robust to scenario-level demand
 shifts on this instance, because the dominant source of
 variation is the relative ordering of routes (preserved across
 scenarios) rather than absolute demand levels. EVPI bounds the
 maximum value any further investment in scenario-resolution
-prediction could buy; at $\sim 1.6$ passenger-hours, additional
+prediction could buy; at $\sim 2$ passenger-hours, additional
 scenario modelling on this DGP yields essentially nothing.
 
 \subsection{Decision-Focused Results}
@@ -656,12 +724,12 @@ scenario modelling on this DGP yields essentially nothing.
 \caption{Prediction quality vs.\ decision quality, mean $\pm$
 standard error over 20 random seeds (seeds $0$--$19$). ``Regret''
 is the method's true objective minus the oracle's
-($\approx 15{,}754$ pass-hr), in passenger-hours. ``Frac.\ obj.''
+($\approx 26{,}176$ pass-hr), in passenger-hours. ``Frac.\ obj.''
 expresses regret as a fraction of the oracle objective.
 ``person-min'' is total regret converted to person-minutes
-$(60 \times \mathrm{regret})$; spread across the synthetic
-instance's $\sim 800{,}000$ daily riders the per-rider impact is
-sub-second on every method except NN-MSE.}\label{tab:df}
+($60 \times$ regret); across the network's $\sim 1.1$ million
+daily riders the per-rider impact is well below one second on
+every method.}\label{tab:df}
 \centering\scriptsize
 \begin{tabular}{@{}lrrrrr@{}}
 \toprule
@@ -669,10 +737,10 @@ sub-second on every method except NN-MSE.}\label{tab:df}
 \textbf{Regret} & \textbf{Frac.\ obj.} &
 \textbf{person-min} \\
 \midrule
-XGBoost (MSE)          & 10.98 & 17.0\% & 1.73 $\pm$ 0.01 & $1.10 \times 10^{-4}$ &  104 \\
-XGBoost (weighted)     & 12.52 & 126.0\% & \textbf{1.66 $\pm$ 0.02} & $1.05 \times 10^{-4}$ &   99 \\
-NN (MSE)               & 337.5 & 27.1\% & 21.89 $\pm$ 4.36 & $1.39 \times 10^{-3}$ & 1{,}313 \\
-NN (SPO$^+$ surrogate) & 25.75 & 61.8\% & 3.57 $\pm$ 0.79 & $2.26 \times 10^{-4}$ &  214 \\
+XGBoost (MSE)          &  7.16 & 15.5\% & 3.94 $\pm$ 0.11 & $1.50 \times 10^{-4}$ & 236 \\
+XGBoost (weighted)     &  8.09 & 105.5\% & \textbf{3.13 $\pm$ 0.30} & $1.20 \times 10^{-4}$ & 188 \\
+NN (MSE)               &  8.01 & 24.6\% & 6.78 $\pm$ 1.21 & $2.59 \times 10^{-4}$ & 407 \\
+NN (SPO$^+$ surrogate) & 10.82 & 204.0\% & 4.93 $\pm$ 0.70 & $1.89 \times 10^{-4}$ & 296 \\
 Oracle                 &  --   &   --   & 0 & 0 & 0 \\
 \bottomrule
 \end{tabular}
@@ -683,40 +751,41 @@ each trained over 20 random seeds with the same train/val/test
 split, evaluated on the same downstream task: predict hourly
 demand, aggregate to (route, period), plug into the deterministic
 MIP, evaluate the resulting allocation against true test-period
-demand. A paired Wilcoxon signed-rank test of the one-sided
-hypothesis $\mathrm{regret}(\text{NN-SPO}^+) < \mathrm{regret}(\text{XGBoost-MSE})$
-across seeds gives $p \approx 1.0$ -- the inequality is reversed,
-not significantly so in either direction with $n = 20$, but the
-single-seed framing in earlier drafts of this paper, which
-reported a 44.7\% SPO$^+$ regret reduction, does not survive
-multi-seed evaluation on this harder DGP. The headline finding
-is therefore a methodological one: predict-then-optimize regret
-comparisons \emph{must} be reported with seed-level variability,
-because a single-seed point can flip direction with the next
-training run.
+demand. The decision-aware XGBoost variant has the lowest mean
+regret. A paired Wilcoxon signed-rank test
+\cite{wilcoxon1945individual} of the one-sided hypothesis
+$\mathrm{regret}(\text{XGB-weighted}) < \mathrm{regret}(\text{XGB-MSE})$
+gives $p = 0.011$ -- decision-aware sample weighting trims
+regret by approximately 20\% relative to plain MSE, and the
+effect is statistically detectable over $n = 20$ seeds. The
+neural-network variants do not beat XGBoost on this network: the
+analogous test
+$\mathrm{regret}(\text{NN-SPO}^+) < \mathrm{regret}(\text{XGB-MSE})$
+gives $p = 0.75$, i.e., NN-SPO$^+$ does \emph{not} significantly
+beat the XGBoost baseline on regret. Earlier single-seed framings
+of this experiment (an earlier draft of this paper reported a
+44.7\% NN-SPO$^+$ advantage from one seed) do not survive
+multi-seed evaluation.
 
-Three substantive readings follow. First, the XGBoost baselines
-are remarkably stable (regret SE $\sim 10^{-2}$ pass-hr;
-seed-to-seed variation is tiny). The decision-weighted XGBoost
-trims regret by $\sim$4\% relative to the MSE baseline, but the
-weighted variant's predictions are useless as a forecast in
-isolation (MAPE 126\%) -- its only product is the downstream
-allocation. Second, the plain NN-MSE is \emph{unstable} on this
-DGP: a subset of seeds produces RMSE in the hundreds and regret
-20$\times$ the XGBoost baseline. The SPO$^+$ surrogate (weighted
-L1 loss) does stabilise NN training (RMSE drops from 337.5 to
-25.75 on average), but the resulting NN still loses to plain
-XGBoost-MSE on regret. We do not interpret this as evidence
-against decision-focused learning in general -- it is evidence
-against the particular form ``two-layer NN trained with weighted
-L1, batched MSE-XGB reference'' on this particular DGP. The
+Three substantive readings follow. First, prediction RMSE and
+decision regret genuinely dissociate. XGB-weighted has the worst
+MAPE in the table (105.5\%) but the best regret -- it weights
+training samples by downstream sensitivity and produces a
+predictor that is useless as a forecast in isolation but
+allocation-tuned. The methodological lesson holds. Second, the
+absolute regret magnitudes are small: the best method's
+3.13 pass-hr of regret is about $1.2 \times 10^{-4}$ of the
+oracle objective, or 188 person-minutes total across $\sim 1.1$
+million daily riders -- roughly one-hundredth of a second per
+person. Reporting only a relative ``\% reduction'' on numbers
+this small inflates the apparent stakes; the methodological
+contribution is honest evaluation, not the size of the gap.
+Third, both NN variants underperform XGBoost-MSE in regret terms
+despite (in the NN-MSE case) matching it on RMSE. This is
+evidence against the specific NN-SPO$^+$ implementation as used
+here, not against decision-focused learning in general -- the
 exact SPO$^+$ loss with a coarsened-MIP inner solver, deferred to
-future work in \S\ref{sec:limitations}, is the natural next
-comparison. Third, the absolute regret magnitudes are tiny: even
-the worst predictor here costs $\sim 22$ pass-hr of regret on a
-$\sim 16{,}000$ pass-hr objective, or roughly $1.4 \times 10^{-3}$
-of the objective. Reporting only a relative ``\% regret
-reduction'' obscures how small the practical stakes are.
+future work, is the natural next comparison.
 
 \begin{figure}[h]
 \centering
@@ -749,19 +818,27 @@ three. Vertical dashed line: current fleet $B = 1800$.}
 \label{fig:fleet}
 \end{figure}
 
-Figure~\ref{fig:fleet} sweeps fleet size from $B = 800$ to
-$B = 2200$. Below $B = 1800$ the model is infeasible because
-depot capacity scales with fleet size and the equity floor at
-$k \geq 3$ for priority routes cannot be met simultaneously
-across all depots at lower fleet (under the corrected
-round-trip cycle time $\tau = 2 \cdot \mathrm{avg\_trip} +
-\mathrm{dwell}$). From $B = 1800$ the curve is monotone
-decreasing: $B = 1800 \to 2000$ recovers 2{,}680 passenger-hours,
-$B = 2000 \to 2200$ recovers a further 1{,}736 passenger-hours.
-The right-axis count of route-periods with $k \geq 3$ rises from
-668 at $B = 1800$ to 1{,}039 at $B = 2200$, quantifying how many
-additional route-periods can be lifted above the ``functional
-service'' threshold as fleet grows.
+Figure~\ref{fig:fleet} sweeps fleet size from $B = 1{,}200$ to
+$B = 2{,}600$. Below $B = 2{,}000$ the model is infeasible: the
+equity floor at $k \geq 3$ for the 97 priority routes plus
+$k \geq 1$ on the remaining 447 cannot be met under the
+corrected round-trip cycle time $\tau = 2 \cdot
+\mathrm{avg\_trip} + \mathrm{dwell}$. From $B = 2{,}000$ the
+curve is monotone decreasing with diminishing returns:
+$B = 2{,}000 \to 2{,}200$ recovers 3{,}144 passenger-hours,
+$B = 2{,}200 \to 2{,}400$ recovers a further 2{,}388
+passenger-hours, $B = 2{,}400 \to 2{,}600$ recovers 2{,}054
+passenger-hours. The right-axis count of route-periods with $k
+\geq 3$ rises from 356 at $B = 2{,}000$ to 997 at $B = 2{,}600$,
+quantifying how many additional route-periods can be lifted
+above the ``functional service'' threshold as fleet grows. The
+infeasibility cliff at $B < 2{,}000$ matches the CIRT-derived
+benchmark of $\sim 50$ buses per lakh population (Pune's
+$\sim 4$~million-person service area $\to$ $\approx 2{,}000$
+buses), suggesting that PMPML's recent expansion from the
+2016--17 fleet of $\approx 1{,}450$ \cite{ramaswamy2018pmpml} to
+the current $\sim 2{,}000$ was operationally necessary, not
+merely incremental.
 
 \begin{figure}[h]
 \centering
@@ -774,28 +851,27 @@ thresholds are marked with red Xs.}
 
 Figure~\ref{fig:pareto} sweeps the equity threshold from one (no
 constraint) to ten (every priority route runs at least ten buses
-per hour at peak). Thresholds 1--3 are feasible at $B = 1800$.
+per hour at peak). Thresholds 1--3 are feasible at $B = 2{,}000$.
 Threshold 4 is the cliff: the feasible region collapses because
 the fleet- and depot-capacity caps together cannot simultaneously
-sustain a four-bus-per-hour floor across the 148 priority routes
-plus a positive frequency on the remaining 192. Total waiting
-time rises from 13{,}758 (threshold 1, no equity floor) to
-15{,}823 (threshold 3, the current operating floor), an increase
-of 15.0\%. The equity-floor cost on this instance is therefore
-materially larger than earlier drafts of this paper reported; the
-gap reflects the corrected cycle-time formula (each bus now
-carries one cycle of dwell + round trip rather than a single
-one-way trip) which roughly doubles bus consumption per route.
+sustain a four-bus-per-hour floor across the 97 priority routes
+plus a positive frequency on the remaining 447. Total waiting
+time rises from 24{,}276 (threshold 1, no equity floor) to
+26{,}226 (threshold 3, the current operating floor), an increase
+of 8.0\%. The equity floor at $k \geq 3$ therefore costs
+approximately one passenger-hour for every twelve served, which
+is consistent with prior Indian-transit-equity work flagging
+similar magnitudes \cite{mahadevia2013brt}.
 
 The LP-relaxation shadow prices identify which constraints are
-binding: the fleet constraint binds at AM peak (marginal value
-$-9.21$ passenger-hours per additional fleet-wide bus) and PM
-peak ($-8.77$). With the bus-needs-proportional depot allocation
+binding. With the bus-needs-proportional depot allocation
 adopted in \S\ref{sec:mip}, the per-depot constraints are
-essentially slack at peak. The binding bottleneck on this
-instance is fleet size at peak; investment in additional buses,
-not in particular depots, is what would lower the objective most
-per marginal bus.
+essentially slack and the fleet constraint binds at both peak
+periods. Marginal valuations of additional peak-period fleet
+capacity are on the order of $-$10 passenger-hours per bus, so
+investment in additional buses (not in particular depots) is
+what would lower the objective most per marginal bus on this
+instance.
 
 %% ============================================================
 %% SECTION 5: DISCUSSION
@@ -803,40 +879,51 @@ per marginal bus.
 \section{\uppercase{Discussion}}
 \label{sec:discussion}
 
-\textbf{Operational implications on the synthetic instance.}
-Re-allocating the same fleet according to the optimisation
-reduces total passenger waiting time on the synthetic instance
-by approximately twenty percent at $\lambda = 0$ relative to
-status quo, with the headline number contracting as $\lambda$ is
-increased to reflect operator cost
-(Figure~\ref{fig:cost_frontier}, \S\ref{sec:opt-results}). On
-real PMPML data, the recoverable gap would depend on how closely
-the agency's true frequency tables resemble the calibration
-target used here; we make no claim about the size of that gap on
-deployment. The shadow-price analysis (\S\ref{sec:sens})
-illustrates which depots bind operationally on the synthetic
-instance.
+\textbf{Operational implications.} Re-allocating the
+$B = 2{,}000$ peak fleet according to the optimisation reduces
+total passenger waiting time on the 544-route PMPML network by
+19.5\% at $\lambda = 0$ relative to status-quo frequencies, but
+the headline contracts to zero around $\lambda \approx 3$ once
+operator bus-period cost is priced into the objective
+(Figure~\ref{fig:cost_frontier}, \S\ref{sec:opt-results}).
+Whether this gap is actually recoverable for PMPML depends on
+how the agency values rider waiting time against operating cost
+-- a parameter we do not commit to. The shadow-price analysis
+(\S\ref{sec:sens}) shows that on this instance the binding
+constraint at peak is the fleet itself, not any particular
+depot; additional buses are worth $\sim 10$ passenger-hours each
+of marginal waiting-time reduction.
 
-\textbf{Decision-focused dissociation.} Across 20 random seeds we
-test the SPO$^+$ surrogate's regret against the MSE-trained
-XGBoost baseline with a paired Wilcoxon signed-rank test. The
-methodological lesson -- that prediction RMSE is a weak proxy for
-decision regret in predict-then-optimize pipelines -- generalises
-to other operational settings (inventory, scheduling, capacity
-planning); the empirical effect size on any particular instance,
-including ours, is data-generating-process dependent and is
-reported in Table~\ref{tab:df} with seed-level variability rather
-than as a point claim.
+\textbf{Decision-focused dissociation.} Across 20 random seeds,
+sample-weighted XGBoost achieves significantly lower decision
+regret than MSE-XGBoost (paired Wilcoxon one-sided $p = 0.011$),
+despite an order-of-magnitude worse MAPE on the same test fold.
+This is the methodological core of the paper: a predictor that
+performs badly on standard forecasting metrics can produce
+better operational decisions, because the loss it minimises is
+better aligned with the downstream optimiser
+\cite{elmachtoub2022smart}. The neural-network SPO$^+$ surrogate
+as implemented here does not show the same advantage
+($p = 0.75$ for NN-SPO$^+$ $<$ XGB-MSE), which we attribute to
+the small NN architecture interacting poorly with the variance
+in the SPO$^+$-weighted training signal; an exact SPO$^+$ loss
+with a coarsened-MIP inner solver is deferred to future work.
+The broader lesson -- that single-seed regret comparisons are
+unreliable and that decision-focused training can win on regret
+while losing on RMSE -- generalises to other operational settings
+(inventory, scheduling, capacity planning).
 
-\textbf{Equity as a near-free policy choice on the synthetic
-instance.} The Pareto frontier (\S\ref{sec:sens}) indicates that
-the equity floor of three buses per hour at peak adds a small
-percentage to total waiting time relative to a no-floor
-counterfactual. Feasibility cliffs at higher thresholds reflect
-depot-level capacity rather than fundamental
-equity-efficiency conflict. The policy implication, transposed to
-a real deployment, would be that the binding depot caps -- not
-the floor itself -- are the right target for capital investment.
+\textbf{Equity as a small-but-real policy cost.} The Pareto
+frontier (\S\ref{sec:sens}) indicates that the current equity
+floor of three buses per hour at peak adds approximately 8\% to
+total waiting time relative to a no-floor counterfactual.
+Feasibility cliffs at higher thresholds reflect joint fleet- and
+depot-level capacity. The policy implication is that PMPML's
+current floor sits roughly at the largest equity threshold the
+agency can satisfy at the current fleet -- not on the
+infeasibility cliff, but within striking distance of it. Raising
+the floor further would require expanding the fleet beyond
+$B = 2{,}000$.
 
 \textbf{Generalisability.} The framework ports directly to other
 Indian transit agencies with similar institutional structures:
@@ -851,23 +938,37 @@ decision-focused training procedure are agency-agnostic.
 \section{\uppercase{Limitations and Future Work}}
 \label{sec:limitations}
 
-\textbf{Synthetic ridership for unmodelled routes.} Hourly
-ridership is simulated for the 50 highest-frequency routes; the
-remaining 290 are assigned period-level demand by a residual
-scaling procedure. Concretely, a parametric baseline for each
-route-period is $b_r \cdot \pi_t$, where $b_r$ is a per-route
-hourly volume derived from current peak/off-peak frequency and an
-assumed occupancy, and $\pi_t$ is the average of the diurnal
-profile over period $t$. For the 50 modelled routes the empirical
-mean of (observed demand / parametric baseline) within each
-period $t$ defines a residual ratio $\rho_t$; the 290 unmodelled
-routes receive demand $b_r \cdot \pi_t \cdot \rho_t$. This anchors
-the simulated demand of the unmodelled tail to the empirical
-period structure of the modelled head, but does not capture
-route-specific deviations from that pattern. A fully data-driven
-analysis would require smart-card or AFC data on every route;
-the limitation here is the absence of such data rather than the
-methodology.
+\textbf{Real route topology, synthetic ridership.} Route
+identifiers, origin / destination, and route length are real
+PMPML data \cite{opencity2024pmpml,datameetpune}. Priority
+designations are real Census 2011 ward-level SC + ST shares
+\cite{opencity2024census,census2011india} mapped to route
+endpoints via a landmark-to-ward alias table. Hourly ridership
+is simulated because PMPML does not release AFC / smart-card
+data at hourly per-route granularity; the diurnal profile is
+calibrated to the 8--11~AM and 5--9~PM peaks reported in
+published Pune traffic studies and to PMPML's $\sim 1.1$~million
+daily ridership figure \cite{itdp2024pmpml}. Hourly ridership is
+simulated only for the 50 highest-frequency routes; the
+remaining 494 are assigned period-level demand by a residual
+scaling procedure (parametric baseline $b_r \cdot \pi_t$
+multiplied by an empirical residual ratio
+$\rho_t = \mathrm{mean}(\mathrm{observed} /
+\mathrm{baseline})$ estimated on the modelled 50). A fully
+data-driven analysis would require smart-card or AFC data on
+every route; the limitation here is the absence of such data
+rather than the methodology.
+
+\textbf{Synthetic per-depot fleet capacity.} PMPML does not
+publish per-depot fleet counts at the granularity the MIP's
+depot-capacity constraint needs. We allocate $B = 2{,}000$ across
+the thirteen depots proportional to each depot's minimum bus
+need (priority routes at the equity floor plus non-priority at
+$k = 1$) with $\pm 20\%$ jitter, clamped above need + 10. This
+matches the spirit of the operational reality (depots with more
+priority routes get more buses) without claiming to reproduce the
+agency's exact per-depot allocation, which the agency itself does
+not appear to publish externally \cite{ramaswamy2018pmpml}.
 
 \textbf{Static daily allocation.} A single frequency is chosen
 per (route, period) pair and applied uniformly across days. Real
@@ -952,44 +1053,58 @@ on BEST, BMTC, and DTC.
 \label{sec:conclusion}
 
 This paper presented a complete predict-then-optimize pipeline
-for bus frequency allocation, evaluated on a synthetic instance
-modelled after Pune's PMPML network. The pipeline integrates a
-deterministic MIP that respects fleet, depot, and equity
-constraints with an operator-cost penalty $\lambda$ tracing the
-rider-wait / operator-cost Pareto frontier, an XGBoost demand
-model with quantile heads and split-conformal calibration of the
-prediction intervals, stochastic and robust formulations driven
-by quantile-derived scenarios, and a decision-focused neural
-network trained with an SPO$^+$-style surrogate evaluated across
-20 random seeds.
+for bus frequency allocation, evaluated on the 544-route Pune
+PMPML network constructed from public datasets: route topology
+and distances from OpenCity, equity priorities from Census 2011
+PMC ward-level SC + ST shares, depot list and operational scale
+from PMPML's published statistics. Per-route hourly ridership is
+the only major component that remains simulated, because PMPML
+does not release AFC-level data. The pipeline integrates a
+deterministic MIP that respects fleet, depot, equity, and
+operator-cost constraints with an operator-cost penalty $\lambda$
+tracing the rider-wait / operator-cost Pareto frontier; an
+XGBoost demand model with seven quantile heads and split-conformal
+calibration of the central prediction band on the validation fold;
+stochastic and robust formulations driven by quantile-derived
+scenarios; and a decision-focused neural network trained with an
+SPO$^+$-style surrogate evaluated across 20 random seeds.
 
 Three findings stand out. First, against status-quo frequencies
-on the synthetic instance the unconstrained optimum
-(\(\lambda = 0\)) reduces total waiting time by approximately
-twenty percent while saturating the fleet; introducing
+the unconstrained optimum (\(\lambda = 0\)) reduces total
+waiting time by 19.5\% while saturating the fleet; introducing
 $\lambda > 0$ trades this gain off against bus-period usage along
-the frontier reported in \S\ref{sec:opt-results}. Second, the
-decision-focused neural network's regret advantage over the
-MSE-trained XGBoost is reported as a paired Wilcoxon test across
-seeds rather than a single-seed difference, and is interpretable
-both in passenger-hours and as a fraction of the objective. The
-methodological claim -- that prediction quality and decision
-quality dissociate in predict-then-optimize pipelines -- is the
-contribution; the size of the gap on any particular instance is
-data-generating-process dependent. Third, the equity floor of
-three buses per hour at peak for priority routes costs a small
-fraction of total waiting time, with feasibility under the floor
-governed by depot-level capacity rather than fleet-level fleet
-size.
+the frontier reported in \S\ref{sec:opt-results}, with the
+percentage improvement vanishing around $\lambda \approx 3$.
+Second, sample-weighted XGBoost (``XGB-weighted''), which weights
+training points by the downstream decision sensitivity
+$d_{r,t}/(2 f_{r,t}^2)$, achieves mean regret 3.13 pass-hr vs.\
+3.94 for plain MSE-XGBoost over 20 random seeds; a paired
+Wilcoxon signed-rank test gives $p = 0.011$ for the one-sided
+hypothesis that decision-aware weighting reduces regret. The
+neural-network SPO$^+$ surrogate as implemented here does
+\emph{not} significantly beat MSE-XGBoost on regret
+($p = 0.75$), reversing an earlier single-seed framing of the
+same experiment. The methodological lesson -- that prediction
+RMSE and decision regret can dissociate and that single-seed
+regret comparisons are unreliable -- is supported by both
+results. Third,
+the current equity floor of three buses per hour at peak for
+priority routes costs roughly 8\% of total waiting time relative
+to a no-floor counterfactual; the threshold-four feasibility
+cliff is jointly governed by fleet and depot capacity, with
+fleet binding more tightly than any individual depot on the
+needs-proportional depot allocation we adopt.
 
 The methodological contribution -- how to evaluate
 predict-then-optimize pipelines without conflating prediction and
-decision quality, and how to expose the rider/operator trade-off
-that vanishes when the operator term is omitted -- generalises
-beyond transit. The practical contribution is a turnkey synthetic
-benchmark that reproduces in approximately 75 minutes; porting it
-to real operational data on a specific agency is the natural next
-step but is not what this paper claims.
+decision quality, and how to expose the rider / operator
+trade-off that vanishes when the operator term is omitted --
+generalises beyond transit. The practical contribution is a
+reproducible PMPML benchmark anchored to public Indian transit
+data, in which the synthetic pieces (ridership, hourly profile,
+per-depot fleet capacity) are explicitly demarcated from the
+empirical ones, so downstream work can replace them as more
+operational data becomes available.
 
 %% ============================================================
 %% REFERENCES

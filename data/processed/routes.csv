@@ -1,341 +1,545 @@
 route_id,route_name,length_km,avg_trip_time_min,num_stops,current_peak_freq,current_offpeak_freq,route_category,priority_score,depot_id
-R001,Chinchwad - Hinjewadi,14.51,54.0,40,1,1,feeder,0.323,D6
-R002,Swargate - Kondhwa,32.02,109.2,78,2,1,suburban,0.883,D1
-R003,Wakad - Pimpri,15.69,42.7,41,3,2,trunk,0.77,D3
-R004,Pimpri - Kothrud,33.55,118.1,80,2,1,trunk,0.882,D6
-R005,Sangvi - Hinjewadi,5.65,16.8,16,2,1,feeder,0.396,D6
-R006,Bhosari - Kondhwa,32.2,110.9,80,1,1,suburban,0.899,D6
-R007,Vishrantwadi - Magarpatta,10.2,29.1,26,1,1,feeder,0.376,D8
-R008,Shivajinagar - PCMC,31.96,106.8,75,1,1,suburban,0.535,D2
-R009,Camp - Katraj,32.14,107.7,77,2,1,suburban,0.395,D2
-R010,Swargate - Hinjewadi,23.97,89.1,62,1,1,suburban,0.671,D1
-R011,Nigdi - Wakad,38.3,133.2,80,1,1,suburban,0.424,D6
-R012,Kharadi - Chinchwad,12.3,47.2,31,1,1,feeder,0.689,D8
-R013,Swargate - Undri,34.43,116.6,80,2,1,suburban,0.828,D1
-R014,Nigdi - Sangvi,18.24,64.3,44,3,2,trunk,0.578,D6
-R015,Chinchwad - Sangvi,33.13,108.9,80,3,2,trunk,0.416,D6
-R016,Magarpatta - Camp,14.3,52.5,39,2,2,feeder,0.075,D5
-R017,Pimpri - Viman Nagar,30.79,104.2,75,1,1,suburban,0.7,D6
-R018,Undri - Wakad,8.05,28.8,16,2,2,feeder,0.781,D5
-R019,Warje - Vishrantwadi,6.68,24.9,12,2,1,feeder,0.689,D4
-R020,Swargate - Warje,25.04,78.0,62,1,1,suburban,0.407,D1
-R021,Warje - Hadapsar,28.22,98.4,69,1,1,suburban,0.743,D4
-R022,Akurdi - Camp,14.86,55.8,33,1,1,feeder,0.097,D6
-R023,Aundh - Wakad,29.41,102.7,74,1,1,suburban,0.203,D7
-R024,Kothrud - Pimpri,37.17,124.6,80,1,1,suburban,0.768,D4
-R025,Kondhwa - Aundh,6.74,19.0,21,1,1,feeder,0.903,D5
-R026,Hinjewadi - Shivajinagar,24.18,94.0,61,2,1,suburban,0.693,D3
-R027,Deccan - Hinjewadi,7.61,31.6,19,1,1,feeder,0.58,D2
-R028,Pashan - Vishrantwadi,37.13,134.5,80,2,1,suburban,0.365,D4
-R029,Pashan - Chinchwad,32.13,113.3,76,2,2,suburban,0.39,D4
-R030,Wakad - Bibvewadi,24.74,92.4,59,2,1,suburban,0.527,D3
-R031,Katraj - Kondhwa,26.03,86.7,62,4,2,trunk,0.846,D1
-R032,Koregaon Park - Undri,28.69,106.9,67,1,1,suburban,0.917,D8
-R033,Hinjewadi - Camp,5.24,13.0,14,2,1,feeder,0.112,D3
-R034,Shivajinagar - Undri,34.95,121.7,80,2,1,suburban,0.994,D2
-R035,Baner - Yerwada,24.17,81.6,57,3,2,trunk,0.867,D3
-R036,Chinchwad - PCMC,33.92,114.3,80,1,1,suburban,0.418,D6
-R037,Vishrantwadi - Yerwada,13.49,49.3,31,2,2,feeder,0.826,D8
-R038,Pashan - PCMC,11.12,33.0,29,2,1,feeder,0.311,D4
-R039,Nigdi - Sangvi,9.38,26.8,27,1,1,feeder,0.415,D6
-R040,Shivajinagar - Katraj,5.31,14.1,12,1,1,feeder,0.409,D2
-R041,Bhosari - Pimpri,29.15,100.1,74,2,1,suburban,0.918,D6
-R042,Kondhwa - Baner,30.33,111.4,73,2,1,suburban,0.724,D5
-R043,Shivajinagar - Vishrantwadi,43.88,156.1,80,3,2,trunk,0.666,D2
-R044,Pimpri - Vishrantwadi,7.4,26.8,20,2,1,feeder,0.866,D6
-R045,Hinjewadi - Camp,9.2,28.5,19,2,1,feeder,0.137,D3
-R046,Wakad - Viman Nagar,17.82,65.9,46,3,2,trunk,0.174,D3
-R047,Chinchwad - Yerwada,11.16,36.9,28,1,1,feeder,0.851,D6
-R048,Pashan - Hadapsar,33.17,115.1,80,2,1,suburban,0.903,D4
-R049,Pashan - Deccan,6.29,24.4,17,2,1,feeder,0.684,D4
-R050,Nigdi - Akurdi,23.92,81.3,60,2,1,suburban,0.309,D6
-R051,Wakad - Sangvi,25.64,91.5,62,2,1,suburban,0.316,D3
-R052,Dhankawadi - Bhosari,14.68,40.3,40,1,1,feeder,0.824,D1
-R053,Chinchwad - Shivajinagar,12.76,47.4,31,2,1,feeder,0.572,D6
-R054,PCMC - Bhosari,24.76,89.8,55,2,1,suburban,0.796,D6
-R055,Hadapsar - Undri,27.78,95.9,67,2,2,suburban,0.89,D5
-R056,Sangvi - Pimpri,7.93,33.8,16,2,1,feeder,0.934,D6
-R057,Hadapsar - Viman Nagar,42.93,159.3,80,3,2,trunk,0.951,D5
-R058,Deccan - Wakad,36.77,121.5,80,1,1,suburban,0.582,D2
-R059,Dhankawadi - Chinchwad,17.55,67.2,42,2,1,trunk,0.805,D1
-R060,Akurdi - Magarpatta,29.63,111.1,71,1,1,suburban,0.044,D6
-R061,Pimpri - Akurdi,5.11,14.5,12,2,1,feeder,0.947,D6
-R062,Aundh - Yerwada,33.62,115.0,79,2,1,suburban,0.961,D7
-R063,Kondhwa - Warje,14.63,52.3,36,2,1,feeder,0.909,D5
-R064,Katraj - Wakad,19.99,66.4,47,2,1,trunk,0.534,D1
-R065,Bibvewadi - Katraj,20.91,72.6,55,2,2,suburban,0.368,D1
-R066,Warje - Aundh,8.88,27.3,19,2,1,feeder,0.394,D4
-R067,Deccan - Wakad,30.72,112.3,75,2,1,suburban,0.353,D2
-R068,Shivajinagar - Pimpri,43.22,159.7,80,2,1,trunk,0.98,D2
-R069,Dhankawadi - Undri,20.9,72.8,51,1,1,suburban,0.996,D1
-R070,Vishrantwadi - Akurdi,12.5,49.5,30,1,1,feeder,0.487,D8
-R071,Aundh - Nigdi,7.73,27.1,19,2,1,feeder,0.303,D7
-R072,Chinchwad - Viman Nagar,7.41,22.7,16,2,2,feeder,0.091,D6
-R073,Deccan - Dhankawadi,32.36,109.1,79,1,1,suburban,0.843,D2
-R074,Dhankawadi - Chinchwad,26.16,88.7,73,2,1,suburban,0.911,D1
-R075,Koregaon Park - Kothrud,6.36,13.6,20,1,1,feeder,0.291,D8
-R076,Wakad - Kothrud,9.51,32.0,25,1,1,feeder,0.68,D3
-R077,Pimpri - Kondhwa,42.8,141.3,80,3,2,trunk,0.848,D6
-R078,Magarpatta - Undri,11.33,39.1,28,1,1,feeder,0.875,D5
-R079,Wakad - Kondhwa,11.98,44.7,27,1,1,feeder,0.842,D3
-R080,Undri - Camp,23.45,79.4,56,2,1,suburban,0.865,D5
-R081,Vishrantwadi - Undri,8.56,23.9,17,1,1,feeder,0.888,D8
-R082,Deccan - Pashan,41.21,148.5,80,2,1,trunk,0.695,D2
-R083,Pimpri - Kothrud,14.24,53.7,33,1,1,feeder,0.711,D6
-R084,Kharadi - Viman Nagar,12.13,42.6,33,2,1,feeder,0.179,D8
-R085,Shivajinagar - Warje,7.42,22.2,14,1,1,feeder,0.636,D2
-R086,Katraj - Vishrantwadi,31.06,105.2,74,2,1,trunk,0.616,D1
-R087,Hinjewadi - Hadapsar,5.87,32.4,17,1,1,feeder,0.814,D3
-R088,Chinchwad - Hadapsar,14.0,41.9,36,1,1,feeder,0.882,D6
-R089,Warje - Bhosari,6.02,18.8,13,2,1,feeder,0.726,D4
-R090,Camp - Chinchwad,21.11,77.9,53,1,1,suburban,0.289,D2
-R091,Shivajinagar - Camp,34.37,111.6,80,2,1,suburban,0.075,D2
-R092,Deccan - Chinchwad,9.25,24.3,23,1,1,feeder,0.415,D2
-R093,Koregaon Park - Magarpatta,6.54,36.8,11,1,1,feeder,0.182,D8
-R094,Wakad - Undri,10.49,39.8,23,2,1,feeder,0.904,D3
-R095,Yerwada - Swargate,31.91,99.3,77,1,1,suburban,0.924,D8
-R096,Bhosari - Kondhwa,14.33,53.5,35,2,1,feeder,0.742,D6
-R097,Hinjewadi - Akurdi,24.03,82.5,59,2,2,suburban,0.554,D3
-R098,Vishrantwadi - Magarpatta,26.32,100.7,68,2,1,suburban,0.216,D8
-R099,Kondhwa - Wakad,10.77,31.7,22,1,1,feeder,0.972,D5
-R100,Kondhwa - Chinchwad,6.17,22.4,17,1,1,feeder,0.938,D5
-R101,Aundh - Hinjewadi,10.33,37.1,26,1,1,feeder,0.099,D7
-R102,Baner - Koregaon Park,20.67,79.9,52,2,1,suburban,0.041,D3
-R103,Hadapsar - Viman Nagar,8.79,42.0,19,2,1,feeder,0.846,D5
-R104,Swargate - Kondhwa,12.72,44.7,31,2,1,feeder,0.776,D1
-R105,Vishrantwadi - Sangvi,6.82,24.7,19,1,1,feeder,0.361,D8
-R106,Wakad - Magarpatta,10.06,34.2,25,2,1,feeder,0.041,D3
-R107,Kondhwa - Hadapsar,35.8,122.3,80,1,1,suburban,0.921,D5
-R108,Kharadi - Hinjewadi,38.51,129.8,80,2,1,suburban,0.375,D8
-R109,Yerwada - Chinchwad,26.64,88.0,64,2,1,suburban,0.923,D8
-R110,Baner - Yerwada,12.88,40.5,32,2,1,feeder,0.976,D3
-R111,Chinchwad - Kharadi,8.47,28.0,26,1,1,feeder,0.665,D6
-R112,PCMC - Nigdi,10.78,42.9,24,1,1,feeder,0.305,D6
-R113,Kothrud - Deccan,23.56,78.5,58,2,2,suburban,0.42,D4
-R114,Kondhwa - Hadapsar,8.97,38.2,21,2,1,feeder,0.813,D5
-R115,Magarpatta - Warje,31.75,116.3,76,1,1,suburban,0.176,D5
-R116,Dhankawadi - Kharadi,10.6,35.4,25,2,1,feeder,0.926,D1
-R117,Dhankawadi - Swargate,13.97,56.0,35,2,2,feeder,0.96,D1
-R118,PCMC - Aundh,10.52,33.0,24,2,1,feeder,0.136,D6
-R119,Viman Nagar - Swargate,13.87,57.1,36,1,1,feeder,0.289,D8
-R120,Hinjewadi - Deccan,36.6,136.3,80,2,2,suburban,0.43,D3
-R121,Vishrantwadi - Bibvewadi,34.0,122.4,80,3,2,trunk,0.557,D8
-R122,Warje - Baner,38.21,126.3,80,1,1,suburban,0.014,D4
-R123,Pimpri - Katraj,26.9,91.0,71,2,2,suburban,0.985,D6
-R124,Pimpri - Dhankawadi,22.8,79.6,60,1,1,suburban,0.854,D6
-R125,Undri - Shivajinagar,33.98,112.1,80,2,1,suburban,0.74,D5
-R126,Shivajinagar - Kondhwa,33.82,123.1,80,2,1,suburban,0.849,D2
-R127,Viman Nagar - Yerwada,27.16,104.1,67,3,2,trunk,0.741,D8
-R128,Shivajinagar - Warje,37.48,139.3,80,1,1,suburban,0.529,D2
-R129,Magarpatta - Warje,28.09,96.2,74,1,1,suburban,0.295,D5
-R130,Kothrud - Hadapsar,33.09,112.8,78,3,2,trunk,0.916,D4
-R131,Bhosari - Viman Nagar,10.66,47.7,25,2,1,feeder,0.781,D6
-R132,Magarpatta - Hadapsar,6.62,24.4,17,1,1,feeder,0.8,D5
-R133,Wakad - Magarpatta,22.13,78.4,54,1,1,suburban,0.239,D3
-R134,Yerwada - PCMC,5.76,18.6,12,1,1,feeder,0.741,D8
-R135,Camp - Nigdi,28.92,102.1,68,2,1,suburban,0.323,D2
-R136,Dhankawadi - Magarpatta,33.85,116.2,80,1,1,suburban,0.908,D1
-R137,Kondhwa - Sangvi,35.1,123.4,80,2,1,trunk,0.87,D5
-R138,Akurdi - Nigdi,20.68,67.0,54,1,1,suburban,0.618,D6
-R139,Akurdi - Baner,21.1,80.6,44,1,1,suburban,0.146,D6
-R140,Deccan - Akurdi,9.81,34.7,27,1,1,feeder,0.326,D2
-R141,Chinchwad - Pashan,10.39,33.1,29,1,1,feeder,0.471,D6
-R142,Koregaon Park - Dhankawadi,28.35,100.5,70,2,2,suburban,0.859,D8
-R143,Kharadi - Koregaon Park,35.98,123.3,80,2,1,suburban,0.232,D8
-R144,Hinjewadi - Wakad,8.98,30.1,20,2,1,feeder,0.396,D3
-R145,Pimpri - Shivajinagar,25.64,84.7,60,4,2,trunk,0.783,D6
-R146,Aundh - Swargate,20.9,71.9,49,2,2,suburban,0.38,D7
-R147,Undri - Magarpatta,21.79,81.2,53,2,1,suburban,0.997,D5
-R148,Pimpri - PCMC,21.3,80.2,52,2,1,suburban,0.736,D6
-R149,Pimpri - Swargate,26.52,95.2,67,4,3,trunk,0.965,D6
-R150,Shivajinagar - Sangvi,39.9,137.8,80,1,1,suburban,0.699,D2
-R151,Chinchwad - Katraj,29.27,109.3,75,1,1,suburban,0.532,D6
-R152,Pimpri - Shivajinagar,41.32,141.6,80,2,2,trunk,0.956,D6
-R153,Vishrantwadi - Katraj,24.87,87.7,62,2,1,trunk,0.449,D8
-R154,Yerwada - Aundh,12.23,38.6,30,2,1,feeder,0.968,D8
-R155,Shivajinagar - Magarpatta,21.23,74.5,56,2,1,suburban,0.139,D2
-R156,Pimpri - Baner,31.31,112.5,77,2,1,suburban,0.774,D6
-R157,Bhosari - Viman Nagar,6.6,17.3,14,2,1,feeder,0.886,D6
-R158,Nigdi - Undri,23.17,79.3,55,1,1,suburban,0.95,D6
-R159,Kothrud - Kondhwa,5.06,21.8,8,1,1,feeder,0.735,D4
-R160,Dhankawadi - Vishrantwadi,5.09,16.7,13,1,1,feeder,0.862,D1
-R161,Undri - PCMC,26.84,97.0,67,2,1,suburban,0.752,D5
-R162,Viman Nagar - Pimpri,38.95,138.8,80,1,1,suburban,0.804,D8
-R163,Warje - Viman Nagar,5.46,20.9,12,2,1,feeder,0.129,D4
-R164,Warje - Camp,12.7,41.7,37,1,1,feeder,0.17,D4
-R165,Nigdi - Hinjewadi,6.64,26.5,19,2,2,feeder,0.609,D6
-R166,Hinjewadi - Akurdi,6.31,12.9,14,1,1,feeder,0.392,D3
-R167,Camp - Pashan,5.31,12.3,17,2,1,feeder,0.387,D2
-R168,Camp - Koregaon Park,13.69,51.4,36,1,1,feeder,0.25,D2
-R169,Koregaon Park - Vishrantwadi,15.98,56.9,42,4,2,trunk,0.0,D8
-R170,Sangvi - Katraj,11.07,40.6,22,1,1,feeder,0.561,D6
-R171,Bhosari - Chinchwad,10.9,39.6,27,1,1,feeder,0.722,D6
-R172,Chinchwad - Hinjewadi,9.8,26.4,26,2,1,feeder,0.681,D6
-R173,Katraj - Camp,34.49,117.6,80,2,1,suburban,0.057,D1
-R174,Sangvi - Aundh,11.18,41.8,33,1,1,feeder,0.207,D6
-R175,Warje - Vishrantwadi,25.52,84.3,62,2,1,trunk,0.62,D4
-R176,Hinjewadi - Wakad,6.67,24.7,14,1,1,feeder,0.538,D3
-R177,Nigdi - Pimpri,11.13,40.8,27,1,1,feeder,0.935,D6
-R178,Magarpatta - Koregaon Park,9.84,37.7,30,1,1,feeder,0.192,D5
-R179,Kothrud - Koregaon Park,19.92,78.1,48,3,2,trunk,0.064,D4
-R180,Hadapsar - Baner,24.38,88.0,59,2,1,suburban,0.706,D5
-R181,Koregaon Park - Pimpri,26.65,90.8,75,2,1,suburban,0.904,D8
-R182,Yerwada - Shivajinagar,15.92,54.4,34,4,3,trunk,0.825,D8
-R183,Koregaon Park - Bibvewadi,32.58,118.4,80,2,2,suburban,0.347,D8
-R184,Yerwada - Vishrantwadi,9.39,32.3,28,1,1,feeder,0.938,D8
-R185,Magarpatta - Hinjewadi,39.84,135.0,80,2,2,suburban,0.253,D5
-R186,Katraj - Bhosari,22.63,81.7,57,1,1,suburban,0.991,D1
-R187,Magarpatta - Yerwada,13.54,39.2,33,2,1,feeder,0.878,D5
-R188,Swargate - Hinjewadi,11.63,42.0,26,1,1,feeder,0.403,D1
-R189,Dhankawadi - Kondhwa,26.5,90.4,67,2,2,suburban,0.77,D1
-R190,Yerwada - Pimpri,28.84,98.0,66,2,1,suburban,0.829,D8
-R191,Hadapsar - Koregaon Park,11.17,34.9,29,2,1,feeder,0.882,D5
-R192,Viman Nagar - Kharadi,10.34,39.7,28,2,2,feeder,0.223,D8
-R193,Nigdi - Vishrantwadi,5.34,12.5,15,2,1,feeder,0.426,D6
-R194,Deccan - Dhankawadi,5.42,19.7,14,1,1,feeder,0.776,D2
-R195,Katraj - Nigdi,8.43,24.2,21,2,1,feeder,0.676,D1
-R196,Deccan - Swargate,23.25,84.4,55,2,1,suburban,0.647,D2
-R197,Deccan - Wakad,11.93,41.6,35,1,1,feeder,0.646,D2
-R198,Dhankawadi - Warje,22.26,81.0,56,2,1,suburban,0.873,D1
-R199,Warje - Koregaon Park,6.59,15.0,19,1,1,feeder,0.348,D4
-R200,Baner - Koregaon Park,31.34,112.5,79,2,2,suburban,0.37,D3
-R201,Akurdi - Kondhwa,14.01,47.2,37,2,1,feeder,0.736,D6
-R202,Warje - Magarpatta,5.06,12.2,8,2,1,feeder,0.219,D4
-R203,Bhosari - Sangvi,10.46,35.1,26,1,1,feeder,0.9,D6
-R204,Viman Nagar - Kothrud,9.63,38.6,23,1,1,feeder,0.01,D8
-R205,Nigdi - Aundh,8.8,38.0,16,2,1,feeder,0.158,D6
-R206,Nigdi - Katraj,12.47,44.5,36,2,1,feeder,0.303,D6
-R207,Undri - Kondhwa,13.98,49.5,34,2,1,feeder,0.805,D5
-R208,Magarpatta - Katraj,29.58,99.2,70,3,2,trunk,0.213,D5
-R209,Sangvi - Aundh,5.9,17.1,19,2,1,feeder,0.049,D6
-R210,Katraj - Shivajinagar,11.81,41.9,25,1,1,feeder,0.403,D1
-R211,Undri - Viman Nagar,29.67,105.0,78,2,1,suburban,0.985,D5
-R212,Kharadi - Vishrantwadi,13.19,44.8,34,1,1,feeder,0.37,D8
-R213,Kharadi - Hadapsar,14.06,50.8,39,1,1,feeder,0.782,D8
-R214,Katraj - Magarpatta,28.47,96.3,72,2,1,suburban,0.17,D1
-R215,Shivajinagar - Vishrantwadi,7.35,25.3,21,2,1,feeder,0.309,D2
-R216,Hadapsar - Shivajinagar,11.07,31.1,28,2,2,feeder,0.849,D5
-R217,PCMC - Shivajinagar,22.73,75.5,61,2,1,suburban,0.577,D6
-R218,Bhosari - Vishrantwadi,22.57,80.5,54,1,1,suburban,0.932,D6
-R219,Pimpri - Camp,11.45,31.9,33,1,1,feeder,0.806,D6
-R220,Hinjewadi - Dhankawadi,30.57,108.2,71,4,3,trunk,0.904,D3
-R221,Undri - Pimpri,9.57,26.0,19,1,1,feeder,0.84,D5
-R222,Undri - Chinchwad,31.87,106.6,80,2,1,trunk,0.835,D5
-R223,Katraj - Chinchwad,26.95,99.8,69,2,1,suburban,0.69,D1
-R224,Shivajinagar - Koregaon Park,37.12,126.1,80,4,3,trunk,0.249,D2
-R225,Bhosari - Undri,37.66,132.5,80,4,3,trunk,0.719,D6
-R226,Undri - Kharadi,21.82,70.6,49,2,2,trunk,0.866,D5
-R227,Aundh - Wakad,8.97,42.2,19,1,1,feeder,0.23,D7
-R228,Nigdi - Akurdi,8.91,18.6,22,1,1,feeder,0.57,D6
-R229,Akurdi - Aundh,12.21,40.9,29,1,1,feeder,0.009,D6
-R230,Pimpri - Baner,7.24,25.8,19,1,1,feeder,0.74,D6
-R231,Deccan - Kothrud,38.46,146.9,80,2,1,suburban,0.681,D2
-R232,Bhosari - Chinchwad,33.33,116.3,80,2,2,suburban,0.989,D6
-R233,Baner - Viman Nagar,14.66,42.3,34,2,1,feeder,0.042,D3
-R234,Aundh - Warje,7.16,32.7,21,1,1,feeder,0.226,D7
-R235,Dhankawadi - Shivajinagar,7.12,33.1,17,1,1,feeder,0.751,D1
-R236,Swargate - Viman Nagar,38.48,130.8,80,3,2,trunk,0.253,D1
-R237,PCMC - Undri,7.33,22.7,16,2,1,feeder,0.828,D6
-R238,Hinjewadi - Shivajinagar,41.6,138.8,80,3,2,trunk,0.631,D3
-R239,Magarpatta - Nigdi,35.39,123.7,80,2,1,suburban,0.316,D5
-R240,Kharadi - Wakad,11.81,43.6,25,2,1,feeder,0.396,D8
-R241,Kothrud - Deccan,36.03,126.0,80,2,1,suburban,0.558,D4
-R242,Vishrantwadi - Shivajinagar,7.66,24.9,20,1,1,feeder,0.45,D8
-R243,Vishrantwadi - Pimpri,9.59,35.0,24,1,1,feeder,0.898,D8
-R244,Pashan - Baner,36.18,125.6,80,1,1,suburban,0.361,D4
-R245,Hadapsar - Viman Nagar,11.37,43.5,29,1,1,feeder,0.72,D5
-R246,Bibvewadi - Magarpatta,6.5,23.2,21,2,2,feeder,0.015,D1
-R247,Akurdi - Baner,33.18,115.5,80,1,1,suburban,0.295,D6
-R248,PCMC - Bibvewadi,7.97,33.9,17,1,1,feeder,0.37,D6
-R249,Chinchwad - Kharadi,34.81,117.9,80,4,2,trunk,0.506,D6
-R250,Swargate - Akurdi,35.65,120.5,80,1,1,suburban,0.512,D1
-R251,Bibvewadi - Magarpatta,44.05,151.0,80,2,1,trunk,0.233,D1
-R252,Baner - Akurdi,36.24,122.6,80,1,1,suburban,0.09,D3
-R253,Hinjewadi - Dhankawadi,9.32,42.9,19,2,1,feeder,0.736,D3
-R254,Kothrud - Baner,13.87,41.8,37,1,1,feeder,0.218,D4
-R255,Hinjewadi - Dhankawadi,7.21,18.8,18,1,1,feeder,0.926,D3
-R256,Hinjewadi - Kondhwa,10.4,33.7,26,2,1,feeder,0.945,D3
-R257,Magarpatta - Kothrud,10.06,37.7,27,1,1,feeder,0.297,D5
-R258,Wakad - Aundh,6.06,26.2,15,2,1,feeder,0.185,D3
-R259,PCMC - Nigdi,22.4,77.4,53,2,2,trunk,0.424,D6
-R260,Akurdi - Aundh,36.3,134.8,80,2,1,suburban,0.21,D6
-R261,Nigdi - Akurdi,36.8,132.9,80,2,1,suburban,0.36,D6
-R262,Chinchwad - Vishrantwadi,13.77,56.8,33,1,1,feeder,0.565,D6
-R263,Wakad - Magarpatta,20.35,69.1,47,2,1,trunk,0.192,D3
-R264,Viman Nagar - Wakad,5.65,27.5,20,2,1,feeder,0.195,D8
-R265,Vishrantwadi - Yerwada,11.02,33.6,28,2,1,feeder,0.995,D8
-R266,Katraj - Hinjewadi,13.25,34.9,34,1,1,feeder,0.335,D1
-R267,Chinchwad - Camp,10.98,39.4,29,1,1,feeder,0.198,D6
-R268,Bibvewadi - Wakad,11.86,43.0,25,1,1,feeder,0.31,D1
-R269,Katraj - Swargate,39.95,140.5,80,3,2,trunk,0.322,D1
-R270,Aundh - Warje,24.51,82.3,54,2,2,suburban,0.183,D7
-R271,Kothrud - Bhosari,6.33,23.2,14,1,1,feeder,0.934,D4
-R272,Wakad - Hadapsar,16.72,56.2,40,2,1,trunk,0.897,D3
-R273,Sangvi - Koregaon Park,21.38,74.3,52,2,1,suburban,0.11,D6
-R274,Magarpatta - Sangvi,39.5,132.9,80,1,1,suburban,0.026,D5
-R275,Camp - Undri,5.34,19.2,9,1,1,feeder,0.726,D2
-R276,Swargate - Kothrud,12.32,37.8,31,2,2,feeder,0.468,D1
-R277,Shivajinagar - Dhankawadi,12.31,37.5,32,1,1,feeder,0.992,D2
-R278,Akurdi - Dhankawadi,8.5,26.1,18,1,1,feeder,0.734,D6
-R279,Kothrud - Undri,34.46,121.5,80,1,1,suburban,0.768,D4
-R280,Katraj - Yerwada,28.57,102.0,68,1,1,suburban,0.839,D1
-R281,Pashan - PCMC,11.51,36.7,28,2,2,feeder,0.691,D4
-R282,Magarpatta - Kothrud,29.95,109.0,73,1,1,suburban,0.303,D5
-R283,Camp - Kothrud,7.05,22.9,19,1,1,feeder,0.3,D2
-R284,Katraj - Aundh,10.53,35.5,24,2,1,feeder,0.199,D1
-R285,Pashan - Dhankawadi,34.7,119.3,80,3,2,trunk,0.759,D4
-R286,Dhankawadi - Warje,5.94,27.1,12,2,1,feeder,0.939,D1
-R287,Yerwada - Katraj,14.15,43.4,35,2,1,feeder,0.75,D8
-R288,Vishrantwadi - Pashan,8.63,42.9,22,2,1,feeder,0.628,D8
-R289,Nigdi - Akurdi,12.99,47.2,30,1,1,feeder,0.694,D6
-R290,Pimpri - Akurdi,32.69,108.5,80,2,1,suburban,0.728,D6
-R291,Hinjewadi - Deccan,39.69,136.3,80,3,2,trunk,0.643,D3
-R292,Kondhwa - Magarpatta,30.82,102.8,80,2,1,suburban,0.896,D5
-R293,Vishrantwadi - Yerwada,7.54,27.1,19,1,1,feeder,0.734,D8
-R294,Camp - Chinchwad,36.57,132.3,80,3,2,trunk,0.3,D2
-R295,Sangvi - Kothrud,32.42,118.5,79,2,1,suburban,0.402,D6
-R296,Dhankawadi - Pimpri,37.18,128.5,80,3,2,trunk,0.75,D1
-R297,Yerwada - Hadapsar,39.83,143.8,80,2,1,suburban,0.791,D8
-R298,Warje - Bibvewadi,38.77,137.4,80,2,1,suburban,0.66,D4
-R299,Hadapsar - Dhankawadi,37.48,123.4,80,2,1,suburban,0.739,D5
-R300,Camp - Swargate,13.02,43.7,32,1,1,feeder,0.051,D2
-R301,Hadapsar - Kondhwa,39.46,140.8,80,2,1,suburban,0.989,D5
-R302,Dhankawadi - Aundh,26.1,88.7,67,2,1,suburban,0.911,D1
-R303,Warje - Camp,5.97,11.5,14,1,1,feeder,0.091,D4
-R304,Warje - Bhosari,31.98,110.1,80,1,1,suburban,0.888,D4
-R305,Yerwada - Sangvi,13.38,44.0,28,1,1,feeder,0.957,D8
-R306,Warje - Pimpri,5.64,21.5,17,1,1,feeder,0.858,D4
-R307,Wakad - Hadapsar,41.06,138.1,80,3,2,trunk,0.833,D3
-R308,Warje - Akurdi,11.31,47.8,30,2,1,feeder,0.353,D4
-R309,Hinjewadi - Camp,12.87,44.0,26,1,1,feeder,0.254,D3
-R310,Yerwada - Katraj,22.63,77.0,49,2,1,trunk,0.772,D8
-R311,Yerwada - Viman Nagar,9.5,44.7,22,1,1,feeder,0.842,D8
-R312,Pimpri - Nigdi,10.37,37.8,26,1,1,feeder,0.941,D6
-R313,Bibvewadi - Koregaon Park,10.13,37.3,24,1,1,feeder,0.114,D1
-R314,Pashan - Baner,30.63,108.2,79,2,2,suburban,0.018,D4
-R315,Bibvewadi - Warje,14.29,48.2,32,1,1,feeder,0.663,D1
-R316,Yerwada - Pimpri,32.16,117.2,78,2,2,suburban,0.7,D8
-R317,Pimpri - Swargate,5.51,27.4,16,1,1,feeder,0.94,D6
-R318,Bhosari - Nigdi,21.85,82.1,61,1,1,suburban,0.724,D6
-R319,Deccan - Aundh,14.42,56.6,39,1,1,feeder,0.239,D2
-R320,Wakad - Vishrantwadi,6.39,24.6,12,2,1,feeder,0.327,D3
-R321,Shivajinagar - Warje,6.42,22.3,15,1,1,feeder,0.334,D2
-R322,Wakad - Deccan,14.1,46.5,37,1,1,feeder,0.561,D3
-R323,Chinchwad - Kharadi,33.85,127.7,80,1,1,suburban,0.616,D6
-R324,Deccan - Akurdi,12.98,46.9,33,1,1,feeder,0.428,D2
-R325,Bibvewadi - Magarpatta,8.71,38.4,24,1,1,feeder,0.205,D1
-R326,Aundh - Swargate,11.46,39.3,29,1,1,feeder,0.255,D7
-R327,Hinjewadi - Dhankawadi,5.72,11.6,11,2,1,feeder,0.953,D3
-R328,Wakad - Hadapsar,10.6,37.2,27,2,1,feeder,0.712,D3
-R329,Undri - Wakad,26.64,91.9,71,4,3,trunk,0.951,D5
-R330,Katraj - Kothrud,8.75,17.5,18,1,1,feeder,0.694,D1
-R331,PCMC - Camp,14.61,43.4,32,2,2,feeder,0.191,D6
-R332,Pashan - Kondhwa,6.68,26.7,15,1,1,feeder,0.778,D4
-R333,Warje - Aundh,5.58,13.2,11,2,2,feeder,0.218,D4
-R334,Camp - Chinchwad,10.83,35.3,28,2,2,feeder,0.352,D2
-R335,Kharadi - Hinjewadi,10.69,31.3,28,2,1,feeder,0.641,D8
-R336,Deccan - Dhankawadi,38.14,134.8,80,1,1,suburban,0.86,D2
-R337,Undri - Nigdi,22.61,77.3,57,1,1,suburban,0.84,D5
-R338,Wakad - Katraj,44.09,154.4,80,3,2,trunk,0.645,D3
-R339,Akurdi - Camp,8.75,26.1,19,1,1,feeder,0.197,D6
-R340,Swargate - Magarpatta,13.66,47.5,34,1,1,feeder,0.237,D1
+100,Hinjawadi Maan Phase 3 - Ma Na Pa,26.4,90.1,68,1,1,suburban,0.507,Aundh
+101,Kondhwa Bk - Kothrud Depot,16.2,57.6,39,2,2,trunk,0.656,Kothrud
+102,Lohgaon - Kothrud Depot,23.6,85.9,61,1,1,suburban,0.164,Kothrud
+103A,Hinjawadi Maan Phase 3 - Katraj (Vai Kothrud Depo),36.6,126.6,80,1,1,suburban,0.203,Katraj
+103B,Swargate - Katraj,6.1,21.4,14,1,1,feeder,0.141,Swargate
+103C,Hinjawadi Maan Phase 3 - Swargate,30.5,106.4,75,1,1,suburban,0.11,Swargate
+103,Kothrud Depot - Katraj,14.3,51.7,37,2,1,trunk,0.2,Kothrud
+104,DSK Vishwa - Deccan Gymkhana,15.4,51.9,40,2,1,trunk,0.483,Bhosari
+105,Balewadi Depot - Deccan Gymkhana,16.8,56.8,39,2,1,trunk,0.628,Balewadi
+106-R,Galinde Path - Galinde Path,21.3,73.2,53,2,1,trunk,0.516,Dhankawadi
+107,Pimplegurav - Deccan Gymkhana,14.4,53.4,36,2,1,trunk,0.505,Hadapsar
+108,Pune Station - Sutardara,12.3,45.3,26,1,1,trunk,0.945,Katraj
+109-R,Ma Na Pa - Ma Na Pa,21.0,72.2,51,1,1,trunk,0.484,Kothrud
+10,Keshavnagar - Swargate,15.0,47.9,36,1,1,trunk,0.143,Swargate
+110-R,Ma Na Pa - Ma Na Pa,21.0,76.3,54,2,1,trunk,0.516,Nigdi
+111,Ma Na Pa - Bhekrainagar,17.3,60.5,39,1,1,trunk,0.524,Pimpri
+112,Mandai - Kothrud Depot,8.0,29.7,20,1,1,trunk,0.162,Kothrud
+113A,Pimplegurav - Appa Balawant Chowk,13.3,48.8,32,2,1,trunk,0.505,Swargate
+113B,Pimplegurav - Ma Na Pa,12.6,43.4,30,2,1,trunk,0.478,Balewadi
+113,Vasantdada Putala Sangvi - Appa Balawant Chowk,10.9,38.5,28,2,2,trunk,0.486,Maan-Hinjewadi
+114,Mhalungegaon - Ma Na Pa,12.5,43.8,29,2,1,trunk,0.518,Shewalewadi
+115P,Hinjawadi Maan Phase 3 - Pune Station,29.0,98.4,69,1,1,suburban,0.893,Charholi
+116,Khadki Bazar - Ma Na Pa,10.8,37.0,30,1,1,trunk,0.471,Aundh
+117A,DSK Vishwa - Swargate,12.6,43.9,28,2,1,trunk,0.086,Swargate
+117B,Shree Control - Swargate,11.7,36.1,30,2,1,trunk,0.139,Swargate
+117C,Raykarmala - Swargate,13.5,47.9,32,2,1,trunk,0.071,Swargate
+117,Dhayari Maruti Mandir - Swargate,12.2,47.9,29,2,1,trunk,0.115,Swargate
+117D,Swargate - Saritanagari,5.0,21.7,15,1,1,feeder,0.121,Swargate
+117E,Shaniwarwada Stand - Saritanagari,7.0,21.1,15,1,1,feeder,0.158,Bhosari
+117F,Shaniwarwada - Dhayari Maruti Mandir,13.6,49.9,33,2,1,trunk,0.073,Dhankawadi
+118-7A,Swargate - Marketyard,3.1,11.9,10,1,1,feeder,0.084,Swargate
+118-7,Venutai Chavan College - Swargate,9.4,30.2,17,1,1,trunk,0.127,Swargate
+118A,Suncity - Swargate,6.0,19.9,13,1,1,feeder,0.09,Swargate
+118B,Vadgaon Bk - Swargate,7.0,24.2,14,1,1,feeder,0.119,Swargate
+118C,Nanded - Swargate,11.2,39.4,33,2,1,trunk,0.1,Swargate
+118,Venutai Chavan College - Swargate,9.4,29.6,20,2,1,trunk,0.099,Swargate
+119A,Alandi - Vishrantwadi,11.0,36.4,30,2,1,trunk,1.0,Hadapsar
+119,Alandi - Ma Na Pa,23.1,81.1,57,1,1,suburban,0.51,Katraj
+11,Pimplegurav - Marketyard,18.3,63.2,42,2,1,trunk,0.128,Kothrud
+11K,Kalpataru - Katraj,21.6,76.7,53,2,1,trunk,0.313,Katraj
+120A,Indoorance System - Bhosari,23.5,83.6,57,1,1,suburban,0.539,Bhosari
+120,Indoorance System Chakan Mhalunge - Ma Na Pa,40.6,143.8,80,1,1,suburban,0.544,Nigdi
+121,Bhosari Terminal - Ma Na Pa,17.1,65.5,42,2,1,trunk,0.548,Bhosari
+122A,Nehrunagar Depo - Ma Na Pa,15.9,53.4,41,1,1,trunk,0.465,Pimpri
+122B,Chinchwadgaon - Nehrunagar Depo,6.0,20.7,16,1,1,feeder,0.5,Swargate
+122C,Ma Na Pa - Chinchwadgaon,18.7,59.8,46,1,1,trunk,0.517,Balewadi
+122,Chinchwadgaon - Ma Na Pa,18.7,63.4,45,1,1,trunk,0.462,Maan-Hinjewadi
+123,Bhakti Shakti - Ma Na Pa,20.1,69.5,49,2,1,trunk,0.499,Shewalewadi
+125,Dapodi Mantri Niketan - Bopkhel,12.7,48.8,31,2,1,trunk,0.516,Charholi
+126A,Kamalpark - Khadki Bazar,10.1,36.2,21,2,2,trunk,0.507,Aundh
+126B,Kamalpark - Pimplenilakh,20.2,78.8,56,1,1,trunk,0.507,Bhosari
+126C,Khadki Bazar - Pimplenilakh,10.2,34.2,26,2,1,trunk,0.456,Dhankawadi
+126,Pimplenilakh - Vishrantwadi,16.2,55.2,34,1,1,trunk,0.978,Hadapsar
+126D,Khadki Bazar - Vishrantwadi,6.0,18.5,14,1,1,feeder,0.984,Katraj
+128,Bopkhel - Ma Na Pa,19.1,73.8,43,2,1,trunk,0.454,Kothrud
+129,Balewadi Depot - Pune Station,18.8,62.8,45,2,1,trunk,0.719,Balewadi
+12,Bhakti Shakti - Upper Depot,30.05,103.1,74,2,1,suburban,0.552,Nigdi
+130A,Yewalewadi - Katraj,5.7,19.7,10,1,1,feeder,0.698,Katraj
+130,Shivajinagar - Yewalewadi,16.1,57.5,38,1,1,trunk,0.49,Pimpri
+132A,Vadgaonsheri - Ma Na Pa (Via Shubham),14.0,50.5,35,2,1,trunk,0.503,Swargate
+132,Shubham Society Nagar Road - Ma Na Pa,11.1,40.1,27,1,1,trunk,0.478,Balewadi
+133A,Vadgaon Sheri - Ma Na Pa (Via Anand Park),14.8,49.9,33,1,1,trunk,0.51,Maan-Hinjewadi
+133,Anand Park - Ma Na Pa,12.8,46.6,26,2,1,trunk,0.506,Shewalewadi
+133B,Sainathnagar - Ma Na Pa,14.0,48.0,35,2,1,trunk,0.465,Charholi
+134,Vidyanagar - Pune Station,8.7,30.4,20,1,1,trunk,0.928,Aundh
+135A,Wadebolhai - Kesnand Phata,10.8,37.4,27,2,1,trunk,0.423,Bhosari
+135,Wadebolhai - Pune Station,25.6,85.1,64,1,1,suburban,0.925,Dhankawadi
+136A,Vadegaon - Kesnand Phata,12.7,43.8,31,1,1,trunk,0.526,Hadapsar
+136,Vadegaon - Pune Station,27.5,101.0,70,2,2,suburban,0.926,Katraj
+139A,Bhakti Shakti - Bhekrainagar,30.7,113.6,78,1,1,suburban,0.513,Kothrud
+139,Bhakti Shakti - Shewalwadi,31.6,111.7,76,1,1,suburban,0.491,Nigdi
+13A,Shivajinagar - VIT College,11.9,41.4,33,2,1,trunk,0.522,Pimpri
+13B,Pune Vidhyapeeth - Upper Depo,14.5,53.4,31,2,2,trunk,0.555,Swargate
+13C,Upper Depo - Pune Vidhyapeeth,14.5,55.7,38,1,1,trunk,0.484,Balewadi
+13,Shivajinagar - Upper Depot,10.0,35.4,21,1,1,trunk,0.468,Maan-Hinjewadi
+13L,Shivajinagar - Lake Town Society,9.6,37.3,25,1,1,trunk,0.479,Shewalewadi
+140,Pune Station - Upper Depot,11.3,40.1,29,2,2,trunk,0.946,Charholi
+141A,Marketyard - Khandoba Mandir,6.0,22.9,10,1,1,feeder,0.096,Aundh
+141,Pune Station - Khandoba Mandir,11.9,44.5,28,1,1,trunk,0.948,Bhosari
+142,Ghotawade Phata - Pune Station,31.8,112.9,80,1,1,suburban,0.943,Dhankawadi
+143A,Pune Station - Galinde Path (Vai Nal Stop),11.3,39.4,29,1,1,trunk,0.932,Hadapsar
+143,Pune Station - Galinde Path (Vai Mhatre Pul),11.3,44.3,26,2,2,trunk,0.933,Katraj
+144A,Pune Station - Sai Sayajinagar,13.9,51.6,34,2,1,trunk,0.943,Kothrud
+144B,Sainathnagar - Kumbre Park,22.7,81.8,63,2,1,suburban,0.525,Nigdi
+144,Pune Station - Kothrud Stand,9.0,36.6,21,2,2,trunk,0.876,Kothrud
+144D,Pune Station - Kumbare Park,12.5,40.4,26,1,1,trunk,0.888,Pimpri
+144K,Pune Station - Gujrat Colony,9.0,33.3,23,2,1,trunk,0.95,Swargate
+145A,D2 Circle - Pune Station,25.75,89.5,65,1,1,suburban,0.938,Balewadi
+145B,Sutarwadi Pashan - Pune Station,13.0,48.2,33,2,1,trunk,0.636,Maan-Hinjewadi
+145,NDA Golmarket - Pune Station,23.15,82.3,60,1,1,suburban,0.931,Shewalewadi
+146,Gokhalenagar - Pune Station,8.45,29.0,20,1,1,trunk,0.514,Charholi
+147A,Nhavi Sandas - Kesnand Phata,23.2,77.4,50,1,1,suburban,0.461,Aundh
+147,Nhavi Sandas - Pune Station,38.0,133.3,80,2,1,suburban,0.959,Bhosari
+148A,Bhosari - Bhekrainagar,33.7,123.0,80,1,1,suburban,0.498,Bhosari
+148,Pimplegurav - Shewalwadi,24.8,83.1,59,1,1,suburban,0.482,Dhankawadi
+149A,Bhakti Shakti - Shewalwadi,42.9,147.3,80,1,1,suburban,0.552,Hadapsar
+149,Pimpri - Shewalwadi,37.6,132.3,80,1,1,suburban,0.514,Pimpri
+14,Kesnand Phata - Dhayari Maruti Mandir,31.6,108.3,77,1,1,suburban,0.484,Katraj
+151,Alandi - Pune Station,22.0,78.6,56,1,1,trunk,0.931,Kothrud
+152A,Munjabavasti - Ma Na Pa,12.3,46.6,29,2,1,trunk,0.454,Nigdi
+152D,Ma Na Pa - Dhanorigaon,11.6,40.5,30,2,2,trunk,0.51,Pimpri
+154,Vishrantwadi - Pune Station,8.5,30.5,24,1,1,trunk,1.0,Swargate
+155,Lohgaon - Pune Station (Via Dhanori),15.7,55.3,40,1,1,trunk,0.947,Balewadi
+158A,Dadachi Padal - Ma Na Pa,15.5,51.4,37,1,1,trunk,0.436,Maan-Hinjewadi
+158,Lohgaon - Ma Na Pa,13.5,51.0,30,1,1,trunk,0.556,Shewalewadi
+159,Talegaon Dhamdhere - Ma Na Pa,40.5,143.5,80,1,1,suburban,0.49,Charholi
+159K,Koregaon Bhima - Ma Na Pa,29.0,98.9,72,1,1,suburban,0.53,Aundh
+159P,Pabal Phata - Ma Na Pa,40.8,144.3,80,1,1,suburban,0.541,Bhosari
+160,Mundhwagaon - Ma Na Pa,10.9,36.1,28,2,1,trunk,0.563,Dhankawadi
+161,Vimannagar - Warje Malwadi,23.0,83.2,60,2,1,suburban,0.955,Hadapsar
+162,Kendurgaon - Pune Station,43.0,153.1,80,1,1,suburban,0.928,Katraj
+163,Kharadi Gaon - Pune Station,11.0,32.9,23,1,1,trunk,0.49,Kothrud
+164,Vimannagar - Swargate,15.5,52.5,34,2,1,trunk,0.963,Swargate
+165,Vadgaonsheri - Ma Na Pa,11.1,40.5,26,1,1,trunk,0.571,Nigdi
+166,Vimannagar - Pune Station,9.5,32.6,24,1,1,trunk,0.89,Pimpri
+167,Kesnand Phata - Hadapsar Gadital,14.2,52.1,33,1,1,trunk,0.579,Hadapsar
+168,Keshavnagar - Ma Na Pa,11.6,38.0,26,2,1,trunk,0.547,Swargate
+169,Keshavnagar - Ma Na Pa (Vai Koregaon Park),12.0,41.0,34,2,1,trunk,0.54,Balewadi
+170A,Kondhwa Bk - Pune Station,11.3,44.6,27,1,1,trunk,0.702,Maan-Hinjewadi
+170B,Kondhwa Hospital - Pune Station,12.0,37.7,31,1,1,trunk,0.708,Shewalewadi
+170,Kondhwa Bk - Pune Station,11.3,32.7,25,1,1,trunk,0.729,Charholi
+174A,NDA Golmarket - Pune Station,21.0,73.6,51,1,1,trunk,0.944,Aundh
+174B,D2 Circle - Pune Station,23.4,79.6,60,2,1,suburban,0.943,Bhosari
+174,Kondhwa Gate - Pune Station,18.8,67.2,53,1,1,trunk,0.711,Dhankawadi
+175,Hadapsar Gadital - Ma Na Pa,16.0,54.2,36,1,1,trunk,0.559,Hadapsar
+176A,Krushnanagar Mohammadwadi - Swargate (Vai NIBM),12.1,40.0,30,1,1,trunk,0.099,Swargate
+176,Mahammad Wadi - Swargate,12.1,40.4,32,1,1,trunk,0.116,Swargate
+177A,Azadnagar - Vishrantwadi,18.4,66.6,46,1,1,trunk,0.98,Hadapsar
+177B,Siddharthnagar - Pune Station,9.7,35.0,21,2,1,trunk,0.934,Katraj
+177,Salunke Vihar - Pune Station,9.2,36.2,22,2,1,trunk,0.977,Kothrud
+177D,Azadnagar - Pune Station,9.5,30.1,22,1,1,trunk,0.864,Nigdi
+177K,Krushnanagar Mohammadwadi - Pune Station,10.9,34.9,24,2,1,trunk,0.996,Pimpri
+177M,Mahammad Wadi - Pune Station,13.3,43.3,33,2,1,trunk,0.985,Swargate
+179A,Vadachiwadi - Hadapsar Gadital,9.6,28.9,20,2,1,trunk,0.556,Hadapsar
+179,Vadachiwadi - swargate,14.2,52.6,36,1,1,trunk,0.099,Swargate
+17A,Narhegaon - Natraj Stand,11.0,42.6,25,2,1,trunk,0.483,Balewadi
+17B,Shaniwarwada Stand - Swargate,2.8,12.2,8,1,1,feeder,0.13,Swargate
+17,Narhegaon - Shaniwarwada,13.2,47.3,28,1,1,trunk,0.083,Maan-Hinjewadi
+180,Bhekrainagar - Na Ta Wadi,15.5,50.9,40,1,1,trunk,0.476,Shewalewadi
+181A,SRP Camp - Na Ta Wadi,12.3,42.1,30,1,1,trunk,0.544,Charholi
+181B,Siddharthnagar - Na Ta Wadi,11.5,42.0,27,2,1,trunk,0.481,Aundh
+181C,Kondhwa Bk - Na Ta Wadi,13.8,41.5,39,2,1,trunk,0.664,Bhosari
+181,Kondhwa Kh - Na Ta Wadi,11.5,34.8,27,1,1,trunk,0.683,Dhankawadi
+183A,Theur Factory - Sarasbaug,27.9,100.2,71,1,1,suburban,0.467,Hadapsar
+183,Theur - Hadapsar Gadital,17.4,67.6,44,2,1,trunk,0.589,Hadapsar
+184A,Bhekrainagar - Swargate,12.1,37.5,30,1,1,trunk,0.133,Swargate
+184A-NGT,Hadapsar Gadital - Swargate,9.5,33.0,28,1,1,trunk,0.624,Hadapsar
+184B,Fursungi - Swargate,15.3,51.4,38,1,1,trunk,0.124,Swargate
+184,Fursungi - Padmawati,19.6,64.1,48,2,1,trunk,0.49,Katraj
+185,Manjari Kh - Hadapsar Gadital,8.3,24.2,15,2,2,trunk,0.566,Hadapsar
+186A,Swargate - Jspm College,13.3,39.2,35,2,1,trunk,0.099,Swargate
+186B,Hadapsar Gadital - JSPM college,4.7,19.1,12,1,1,feeder,0.529,Hadapsar
+186,Pune Station - Jspm College,14.2,51.4,36,2,1,trunk,0.948,Kothrud
+187,Pune Station - Bhekrainagar,15.0,56.7,35,2,1,trunk,0.955,Nigdi
+188,Katraj - Hadapsar Gadital,18.0,62.2,43,1,1,trunk,0.251,Katraj
+189,Devachi Uruli - Hadapsar Gadital,6.7,22.4,17,1,1,feeder,0.555,Hadapsar
+18,Bhansali Complex - Swargate,8.5,23.2,18,1,1,trunk,0.143,Swargate
+190A,Vadkigaon - Hadapsar Gadital,8.7,28.0,21,1,1,trunk,0.54,Hadapsar
+190,Fursungi - Hadapsar Gadital,6.0,18.1,14,1,1,feeder,0.561,Hadapsar
+191,Trinity College - Pune Station,14.5,52.9,35,1,1,trunk,0.909,Pimpri
+192A,Mohammadwadigaon - Hadapsar Gadital,6.0,23.3,11,1,1,feeder,0.568,Hadapsar
+192,Undrigaon - Hadapsar Gadital,8.0,23.5,22,1,1,trunk,0.673,Hadapsar
+193,Uruli Kanchan - Hadapsar Gadital,22.8,80.2,60,1,1,suburban,0.538,Hadapsar
+195,Holkarwadi - Hadapsar Gadital,8.5,34.4,22,1,1,trunk,0.541,Hadapsar
+196A,Mahammad Wadi - Swargate (Vai Ram Takedi),13.1,42.9,34,1,1,trunk,0.08,Swargate
+196,Hadapsar Gadital - Pune Station,12.4,44.6,31,1,1,trunk,0.563,Hadapsar
+197,Kothrud Depot - Hadapsar Gadital,17.6,57.3,37,1,1,trunk,0.213,Kothrud
+198,Manjari Bk - Hadapsar Gadital,11.0,33.2,27,1,1,trunk,0.538,Hadapsar
+19A,Shivajinagar - Marketyard,7.6,28.4,17,1,1,feeder,0.552,Swargate
+19B,Kondhwa Hospital - Marketyard,9.0,28.7,28,2,2,trunk,0.686,Balewadi
+19,Shivajinagar - Kondhwa Hospital,16.6,55.8,44,2,1,trunk,0.532,Maan-Hinjewadi
+200A,Hadapsar Gadital - Sadesatranali,3.0,12.5,9,1,1,feeder,0.606,Hadapsar
+200,Swargate - Sadesatranali,12.4,38.4,31,2,1,trunk,0.124,Swargate
+201,Alandi - Bhekrainagar,34.3,126.2,80,1,1,suburban,0.55,Shewalewadi
+202A,Mahatma Gandhi Stand - Warje Malwadi,13.1,46.3,33,2,1,trunk,0.26,Charholi
+202B,Mahatma Gandhi Stand - Swargate,13.1,42.3,32,2,1,trunk,0.116,Swargate
+202,Warje Malwadi - Hadapsar Gadital,19.2,70.4,48,2,1,trunk,0.274,Hadapsar
+203,Pune Station - Bhekrainagar,12.6,41.2,31,2,1,trunk,0.93,Aundh
+203-NGT,Pune Station - Hadapsar Gadital,10.0,36.8,26,2,1,trunk,0.899,Hadapsar
+203P,Pune Station - Shewalwadi,13.5,50.8,36,2,1,trunk,0.966,Bhosari
+204,Chinchwadgaon - Bhekrainagar,31.9,109.3,80,1,1,suburban,0.475,Dhankawadi
+205,Vasantdada Putala Sangvi - Hadapsar Gadital,26.5,93.1,62,1,1,suburban,0.601,Hadapsar
+206,Vishalnagar - Hadapsar Gadital,26.8,94.0,65,1,1,suburban,0.575,Hadapsar
+207A,Saswad - Hadapsar Gadital,23.0,82.1,56,1,1,suburban,0.55,Hadapsar
+207,Saswad - Swargate,32.7,112.0,80,1,1,suburban,0.122,Swargate
+208A,Bhakti Shakti - Hadapsar Gadital,28.2,96.0,64,1,1,suburban,0.578,Hadapsar
+208,Hinjawadi Maan Phase 3 - Hadapsar Gadital,36.3,128.2,80,1,1,suburban,0.569,Hadapsar
+20A,Sahkarnagar - Swargate Depo,3.4,16.7,5,1,1,feeder,0.126,Swargate
+20B,Hadapsar Gadital - Swargate,9.5,30.8,22,1,1,trunk,0.546,Hadapsar
+20,Pune Station - Sahkarnagar,9.5,39.2,23,1,1,trunk,0.926,Hadapsar
+213,Vimannagar - Katraj,21.9,77.7,55,1,1,trunk,0.934,Katraj
+215A,Chintamani Dnyanpith - Swargate,8.6,33.3,20,2,1,trunk,0.093,Swargate
+215,Swargate - Chintamani Dnyanpith,7.5,26.6,19,1,1,feeder,0.141,Swargate
+216A,Mandai - Katraj,7.7,21.4,21,1,1,feeder,0.279,Katraj
+216B,Pune Vidhyapeeth - Bharati Vidyapeeth,16.5,58.1,41,1,1,trunk,0.457,Katraj
+216C,Mandai - Bharati Vidyapeeth,7.7,26.0,17,1,1,feeder,0.46,Kothrud
+216-R,Bharati Vidyapeeth - Bharati Vidyapeeth,15.5,51.7,40,1,1,trunk,0.508,Nigdi
+217A,Gujarwadi - Katraj,3.8,13.4,8,1,1,feeder,0.207,Katraj
+217B,Gujarwadi - Swargate,9.9,35.6,27,2,2,trunk,0.113,Swargate
+217,Gujarwadi - Jambhulwadi,7.0,25.6,21,1,1,feeder,0.467,Pimpri
+218,Balewadi Depot - Katraj,23.0,76.1,55,1,1,suburban,0.556,Balewadi
+21A,Ammunition Factory - Swargate,9.5,32.6,26,2,1,trunk,0.115,Swargate
+21B,HEMRL Company - Swargate,12.2,44.5,25,2,1,trunk,0.088,Swargate
+21,Vasantdada Putala Sangvi - Swargate,14.85,57.2,35,1,1,trunk,0.11,Swargate
+21N,Pimplenilakh - Swargate,15.1,49.5,37,1,1,trunk,0.107,Swargate
+226,Dhayari Maruti Mandir - Pune Station,15.9,57.8,37,2,1,trunk,0.948,Swargate
+227A,Shivajinagar - Marketyard,7.6,31.1,20,1,1,feeder,0.533,Balewadi
+227,Marnewadi - Marketyard,33.5,115.6,80,1,1,suburban,0.105,Maan-Hinjewadi
+22A,Khandoba Mandir - Swargate,6.0,26.8,14,1,1,feeder,0.109,Swargate
+22,Shivajinagar - Khandoba Mandir,10.0,35.3,26,2,1,trunk,0.5,Shewalewadi
+230,Pune Station - Bharati Vidyapeeth,10.9,39.4,29,2,1,trunk,0.986,Charholi
+233,Paudgaon - Marketyard,35.6,128.2,80,1,1,suburban,0.142,Aundh
+234,Kharadi Gaon - Ma Na Pa,14.0,53.0,35,2,1,trunk,0.515,Bhosari
+235,Kharadi Gaon - Katraj,22.4,80.2,45,1,1,suburban,0.412,Katraj
+236,Khulewadi - Ma Na Pa,13.5,49.1,30,2,1,trunk,0.512,Dhankawadi
+237,Kharadi Gaon - Warje Malwadi,24.2,92.1,60,1,1,suburban,0.485,Hadapsar
+23,Pune Station - Upper Depot,11.4,40.6,25,1,1,trunk,0.985,Katraj
+24A,Maharashtra Housing Board Samtanagar - Katraj,18.0,62.8,42,2,1,trunk,0.225,Katraj
+24B,Lohgaon - Katraj,21.1,73.6,52,1,1,trunk,0.267,Katraj
+24,Maharashtra Housing Board Samtanagar - Katraj,18.0,60.4,48,1,1,trunk,0.236,Katraj
+24-NGT,Pune Station - Katraj,10.8,39.4,28,2,2,trunk,0.894,Katraj
+252A,Charholigaon - Vishrantwadi,12.4,44.9,32,1,1,trunk,1.0,Charholi
+252,Charholigaon - Ma Na Pa,21.6,75.3,52,1,1,trunk,0.508,Charholi
+256B,Banergaon - Ma Na Pa,11.0,42.8,27,1,1,trunk,0.685,Kothrud
+256,Balewadi Depot - Ma Na Pa,13.5,48.0,34,1,1,trunk,0.654,Balewadi
+256S,Someshwarwadi - Ma Na Pa,8.1,27.3,22,1,1,trunk,0.476,Nigdi
+257,Alandi - Kesnand Phata,24.0,86.7,58,1,1,suburban,0.51,Pimpri
+262A,Dehugaon - Nigdi,11.8,46.0,27,2,1,trunk,0.463,Nigdi
+262,Dehugaon - Ma Na Pa,31.3,107.4,78,2,1,suburban,0.467,Swargate
+264,Bahulgaon - Ma Na Pa,38.0,135.1,80,1,1,suburban,0.517,Balewadi
+26,Shivajinagar - Dhankawadi,10.2,29.7,24,2,1,trunk,0.517,Dhankawadi
+276,Chinchwadgaon - Warje Malwadi,24.9,91.0,65,1,1,suburban,0.219,Maan-Hinjewadi
+277A,Kothrud Stand - Kondhwagate,10.0,36.7,23,2,2,trunk,0.174,Kothrud
+277,Khadki Bazar - Kondhwagate,24.0,87.1,62,2,2,suburban,0.678,Shewalewadi
+279A,Kothrud Depo - Khamboli,28.6,103.0,71,2,1,suburban,0.218,Kothrud
+279B,Deccan Gymkhana - Kothrud Depo,6.0,22.8,12,1,1,feeder,0.482,Kothrud
+279,Khamboli - Deccan Gymkhana,34.6,121.5,80,1,1,suburban,0.461,Charholi
+27,Shivajinagar - Bharati Vidyapeeth,10.9,38.9,28,1,1,trunk,0.542,Aundh
+280,Ma Na Pa - Warje Hanuman Chowk,9.9,34.5,29,2,1,trunk,0.511,Bhosari
+281,Bhakti Shakti - Warje Malwadi,28.4,100.1,67,2,2,suburban,0.2,Dhankawadi
+282,Bhosarigaon - Warje Malwadi,25.6,90.1,63,1,1,suburban,0.263,Bhosari
+283,Pune Station - Kumbare Park,12.5,41.4,31,1,1,trunk,0.889,Hadapsar
+284,Bhakti Shakti - Kothrud Depot,26.5,91.8,70,1,1,suburban,0.273,Kothrud
+286,Azadnagar - Warje Malwadi,18.7,66.2,47,1,1,trunk,0.233,Katraj
+28,Shivajinagar - Katraj,11.1,34.5,29,1,1,trunk,0.456,Katraj
+290A,Katraj - Shaninagar,1.1,8.0,5,1,1,feeder,0.266,Katraj
+290,Shivajinagar - Shaninagar,11.6,45.7,30,1,1,trunk,0.535,Kothrud
+291A,Hadapsar Gadital - Upper Depot,15.6,56.9,40,2,1,trunk,0.602,Hadapsar
+291,Hadapsar Gadital - Katraj,14.2,52.2,31,2,1,trunk,0.536,Hadapsar
+292A,Kalyangaon - Swargate,34.0,124.5,80,2,1,suburban,0.139,Swargate
+292B,Rahatwadegaon - Swargate,30.0,106.2,75,2,1,suburban,0.107,Swargate
+292C,Avsarwadi - Swargate,31.0,106.4,78,1,1,suburban,0.125,Swargate
+292,Kondhanpur - Swargate,29.0,101.6,71,1,1,suburban,0.092,Swargate
+292D,Swargate - Kondhanpur,29.0,101.6,66,1,1,suburban,0.111,Swargate
+293A,Kusgaon - Swargate,25.3,87.2,67,1,1,suburban,0.106,Swargate
+293D,Khed Shivapur - Swargate,19.8,70.0,49,1,1,trunk,0.116,Swargate
+294,Khadakwasla Dharan - Katraj,13.0,38.9,26,2,1,trunk,0.317,Katraj
+295A,Ambegaon - Katraj,3.0,12.0,6,1,1,feeder,0.287,Katraj
+295B,Katraj - Pune Station,13.7,48.9,37,2,1,trunk,0.297,Katraj
+295,Pune Station - Ambegaon,16.7,59.3,41,1,1,trunk,0.957,Nigdi
+296A,Jambhulwadi - Katraj,5.0,13.4,8,1,1,feeder,0.192,Katraj
+296,Shivajinagar - Jambhulwadi,13.3,44.0,30,2,1,trunk,0.453,Pimpri
+297,Shivajinagar - Rajas Society,11.5,39.4,27,2,1,trunk,0.552,Swargate
+298,Chinchwadgaon - Katraj,26.75,91.4,66,1,1,suburban,0.262,Katraj
+299,Bhosarigaon - Katraj,26.9,95.4,68,1,1,suburban,0.243,Bhosari
+29A,Alandi - Swargate,28.6,98.5,73,1,1,suburban,0.14,Swargate
+29,Vishrantwadi - Swargate,12.6,43.5,32,2,2,trunk,0.959,Swargate
+2A,Shivajinagar - Katraj Ladies Special,10.5,40.1,25,1,1,trunk,0.544,Katraj
+2B,Shivajinagar - Bhilarewadi,12.0,48.2,26,1,1,trunk,0.556,Balewadi
+2,Shivajinagar - Katraj,10.5,33.1,24,2,1,trunk,0.466,Katraj
+2D,Sachchai Mata Mandir - Katraj,2.0,8.0,5,1,1,feeder,0.263,Katraj
+2E,Sachchai Mata Mandir - Swargate,8.0,29.1,22,1,1,trunk,0.183,Swargate
+2F,Taljai Pathar - Swargate,6.5,20.8,8,1,1,feeder,0.109,Swargate
+2G,Taljai Pathar - Shivajinagar,10.1,32.1,29,1,1,trunk,0.431,Maan-Hinjewadi
+2H,Sachchai Mata Mandir - Shivajinagar,12.4,45.0,33,1,1,trunk,0.537,Shewalewadi
+2I,Pune Vidhyapeeth - Katraj,14.0,47.7,36,1,1,trunk,0.288,Katraj
+2J,Bhilarewadi - Katraj,1.5,8.0,5,1,1,feeder,0.249,Katraj
+2K,Shivajinagar - Narhegaon,13.0,46.9,30,1,1,trunk,0.501,Charholi
+2L,Katraj - Narhegaon,2.5,10.7,10,1,1,feeder,0.283,Katraj
+2-NGT,Shivajinagar - Katraj Night Service,10.5,35.5,29,2,1,trunk,0.549,Katraj
+301,Shewalwadi - Katraj,19.0,61.6,46,2,1,trunk,0.254,Katraj
+302A,Alandi - Pimprigaon,17.7,60.1,45,1,1,trunk,0.546,Pimpri
+302B,Bopkhel - Pimprigaon,19.85,72.4,49,2,1,trunk,0.481,Pimpri
+302C,Gavhanevasti Bhosari - Nehrunagar Depo,3.5,12.6,11,1,1,feeder,0.53,Bhosari
+302,Gavhanevasti Bhosari - Pimprigaon,8.65,30.2,19,2,1,trunk,0.499,Bhosari
+302D,Pimprigaon - Nehrunagar Depo,5.7,24.7,18,1,1,feeder,0.518,Pimpri
+303A,Mukai Chowk - Nigdi,8.6,28.5,21,2,1,trunk,0.511,Nigdi
+303,Akurdi Railway Station - Nigdi,6.2,21.2,19,1,1,feeder,0.511,Nigdi
+304A,Bhosari - Nehrunagar Depo,3.5,14.7,8,1,1,feeder,0.44,Bhosari
+304,Gavhanevasti Bhosari - Chinchwadgaon,10.2,42.0,27,2,2,trunk,0.499,Bhosari
+305A,Dy Patil College Wadgaonmawal - Nigdi,22.0,76.5,48,1,1,trunk,0.487,Nigdi
+305B,Navlakh Umbre - Nigdi,26.0,89.8,61,1,1,suburban,0.453,Nigdi
+305,Vadgaon Mawal - Nigdi,22.0,71.4,56,2,1,trunk,0.502,Nigdi
+306,Hinjawadi Maan Phase 3 - Dange Chowk,13.3,44.0,36,1,1,trunk,0.426,Aundh
+307A,Chinchwadgaon - Bhakti Shakti,4.6,12.7,13,1,1,feeder,0.49,Bhosari
+307,Walhekarwadi - Chinchwadgaon,2.3,13.6,5,1,1,feeder,0.517,Dhankawadi
+308,Gharkul Vasahat Chikhli - Bhakti Shakti,5.4,22.6,11,1,1,feeder,0.455,Hadapsar
+309,Dehugaon - Alandi,16.0,57.2,42,2,2,trunk,0.453,Katraj
+30A,Rautwadi - Marketyard,28.0,98.5,72,1,1,suburban,0.067,Kothrud
+30,Ghotawade Phata - Marketyard,31.5,112.0,79,1,1,suburban,0.141,Nigdi
+310A,Walhekarwadi - Nehrunagar Depo,7.7,29.2,27,1,1,feeder,0.514,Pimpri
+310,Walhekarwadi - Pune Station,24.8,88.8,60,1,1,suburban,0.949,Swargate
+311,Pimprigaon - Pune Station,21.8,77.9,52,2,1,trunk,1.0,Pimpri
+312,Chinchwadgaon - Pune Station,22.5,81.1,52,1,1,suburban,0.929,Balewadi
+313A,Kasarsai Karkhana - Chinchwadgaon,17.2,66.4,44,2,1,trunk,0.522,Maan-Hinjewadi
+313B,Bhakti Shakti - Kasarsai Karkhana,21.5,75.1,52,2,1,trunk,0.488,Shewalewadi
+313C,Nehrunagar Depo - Chandkhed,25.7,93.3,63,1,1,suburban,0.448,Charholi
+313,Chandkhed - Chinchwadgaon,19.3,71.9,51,1,1,trunk,0.54,Aundh
+313D,Bhakti Shakti - Chandkhed,21.5,77.1,48,2,1,trunk,0.525,Bhosari
+314,Mhalunge MIDC - Bhakti Shakti,11.2,40.1,28,1,1,trunk,0.517,Dhankawadi
+315A,Moshigaon - Pune Station,25.6,81.8,63,2,1,suburban,0.973,Hadapsar
+315,Bhosari - Pune Station (Vai Alandi Road),18.5,69.0,42,1,1,trunk,0.939,Bhosari
+315D,Ma Na Pa - Dhanorigaon,11.6,38.9,33,1,1,trunk,0.471,Katraj
+316,Hinjawadi Maan Phase 3 - Chinchwadgaon,14.2,55.7,37,1,1,trunk,0.444,Kothrud
+317A,Dapodi - Sambhajinagar,14.2,45.9,39,2,1,trunk,0.517,Nigdi
+317B,Pune Station - Dapodi,9.8,32.8,26,1,1,trunk,0.922,Pimpri
+317,Sambhajinagar - Pune Station,23.7,83.6,60,1,1,suburban,0.956,Swargate
+318A,Gharkul Vasahat Chikali - Pune Station,25.6,94.1,68,2,1,suburban,0.889,Balewadi
+318,Krishanagar - Pune Station,26.0,94.8,67,2,1,suburban,1.0,Maan-Hinjewadi
+319,Vadgaon Mawal - Alandi,32.8,116.9,80,1,1,suburban,0.494,Shewalewadi
+31A,Pune Station - Padmawati,10.1,38.1,28,2,2,trunk,0.909,Charholi
+31,Pune Station - Taljai Pathar,12.0,39.6,27,2,1,trunk,0.928,Aundh
+320,Mahalungegaon - Alandi,30.5,107.4,74,1,1,suburban,0.507,Bhosari
+321A,Hinjawadi Maan Phase 3 - Pimpale Gurav,21.8,74.9,55,2,1,trunk,0.534,Dhankawadi
+321,Hinjawadi Maan Phase 3 - Vasasantdada Putla Sangvi,23.1,81.1,58,1,1,suburban,0.543,Hadapsar
+322A,Akurdi Railway Station - Warje Malwadi,30.8,106.9,76,2,1,suburban,0.21,Katraj
+322K,Akurdi Railway Station - Ma Na Pa,23.5,81.8,63,1,1,suburban,0.495,Kothrud
+323A,Gharkul Vasahat Chikhli - Ma Na Pa,23.4,87.9,59,1,1,suburban,0.501,Nigdi
+323B,Chikhali - Nehrunagar Depo,8.9,28.9,23,2,1,trunk,0.478,Pimpri
+323C,Gharkul Vasahat Chikhali - Nehrunagar Depo,6.6,19.2,12,1,1,feeder,0.461,Swargate
+323,Chikhali - Ma Na Pa,23.4,86.0,58,1,1,suburban,0.501,Balewadi
+324,Hinjawadi Maan Phase 3 - Bhosari,25.3,95.6,58,1,1,suburban,0.495,Bhosari
+325A,Masulkar Colony - Nehrunagar Depo,2.7,10.9,8,1,1,feeder,0.551,Maan-Hinjewadi
+325,Masulkar Colony - Pune Station,18.7,63.6,49,2,1,trunk,0.96,Shewalewadi
+326A,Chikhali - Nehrunagar Depo,7.4,26.7,16,1,1,feeder,0.51,Charholi
+326B,Nehrunagar Depo - Chikhali,7.4,25.1,15,1,1,feeder,0.468,Aundh
+326,Chikhali - Pimprigaon,10.1,37.8,21,1,1,trunk,0.465,Pimpri
+327A,Hinjawadi Maan Phase 3 - Nehrunagar Depo,21.3,76.2,52,2,1,trunk,0.54,Bhosari
+327B,Bhosari - Hinjawadi Maan Phase 3,27.1,95.5,73,1,1,suburban,0.437,Bhosari
+327C,Alandi - Nehrunagar Depo,13.3,49.6,27,1,1,trunk,0.516,Dhankawadi
+327,Hinjawadi Maan Phase 3 - Alandi,35.7,123.9,80,1,1,suburban,0.506,Hadapsar
+328A,Rupeenagar - Nigdi,3.0,8.0,6,1,1,feeder,0.462,Nigdi
+329A,Dehugaon - Pune Station (Via Yarwada),34.0,123.2,80,1,1,suburban,0.924,Katraj
+329,Dehugaon - Pune Station (Via Wakdevadi),33.0,118.1,80,1,1,suburban,0.955,Kothrud
+32,Alandi - Bharati Vidyapeeth,34.1,126.4,80,1,1,suburban,0.465,Nigdi
+331A,Rahatnigaon - Gavhanevasti Bhosari,13.0,50.4,31,2,2,trunk,0.472,Bhosari
+331B,Rahatnigaon - Charholigaon,22.0,77.3,59,2,2,trunk,0.507,Charholi
+331C,Nehrunagar Depo - Rahatnigaon,9.5,35.2,24,2,2,trunk,0.476,Pimpri
+331,Rahatnigaon - Charholigaon,22.0,75.9,53,1,1,trunk,0.478,Charholi
+331D,Charholigaon - Nehrunagar Depo,12.5,46.4,33,2,1,trunk,0.478,Charholi
+332A,Pimple Saudagar - Ma Na Pa,15.7,55.8,36,2,1,trunk,0.486,Swargate
+332,Pimpri - Pune Station,26.4,89.7,66,2,1,suburban,0.917,Pimpri
+333,Hinjawadi Maan Phase 3 - Pune Station,26.6,94.0,65,1,1,suburban,0.889,Balewadi
+334,Gharkul Vasahat Chikhali - Pimprigaon,8.2,25.2,20,2,1,trunk,0.456,Pimpri
+335A,Jambe - Dange Chowk,7.6,27.9,22,1,1,feeder,0.434,Maan-Hinjewadi
+335B,Dange Chowk - Nehrunagar Depo,8.9,31.1,17,2,1,trunk,0.479,Shewalewadi
+336,Bhakti Shakti - Kesnand Phata,31.0,106.5,76,1,1,suburban,0.528,Charholi
+337,Bhakti Shakti - Dhayari Maruti Mandir,37.7,130.9,80,1,1,suburban,0.495,Aundh
+339B,Indrayaninagar - Pune Station,22.6,80.5,61,2,1,suburban,0.946,Bhosari
+339,Santnagar MIDC Police Station - Katraj,32.5,118.5,76,1,1,suburban,0.3,Katraj
+33A,Na Ta Wadi - Padmawati,8.0,29.8,20,1,1,trunk,0.541,Dhankawadi
+33,Na Ta Wadi - Taljai Pathar,10.2,35.2,25,2,1,trunk,0.509,Hadapsar
+341,Mohannagar - Ma Na Pa,22.2,79.9,64,1,1,suburban,0.478,Katraj
+344A,Nehrunagar Depo - Pimple Nilakh,13.7,50.1,34,2,1,trunk,0.477,Kothrud
+344B,Alandi - Nehrunagar Depo,13.7,48.9,37,1,1,trunk,0.535,Nigdi
+344,Pimple Nilakh - Alandi,26.1,95.4,61,2,1,suburban,0.511,Pimpri
+345,Thergaon - Pune Station,19.3,68.1,49,1,1,trunk,0.941,Swargate
+347A,Nehrunagar Depo - Dapodi Mantri Niketan,18.4,65.0,45,2,1,trunk,0.529,Balewadi
+347,Dapodi - Alandi,30.9,101.8,79,2,2,suburban,0.515,Maan-Hinjewadi
+348,Nigdi - Pune Station,24.0,88.2,59,1,1,suburban,0.933,Nigdi
+350A,Dehugaon - Pimprigaon,17.1,64.2,44,1,1,trunk,0.485,Pimpri
+350B,Bhakti Shakti - Pimprigaon,8.3,30.5,15,2,1,trunk,0.453,Pimpri
+350,Dehugaon - Nigdi,8.8,38.2,18,1,1,trunk,0.504,Nigdi
+351A,Jambe - Bhosari,24.0,82.6,60,1,1,suburban,0.536,Bhosari
+351,Jambe - Alandi,32.5,112.6,80,1,1,suburban,0.508,Shewalewadi
+354A,Pimpri - Marketyard,28.5,99.9,66,2,2,suburban,0.128,Pimpri
+354,Pimprigaon - Marketyard,28.8,99.5,71,1,1,suburban,0.125,Pimpri
+355,Chikhali - Dange Chowk,13.0,49.6,30,1,1,trunk,0.484,Charholi
+357,Rajgurunagar - Pune Station,46.6,165.2,80,1,1,suburban,0.92,Aundh
+358,Rajgurunagar - Bhosari,27.6,93.3,67,2,2,suburban,0.453,Bhosari
+360,Balewadi Depot - Alandi,35.0,122.1,80,1,1,suburban,0.644,Balewadi
+361,Bhosari Terminal - Alandi,8.5,28.5,21,1,1,trunk,0.466,Bhosari
+362A,Alandi - YCM Hospital (Via Moshi),16.0,62.2,38,1,1,trunk,0.507,Bhosari
+362B,YCM Hospital - Bhosari,5.5,17.7,6,1,1,feeder,0.495,Bhosari
+362,YCM Hospital - Alandi,14.0,46.4,35,2,1,trunk,0.497,Dhankawadi
+363A,Kiwalegaon - Nigdi,10.7,33.7,29,2,1,trunk,0.518,Nigdi
+363,Adarshnagar - Nigdi,9.0,37.5,25,1,1,trunk,0.48,Nigdi
+366A,Bhapkar Petrol Pump - Bhakti Shakti,25.9,91.6,64,1,1,suburban,0.484,Hadapsar
+366B,Pune Station - Pimpri,16.9,59.0,37,1,1,trunk,0.936,Pimpri
+366C,Katraj - Pimpri,24.7,86.6,59,1,1,suburban,0.225,Katraj
+366,Bhakti Shakti - Pune Station (Via Yerwada),22.7,84.5,58,1,1,suburban,0.988,Katraj
+367A,Santnagar MIDC Police Station - Akurdi Railway Station,18.5,63.6,47,1,1,trunk,0.477,Kothrud
+367B,Gharkul Vasahat - Bhosari Terminal,11.4,37.9,26,1,1,trunk,0.527,Bhosari
+367C,Akurdi Railway Station - Bhosari,17.0,61.9,47,1,1,trunk,0.533,Bhosari
+367,Gavhanevasti Bhosari - Nigdi,10.8,38.3,23,2,1,trunk,0.469,Bhosari
+36,Chinchwadgaon - Ma Na Pa,17.1,57.2,42,2,1,trunk,0.466,Nigdi
+370-R,Pimpri - Pimpri,14.5,48.4,44,2,1,trunk,0.525,Pimpri
+372,Hinjawadi Maan Phase 3 - Bhakti Shakti,20.9,74.0,48,1,1,trunk,0.486,Pimpri
+373,Hinjawadi Maan Phase 3 - Wakad pul,10.0,36.2,20,2,2,trunk,0.534,Swargate
+376A,Bhakti Shakti - Warje Malwadi (Vai YCM),31.2,112.5,78,1,1,suburban,0.263,Balewadi
+376B,Bhakti Shakti - Shewalwadi (Vai YCM),35.7,128.1,80,2,1,suburban,0.47,Maan-Hinjewadi
+376,Bhakti Shakti - Katraj (Vai YCM),30.9,112.1,72,2,2,suburban,0.275,Katraj
+376D,Bhakti Shakti - Nehrunagar Depo,9.3,31.9,17,2,1,trunk,0.508,Shewalewadi
+376E,Warje Malwadi - Nehrunagar Depo (Vai YCM),23.5,81.3,57,1,1,suburban,0.215,Charholi
+376F,Sambhajinagar - Nehrunagar Depo,23.0,80.3,56,1,1,suburban,0.513,Aundh
+376G,Shewalwadi - Nehrunagar Depo (Vai YCM),28.0,98.8,70,1,1,suburban,0.514,Bhosari
+376H,Katraj - Nehrunagar Depo (Vai YCM),23.2,76.0,58,1,1,suburban,0.207,Katraj
+376K,Sambhajinagar - Katraj (Vai YCM),32.9,118.1,80,1,1,suburban,0.252,Katraj
+37,Na Ta Wadi - Sahkarnagar,7.0,18.4,19,1,1,feeder,0.492,Dhankawadi
+38,Na Ta Wadi - Dhankawadi,9.0,33.8,25,1,1,trunk,0.24,Dhankawadi
+39,Pune Station - Dhankawadi,10.5,36.4,28,2,1,trunk,0.91,Dhankawadi
+3,Pune Station - Swargate,7.5,28.2,19,1,1,feeder,0.949,Swargate
+40,Mandai - Saket Society,5.3,23.1,10,1,1,feeder,0.492,Hadapsar
+41,Upper Depot - Sangvi,19.0,62.6,43,1,1,trunk,0.526,Katraj
+42,Bhakti Shakti - Katraj,28.95,98.8,71,2,1,suburban,0.267,Katraj
+43A,Hinjawadi Maan Phase 3 - Katraj,33.7,118.0,80,1,1,suburban,0.273,Katraj
+43,Bhakti Shakti - Katraj,33.7,118.4,80,1,1,suburban,0.245,Katraj
+46,Lohgaon - Upper Depot,25.9,88.2,68,1,1,suburban,0.52,Kothrud
+47A,Vadgaon Bk - Shaniwarwada Stand,9.4,33.6,22,2,1,trunk,0.123,Nigdi
+47,Sanaswadi Nandoshi - Shaniwarwada,17.7,65.1,42,2,1,trunk,0.121,Pimpri
+48,Venutai Chavan College - Pune Station,16.8,56.1,36,2,1,trunk,0.901,Swargate
+49,Khanapur - Pune Station,27.7,92.9,71,1,1,suburban,0.979,Balewadi
+50B,Sinhgad Paytha - Natraj Stand,22.8,80.8,50,1,1,suburban,0.486,Maan-Hinjewadi
+50,Sinhagad - Shaniwarwada,24.8,82.8,63,1,1,suburban,0.12,Shewalewadi
+51A,DSK Vishwa - Shivajinagar,13.2,43.2,26,1,1,trunk,0.475,Charholi
+51,Dhayari Maruti Mandi - Shivajinagar,13.2,47.9,31,1,1,trunk,0.452,Aundh
+52A,Osade Phata - Swargate,30.1,109.4,77,1,1,suburban,0.098,Swargate
+52B,Khanapur - Marketyard,26.0,91.9,65,1,1,suburban,0.079,Bhosari
+52,Khanapur - Swargate,23.2,79.5,59,1,1,suburban,0.127,Swargate
+53B,Swargate - Shivajinagar,4.3,8.0,8,1,1,feeder,0.15,Swargate
+53,DSK Vishwa - Shivajinagar,15.4,50.0,35,2,1,trunk,0.489,Dhankawadi
+54A,Vadgaon Bk - Na Ta Wadi,11.5,40.4,25,2,1,trunk,0.534,Hadapsar
+54B,Na Ta Wadi - Swargate,4.3,17.8,12,1,1,feeder,0.084,Swargate
+54,Venutai Chavan College - Na Ta Wadi,13.9,52.9,30,1,1,trunk,0.474,Katraj
+55,Mandai - Suncity,7.8,24.0,17,1,1,feeder,0.499,Kothrud
+56,Mandai - Vadgaon Bk,9.4,29.5,16,2,1,trunk,0.503,Nigdi
+57A,Suncity - Pune Station,10.3,34.1,23,1,1,trunk,0.882,Pimpri
+57,Vadgaon Bk - Pune Station,12.3,44.1,25,1,1,trunk,0.938,Swargate
+58A,Pandavnagar - Shanipar,7.5,23.4,21,1,1,feeder,0.506,Balewadi
+58,Gokhalenagar - Shanipar,5.6,20.3,12,1,1,feeder,0.48,Maan-Hinjewadi
+58P,Pandavnagar Senapati Bapat Road - Shanipar,7.8,25.3,20,1,1,feeder,0.493,Shewalewadi
+59,Niljyoti - Shanipar,6.2,24.3,14,1,1,feeder,0.487,Charholi
+5A,Tadiwala Road - Swargate,6.3,27.3,11,1,1,feeder,0.117,Swargate
+5,Pune Station - Swargate,5.45,24.0,15,1,1,feeder,0.943,Swargate
+60A,Ghulenagar - Natraj Stand,9.0,31.9,21,1,1,trunk,0.483,Aundh
+60,Ghulenager - Shaniwarwada Stand,12.0,40.1,27,2,1,trunk,0.12,Bhosari
+61,Nasrapur - Swargate,32.0,114.6,80,2,1,suburban,0.126,Swargate
+62A,Marketyard - Sangamwadi,10.2,36.9,25,2,1,trunk,0.126,Dhankawadi
+62,Sangamwadi - Sukhsagarnagar,15.5,53.4,36,2,1,trunk,1.0,Hadapsar
+63,Kalyaninagar - Swargate,11.5,44.0,28,2,1,trunk,0.958,Swargate
+64A,Warje Malwadi - Swargate,10.0,37.2,21,1,1,trunk,0.255,Swargate
+64B,Gujrat Colony - Upper Depot,11.7,46.1,29,2,1,trunk,0.5,Katraj
+64C,Swargate - Gujrat Colony,6.5,24.7,17,1,1,feeder,0.094,Swargate
+64,Warje Malwadi - Hadapsar Gadital,20.0,70.4,45,2,1,trunk,0.223,Hadapsar
+65A,Marketyard - Upper Depo,4.8,9.1,12,1,1,feeder,0.131,Kothrud
+65,Maharashtra Housing Board Samtanagar - Upper Depot,16.5,60.2,40,2,1,trunk,0.485,Nigdi
+66A,Shaniwarwada - Marketyard,6.0,19.8,17,1,1,feeder,0.136,Pimpri
+66,Agalambegaon - Marketyard,29.1,104.7,78,1,1,suburban,0.142,Swargate
+67,Kharadi Gaon - Swargate,17.2,57.7,44,1,1,trunk,0.459,Swargate
+68A,Sukhsagarnagar - Kumbare Park,13.5,49.9,30,1,1,trunk,0.466,Balewadi
+68B,Venutai Chavan College - Kothrud Depo,15.0,54.0,39,2,1,trunk,0.275,Kothrud
+68S,Upper Depot - Sutardara,14.8,49.0,32,2,1,trunk,0.482,Maan-Hinjewadi
+69,Ghotawadegaon - Marketyard,31.3,111.6,77,1,1,suburban,0.122,Shewalewadi
+70A,Shasakiya Vishramgruha Paudgaon - Deccan Gymkhana,28.0,100.4,69,1,1,suburban,0.497,Charholi
+70B,Shasakiya Vishramgruha Paudgaon - Kothrud Depo,22.0,71.7,54,2,1,trunk,0.147,Kothrud
+70C,Sheregaon - Kothrud Depo,27.3,96.2,68,1,1,suburban,0.151,Kothrud
+70,Sheregaon - Deccan Gymkhana,33.3,118.8,80,1,1,suburban,0.471,Aundh
+71,Sukhsagarnagar - Kothrud Depot,14.3,52.8,35,1,1,trunk,0.22,Kothrud
+72A,Swargate - Upper Depo,5.2,19.8,13,1,1,feeder,0.095,Swargate
+72,Kondhwagate - Upper Depot,20.9,74.0,54,2,1,trunk,0.719,Bhosari
+73,Kothrud Depot - Hadapsar Gadital,18.7,60.6,51,1,1,trunk,0.165,Kothrud
+75,Vidyanagar - Deccan Gymkhana,13.5,50.0,32,2,1,trunk,0.477,Dhankawadi
+76,Upper Depot - Kumbare Park,13.8,45.6,32,2,2,trunk,0.542,Hadapsar
+77-R,Warje Malwadi - Warje Malwadi,24.5,89.2,61,1,1,suburban,0.234,Katraj
+78A,Warje Malwadi - Marketyard,14.2,50.3,35,2,1,trunk,0.212,Kothrud
+78,Kondhwagate - Marketyard,19.1,67.5,45,2,1,trunk,0.711,Nigdi
+79B,Kothrud Depo - Ghotawade Phata,13.9,49.6,41,2,1,trunk,0.188,Kothrud
+79C,Deccan Gymkhana - Kothrud Depo,6.0,21.5,22,1,1,feeder,0.53,Kothrud
+79,Mugawade - Deccan Gymkhana,29.9,103.1,73,2,1,suburban,0.508,Pimpri
+79D,Deccan Gymkhana - Warje Malwadi,7.9,31.7,19,1,1,feeder,0.508,Swargate
+7A,Uruli Kanchan - Hadapsar Gadital,20.8,74.6,49,1,1,trunk,0.65,Hadapsar
+7B,Manjari Kh - Hadapsar Gadital,8.3,28.2,21,1,1,trunk,0.597,Hadapsar
+7,Uruli Kanchan - Sarasbaug,31.5,108.6,75,1,1,suburban,0.522,Balewadi
+80A,Aditya Garden City - Ma Na Pa,12.3,41.0,32,2,2,trunk,0.508,Maan-Hinjewadi
+80B,Popularnagar - Ma Na Pa,9.5,30.7,27,1,1,trunk,0.482,Shewalewadi
+80,Cipla Center - Ma Na Pa,10.7,46.2,21,1,1,trunk,0.535,Charholi
+81,Pune Station - Kumbare Park,12.9,43.0,29,2,1,trunk,0.918,Aundh
+82A,Ma Na Pa - Warje Malwadi,9.9,35.1,26,1,1,trunk,0.508,Bhosari
+82B,Kondhwagate - Kothrud Stand,9.0,30.6,28,2,2,trunk,0.713,Kothrud
+82C,Kondhwagate - Warje Malwadi,5.6,14.5,14,1,1,feeder,0.665,Dhankawadi
+82D,Kothrud Depo - Kondhwagate,23.6,89.3,60,1,1,suburban,0.175,Kothrud
+82E,Kondhwagate - Ma Na Pa,16.4,58.0,41,1,1,trunk,0.665,Hadapsar
+82-R,Kondhwagate - Kondhwagate,30.8,108.7,76,1,1,suburban,0.689,Katraj
+84A,Kondhur Phata - Deccan Gymkhana,37.4,132.3,80,1,1,suburban,0.493,Kothrud
+84B,Kothrud Stand - Sangrun,24.5,85.1,62,1,1,suburban,0.18,Kothrud
+84C,Kondhur Phata - Kothrud Stand,33.5,121.2,80,1,1,suburban,0.213,Kothrud
+84,Sangrun - Deccan Gymkhana,28.4,100.3,71,1,1,suburban,0.472,Nigdi
+85A,Khothrud Stand - Mohakarwadi,15.3,54.3,35,2,1,trunk,0.455,Pimpri
+85,Mohakarwadi - Ma Na Pa,20.8,70.1,52,1,1,trunk,0.474,Swargate
+86-R,Kothrud Depot - Kothrud Depot,16.9,60.5,43,2,1,trunk,0.255,Kothrud
+87,Sutarwadi - Deccan Gymkhana (Vai Bhagvatinagar),12.0,47.1,27,2,1,trunk,0.459,Balewadi
+87A,SusgaonTo Deccan Gymkhana - ,15.0,50.2,36,1,1,trunk,0.495,Maan-Hinjewadi
+87B,Sutarwadi Pashan - Mandai,10.8,33.9,29,2,1,trunk,0.607,Shewalewadi
+87C,HMR Company - Deccan Gymkhana,12.5,41.9,31,1,1,trunk,0.451,Charholi
+87D,Sutarwadi - Deccan Gymkhana (Vai Sai Chowk),12.0,42.1,32,1,1,trunk,0.467,Aundh
+87F,Balewadi Mhalunge Phata - Deccan Gymkhana,15.5,55.7,39,1,1,trunk,0.596,Balewadi
+88A,Swargate - Medi Point,11.6,33.8,26,1,1,trunk,0.131,Swargate
+88,Medi Point - Upper Depot,16.8,61.7,43,1,1,trunk,0.514,Bhosari
+89,Niljyoti - Swargate,7.5,25.1,19,1,1,feeder,0.059,Swargate
+8,Mhatobachi Alandi - Hadapsar Gadital,19.0,67.4,38,1,1,trunk,0.596,Hadapsar
+90,Gokhalenagar - Swargate,7.3,24.1,12,1,1,feeder,0.555,Swargate
+90P,Pandavnagar Senapati Bapat Road - Swargate,9.0,32.6,23,2,1,trunk,0.147,Swargate
+91,Ishanyanagari - Ma Na Pa,9.0,38.6,25,2,1,trunk,0.519,Dhankawadi
+92,Pune Station - Gujrat Colony,9.5,37.1,22,1,1,trunk,0.971,Hadapsar
+93,Pimplenilakh - Deccan Gymkhana,12.6,52.2,29,1,1,trunk,0.526,Katraj
+94A,Vadgaonsheri - Kumbre park,19.1,64.7,39,1,1,trunk,0.485,Kothrud
+94B,Kumbare Park - Pune Station,11.2,38.0,33,1,1,trunk,0.948,Nigdi
+94,Pune Station - Kothrud Depot,11.4,42.7,29,2,1,trunk,0.944,Kothrud
+95A,Pimplegurav - Gujrat Colony,18.2,65.7,46,2,1,trunk,0.502,Pimpri
+95,Pimplegurav - Kothrud Depot,21.1,73.7,54,1,1,trunk,0.256,Kothrud
+96,Gharkul Vasahat Warje - Pimplegurav,23.3,82.3,51,1,1,suburban,0.254,Swargate
+97,Sahkarnagar - Warje Malwadi,12.5,44.6,34,1,1,trunk,0.264,Balewadi
+9,Uruli Railway Station - Hadapsar Gadital,27.1,96.4,67,1,1,suburban,0.522,Hadapsar
+VJR1,Dhayari Maruti Mandir - Hadapsar Gadital,21.7,79.1,57,1,1,trunk,0.652,Hadapsar
+VJR2,Kesnand Phata - Warje Malwadi,29.4,103.2,67,1,1,suburban,0.264,Maan-Hinjewadi
+VJR3,Hadapsar Gadital - Kothrud Depot,17.9,62.6,42,1,1,trunk,0.539,Hadapsar
+VJR4,Vishrantwadi - Kothrud Depot,15.9,58.1,41,2,1,trunk,1.0,Kothrud
+VJR5,Mukai Chowk - Ma Na Pa,20.6,66.1,51,2,2,trunk,0.463,Shewalewadi
+VJR6,Hinjawadi Maan Phase 3 - Bhosari,24.0,89.4,64,2,1,suburban,0.536,Bhosari
+VJR2A,Kothrud Stand - Kesnand Phata,25.4,97.2,67,2,1,suburban,0.204,Kothrud
+14A,Kesnand Phata - Swargate,19.4,65.8,50,2,1,trunk,0.103,Swargate
+58B,Swargate - Police Ground,4.5,20.7,10,1,1,feeder,0.111,Swargate
+103D,Katraj - MIT College,12.5,42.0,31,1,1,trunk,0.281,Katraj
+363B,Sainagar Mamurdi - Nigdi,8.5,25.4,19,2,1,trunk,0.524,Nigdi
+293S,Salunke Vihar - Khed Shivapur,21.9,72.5,56,1,1,trunk,0.482,Charholi
+139S,Salunke Vihar - Bhakti Shakti,26.5,95.6,61,1,1,suburban,0.441,Aundh
+135 NGT,Kesnand Phata - Pune Station,15.3,50.5,36,1,1,trunk,0.91,Bhosari
+117 NGT,Dhayari GaonTo Swargate - ,9.3,31.5,26,1,1,trunk,0.132,Swargate
+174 NGT,Kondhwa Gate - Pune Station,18.8,63.8,42,1,1,trunk,0.674,Dhankawadi
+348 NGT,Bhakti Shakti - Pune Station,24.0,83.1,57,1,1,suburban,0.865,Hadapsar
+12 NGT,Bhakti Shakti - Swargate,23.0,76.9,60,1,1,suburban,0.063,Swargate
+158B,Ma Na Pa - D.Y. Patil Vidhypith Lohgaon,17.9,65.0,37,2,1,trunk,0.479,Katraj
+19D,Trinity College - Shivajinagar,18.1,68.5,43,2,1,trunk,0.49,Kothrud
+253,Vidyanagar - Upper Depot,22.8,78.7,56,1,1,suburban,0.563,Nigdi

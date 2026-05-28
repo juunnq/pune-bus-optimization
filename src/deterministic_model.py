@@ -10,7 +10,9 @@ Mathematical formulation:
               tau[r] = 2 * avg_trip_time_min[r] + DWELL_MIN
     w[k]    = 1/(2k) avg wait at frequency k (random arrivals)
     b[r,k]  = ceil(k * tau[r] / 60) buses needed to sustain frequency k
-    B       = network-wide fleet size (default 1800)
+    B       = network-wide fleet size (default 2000, matching the latest
+              PMPML figure of ~1947-2000 buses; the optimisation respects
+              B = 2000 as the peak-deployable cap)
     lambda_op = marginal operator cost per bus-period, in
                 passenger-hour-equivalents (default 0)
   Decision variables:
@@ -101,7 +103,7 @@ def _depot_capacities(routes_df: pd.DataFrame, fleet_size: int) -> dict:
 
 def build_deterministic_model(routes_df: pd.DataFrame,
                               demand_matrix: pd.DataFrame,
-                              fleet_size: int = 1800,
+                              fleet_size: int = 2000,
                               lambda_op: float = 0.0,
                               time_limit_sec: int = 300,
                               verbose: bool = False) -> dict:
@@ -316,7 +318,7 @@ def compute_baseline_status_quo(routes_df: pd.DataFrame,
 
 def compute_baseline_uniform(routes_df: pd.DataFrame,
                              demand_matrix: pd.DataFrame,
-                             fleet_size: int = 1800,
+                             fleet_size: int = 2000,
                              depot_caps: dict = None) -> pd.DataFrame:
     """Largest uniform k satisfying fleet and depot caps."""
     tau = _cycle_time_min(routes_df)
@@ -353,7 +355,7 @@ def compute_baseline_uniform(routes_df: pd.DataFrame,
 
 def compute_baseline_demand_proportional(routes_df: pd.DataFrame,
                                          demand_matrix: pd.DataFrame,
-                                         fleet_size: int = 1800,
+                                         fleet_size: int = 2000,
                                          depot_caps: dict = None) -> pd.DataFrame:
     if depot_caps is None:
         depot_caps = _depot_capacities(routes_df, fleet_size)
@@ -389,7 +391,7 @@ def compute_baseline_demand_proportional(routes_df: pd.DataFrame,
 
 def compute_baseline_greedy(routes_df: pd.DataFrame,
                             demand_matrix: pd.DataFrame,
-                            fleet_size: int = 1800,
+                            fleet_size: int = 2000,
                             depot_caps: dict = None) -> pd.DataFrame:
     """Greedy upgrade respecting fleet, depot, and equity constraints."""
     if depot_caps is None:
@@ -457,7 +459,7 @@ def compute_baseline_greedy(routes_df: pd.DataFrame,
 
 # Driver
 
-def run_deterministic_pipeline(routes_df, demand_matrix, fleet_size=1800,
+def run_deterministic_pipeline(routes_df, demand_matrix, fleet_size=2000,
                                output_dir="results/tables"):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -517,7 +519,7 @@ if __name__ == "__main__":
     routes_df = load_routes(os.path.join(project_root, "data/processed/routes.csv"))
     demand_matrix = load_demand_matrix(os.path.join(project_root, "data/processed/demand_matrix.csv"))
 
-    out = run_deterministic_pipeline(routes_df, demand_matrix, fleet_size=1800,
+    out = run_deterministic_pipeline(routes_df, demand_matrix, fleet_size=2000,
                                      output_dir=os.path.join(project_root, "results/tables"))
     results = out['results_df']
     allocation = out['optimal_allocation']
@@ -530,7 +532,7 @@ if __name__ == "__main__":
     for period in TIME_PERIODS:
         period_alloc = allocation[allocation['period'] == period]
         total_buses = int(period_alloc['buses_assigned'].sum())
-        log_gate_check(f"fleet_{period}", total_buses <= 1800, "<=1800", total_buses)
+        log_gate_check(f"fleet_{period}", total_buses <= 2000, "<=2000", total_buses)
     expected_assignments = len(routes_df) * len(TIME_PERIODS)
     log_gate_check("all_assigned", len(allocation) == expected_assignments,
                    str(expected_assignments), len(allocation))

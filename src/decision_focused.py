@@ -81,7 +81,7 @@ def predict_then_optimize(predictions_test: np.ndarray,
                           truth_matrix: pd.DataFrame,
                           baseline_matrix: pd.DataFrame,
                           routes_df: pd.DataFrame,
-                          fleet_size: int = 1800) -> dict:
+                          fleet_size: int = 2000) -> dict:
     """Build pred matrix from predictions, solve MIP, evaluate vs truth.
     test_index_df must contain columns route_id, hour aligned with predictions.
     """
@@ -280,7 +280,7 @@ def _run_one_seed(seed, X_train, y_train, X_val, y_val, X_test, y_test,
 def run_decision_focused_pipeline(routes_df, demand_df, weather_df, demand_matrix,
                                   output_dir="results/tables",
                                   models_dir="results/models",
-                                  fleet_size=1800,
+                                  fleet_size=2000,
                                   nn_epochs=30,
                                   seeds=None):
     """Multi-seed sweep over the four predictors plus oracle baseline.
@@ -433,7 +433,7 @@ if __name__ == "__main__":
         routes_df, demand_df, weather_df, demand_matrix,
         output_dir=os.path.join(project_root, "results/tables"),
         models_dir=os.path.join(project_root, "results/models"),
-        fleet_size=1800, nn_epochs=30, seeds=list(range(n_seeds)),
+        fleet_size=2000, nn_epochs=30, seeds=list(range(n_seeds)),
     )
     summary = out['summary']
     multiseed = out['multiseed']

@@ -1,0 +1,1031 @@
+﻿Route ID,Route Description,Route Description Marathi,Kilometer
+100-D,Hinjawadi Maan Phase 3 To Ma Na Pa,हिंजवडी माण फेज ३ ते मनपा,26.4
+100-U,Ma Na Pa To Hinjawadi Maan Phase 3,मनपा ते हिंजवडी माण फेज ३,26.4
+101-D,Kondhwa Bk To Kothrud Depot,कोंढवा बु. ते कोथरुड डेपो,16.2
+101-U,Kothrud Depot To Kondhwa Bk,कोथरुड डेपो ते कोंढवा बु.,16.2
+102-D,Lohgaon To Kothrud Depot,लोहगांव ते कोथरुड डेपो,23.6
+102-U,Kothrud Depot To Lohgaon,कोथरुड डेपो ते लोहगांव,23.6
+103A-D,Hinjawadi Maan Phase 3 To Katraj (Vai Kothrud Depo),हिंजवडी माण फेज ३ ते कात्रज (मार्गे कोथरूड डेपो ),36.6
+103A-U,Katraj To Hinjawadi Maan Phase 3 (Vai Kothrud Depo),कात्रज ते हिंजवडी माण फेज ३  (मार्गे कोथरूड डेपो ),36.6
+103B-D,Swargate To Katraj,स्वारगेट ते कात्रज,6.1
+103B-U,Katraj To Swargate,कात्रज ते स्वारगेट,6.1
+103C-D,Hinjawadi Maan Phase 3 To Swargate,हिंजवडी माण फेज ३ ते स्वारगेट,30.5
+103C-U,Swargate To Hinjawadi Maan Phase 3,स्वारगेट ते हिंजवडी माण फेज ३,30.5
+103-D,Kothrud Depot To Katraj,कोथरुड डेपो ते कात्रज,14.3
+103-U,Katraj To Kothrud Depot,कात्रज ते कोथरुड डेपो,14.3
+104-D,DSK Vishwa To Deccan Gymkhana,डि.एस.के. विश्व ते डेक्कन जिमखाना,15.4
+104-U,Deccan Gymkhana To DSK Vishwa,डेक्कन जिमखाना ते डि.एस.के. विश्व,15.4
+105-D,   Balewadi Depot To Deccan Gymkhana, बालेवाडी डेपो ते डेक्कन जिमखाना,16.8
+105-U,Deccan Gymkhana To  Balewadi Depot,डेक्कन जिमखाना ते बालेवाडी डेपो    ,16.8
+106-R,Galinde Path To Galinde Path,गालिंदे पथ ते गालिंदे पथ,21.3
+107-D,Pimplegurav To Deccan Gymkhana,पिंपळे गुरव ते डेक्कन जिमखाना,14.4
+107-U,Deccan Gymkhana To Pimplegurav,डेक्कन जिमखाना ते पिंपळे गुरव,14.4
+108-D,Pune Station To Sutardara,पुणे स्टेशन ते सुतारदरा,12.3
+108-U,Sutardara To Pune Station,सुतारदरा ते पुणे स्टेशन,12.3
+109-R,Ma Na Pa To Ma Na Pa,मनपा ते मनपा,21
+10-D,Keshavnagar To Swargate,केशवनगर ते स्वारगेट,15
+10-U,Swargate To Keshavnagar,स्वारगेट ते केशवनगर,15
+110-R,Ma Na Pa To Ma Na Pa,मनपा ते मनपा,21
+111-D,Ma Na Pa To Bhekrainagar,मनपा ते भेकराई नगर,17.3
+111-U,Bhekrainagar To Ma Na Pa,भेकराई नगर ते मनपा,17.3
+112-D,Mandai To Kothrud Depot,महात्मा फुले मंडई ते कोथरुड डेपो,8
+112-U,Kothrud Depot To Mandai,कोथरुड डेपो ते महात्मा फुले मंडई,8
+113A-D,Pimplegurav To Appa Balawant Chowk,पिंपळे गुरव ते अप्पा बळवंत चौक,13.3
+113A-U,Appa Balawant Chowk To Pimplegurav,अप्पा बळवंत चौक ते पिंपळे गुरव,13.3
+113B-D,Pimplegurav To Ma Na Pa,पिंपळे गुरव ते मनपा,12.6
+113B-U,Ma Na Pa To Pimplegurav,मनपा ते पिंपळे गुरव,12.6
+113-D,Vasantdada Putala Sangvi To Appa Balawant Chowk,वंसतदादा पुतळा सांगवी ते अप्पा बळवंत चौक,10.9
+113-U,Appa Balawant Chowk To Vasantdada Putala Sangvi,अप्पा बळवंत चौक ते वंसतदादा पुतळा सांगवी,10.9
+114-D,Mhalungegaon To Ma Na Pa,म्हाळुंगे गांव ते मनपा,12.5
+114-U,Ma Na Pa To Mhalungegaon,मनपा ते म्हाळुंगे गांव,12.5
+115P-D,Hinjawadi Maan Phase 3 To Pune Station,हिंजवडी माण फेज ३ ते पुणे स्टेशन,29
+115P-U,Pune Station To Hinjawadi Maan Phase 3,पुणे स्टेशन ते हिंजवडी माण फेज ३,29
+116-D,Khadki Bazar To Ma Na Pa,खडकी बाजार ते मनपा,10.8
+116-U,Ma Na Pa To Khadki Bazar,मनपा ते खडकी बाजार,10.8
+117A-D,DSK Vishwa To Swargate,डि.एस.के. विश्व ते स्वारगेट,12.6
+117A-U,Swargate To DSK Vishwa,स्वारगेट ते डि.एस.के. विश्व,12.6
+117B-D,Shree Control To Swargate,श्री कंट्रोल ते स्वारगेट,11.7
+117B-U,Swargate To Shree Control,स्वारगेट ते श्री कंट्रोल,11.7
+117C-D,Raykarmala To Swargate,रायकरमळा ते स्वारगेट,13.5
+117C-U,Swargate To Raykarmala,स्वारगेट ते रायकरमळा,13.5
+117-D,Dhayari Maruti Mandir To Swargate,धायरी मारूती मंदिर ते स्वारगेट,12.2
+117-U,Swargate To Dhayari Maruti Mandir,स्वारगेट ते धायरी मारूती मंदिर,12.2
+117D-U,Swargate To Saritanagari,स्वारगेट ते सरितानगरी,5
+117E-D,Shaniwarwada Stand To Saritanagari,शनिवारवाडा स्‍टॅण्ड ते सरितानगरी,7
+117F-U,Shaniwarwada To Dhayari Maruti Mandir,शनिवारवाडा ते धायरी मारूती मंदिर,13.6
+118-7A-D,Swargate To Marketyard,स्वारगेट ते मार्केटयार्ड,3.1
+118-7A-U,Marketyard To Swargate,मार्केटयार्ड ते स्वारगेट,3.1
+118-7-D,Venutai Chavan College To Swargate,वेणुताई कॉलेज ते स्वारगेट,9.4
+118-7-U,Swargate To Venutai Chavan College,स्वारगेट ते वेणुताई कॉलेज,9.4
+118A-D,Suncity To Swargate,सनसिटी ते स्वारगेट,6
+118A-U,Swargate To Suncity,स्वारगेट ते सनसिटी,6
+118B-D,Vadgaon Bk To Swargate,वडगाव बु. ते स्वारगेट,7
+118B-U,Swargate To Vadgaon Bk,स्वारगेट ते वडगाव बु.,7
+118C-D,Nanded To Swargate,नांदेड ते स्वारगेट,11.2
+118C-U,Swargate To Nanded,स्वारगेट ते नांदेड,11.2
+118-D,Venutai Chavan College To Swargate,वेणुताई कॉलेज ते स्वारगेट,9.4
+118-U,Swargate To Venutai Chavan College,स्वारगेट ते वेणुताई कॉलेज,9.4
+119A-D,Alandi To Vishrantwadi,आळंदी ते विश्रांतवाडी,11
+119A-U,Vishrantwadi To Alandi,विश्रांतवाडी ते आळंदी,11
+119-D,Alandi To Ma Na Pa,आळंदी ते मनपा,23.1
+119-U,Ma Na Pa To Alandi,मनपा ते आळंदी,23.1
+11-D,Pimplegurav To Marketyard,पिंपळे गुरव ते मार्केटयार्ड,18.3
+11-U,Marketyard To Pimplegurav,मार्केटयार्ड ते पिंपळे गुरव,18.3
+11K-D,Kalpataru To Katraj,कल्पतरू सोसायटी ते कात्रज,21.6
+11K-U,Katraj To Kalpataru,कात्रज ते कल्पतरू सोसायटी,21.6
+120A-D,Indoorance System To Bhosari,इनडोरेन्स सिस्टिम म्हाळुंगे ते भोसरी,23.5
+120A-U,Bhosari To Indoorance System,भोसरी ते इनडोरेन्स सिस्टिम म्हाळुंगे,23.5
+120-D,Indoorance System Chakan Mhalunge To Ma Na Pa,इनडूरन्स सिस्टिम चाकण म्हाळुंगे ते मनपा,40.6
+120-U,Ma Na Pa To Indoorance System Chakan Mhalunge,मनपा ते इनडूरन्स सिस्टिम चाकण म्हाळुंगे,40.6
+121-D,Bhosari Terminal To Ma Na Pa,भोसरी टर्मिनल ते मनपा,17.1
+121-U,Ma Na Pa To Bhosari Terminal,मनपा ते भोसरी टर्मिनल,17.1
+122A-U,Nehrunagar Depo To Ma Na Pa,नेहरूनगर डेपो ते मनपा,15.9
+122B-D,Chinchwadgaon To Nehrunagar Depo,चिंचवडगांव ते नेहरूनगर डेपो,6
+122B-U,Nehrunagar Depo To Chinchwadgaon,नेहरूनगर डेपो ते चिंचवडगांव,6
+122C-U,Ma Na Pa To Chinchwadgaon,मनपा ते चिंचवडगांव,18.7
+122-D,Chinchwadgaon To Ma Na Pa,चिंचवडगांव ते मनपा,18.7
+122-U,Ma Na Pa To Chinchwadgaon,मनपा ते चिंचवडगांव,18.7
+123-D,Bhakti Shakti To Ma Na Pa,भक्ति शक्ति डेपो ते मनपा,20.1
+123-U,Ma Na Pa To Bhakti Shakti,मनपा ते भक्ति शक्ति डेपो,20.1
+125-D,Dapodi Mantri Niketan To Bopkhel,दापोडी मंत्री निकेतन ते बोपखेल,12.7
+125-U,Bopkhel To Dapodi Mantri Niketan,बोपखेल ते दापोडी मंत्री निकेतन,12.7
+126A-D,Kamalpark To Khadki Bazar,कमलपार्क ते खडकी बाजार,10.1
+126B-U,Kamalpark To Pimplenilakh,कमलपार्क ते पिंपळे निलख,20.2
+126C-U,Khadki Bazar To Pimplenilakh,खडकी बाजार ते पिंपळे निलख,10.2
+126-D,Pimplenilakh To Vishrantwadi,पिंपळे निलख ते विश्रांतवाडी,16.2
+126D-U,Khadki Bazar To Vishrantwadi,खडकी बाजार ते विश्रांतवाडी,6
+126-U,Vishrantwadi To Pimplenilakh,विश्रांतवाडी ते पिंपळे निलख,16.2
+128-D,Bopkhel To Ma Na Pa,बोपखेल ते मनपा,19.1
+128-U,Ma Na Pa To Bopkhel,मनपा ते बोपखेल,19.1
+129-D, Balewadi Depot To Pune Station,बालेवाडी डेपो ते पुणे स्टेशन,18.8
+129-U,Pune Station To  Balewadi Depot,पुणे स्टेशन ते बालेवाडी डेपो  ,18.8
+12-D,Bhakti Shakti To Upper Depot,भक्ति शक्ति डेपो ते अप्पर डेपो,30.05
+12-U,Upper Depot To Bhakti Shakti,अप्पर डेपो ते भक्ति शक्ति डेपो,30.05
+130A-D,Yewalewadi To Katraj,येवलेवाडी ते कात्रज,5.7
+130A-U,Katraj To Yewalewadi,कात्रज ते येवलेवाडी,5.7
+130-D,Shivajinagar To Yewalewadi,शिवाजीनगर ते येवलेवाडी,16.1
+130-U,Yewalewadi To Shivajinagar,येवलेवाडी ते शिवाजीनगर,16.1
+132A-D,Vadgaonsheri To Ma Na Pa (Via Shubham),वडगावशेरी ते मनपा (मार्गे शुभम ),14
+132A-U,Ma Na Pa To Vadgaonsheri (Via Shubham),मनपा ते वडगावशेरी  (मार्गे शुभम ),14
+132-D,Shubham Society Nagar Road To Ma Na Pa,शुभम सोसायटी नगर रोड ते मनपा,11.1
+132-U,Ma Na Pa To Shubham Society Nagar Road,मनपा ते शुभम सोसायटी नगर रोड,11.1
+133A-D,Vadgaon Sheri To Ma Na Pa (Via Anand Park),वडगावशेरी ते मनपा (मार्गे आनंद पार्क),14.8
+133A-U,Ma Na Pa To Vadgaon Sheri (Via Anand Park),मनपा ते वडगावशेरी (मार्गे आनंद पार्क),14.8
+133-D,Anand Park To Ma Na Pa,आनंदपार्क ते मनपा,12.8
+133-U,Ma Na Pa To Anand Park,मनपा ते आनंदपार्क,12.8
+133B-D,Sainathnagar To Ma Na Pa,साईनाथ नगर ते मनपा,14
+133B-U,Ma Na Pa To Sainath nagar,मनपा ते साईनाथ नगर,14
+134-D,Vidyanagar To Pune Station,विद्यानगर ते पुणे स्टेशन,8.7
+134-U,Pune Station To Vidyanagar,पुणे स्टेशन ते विद्यानगर,8.7
+135A-D,Wadebolhai To Kesnand Phata,वाडेबोल्हाई ते केसनंद फाटा,10.8
+135A-U,Kesnand Phata To Wadebolhai,केसनंद फाटा ते वाडेबोल्हाई,10.8
+135-D,Wadebolhai To Pune Station,वाडेबोल्हाई ते पुणे स्टेशन,25.6
+135-U,Pune Station To Wadebolhai,पुणे स्टेशन ते वाडेबोल्हाई,25.6
+136A-D,Vadegaon To Kesnand Phata,वाडेगाव ते केसनंद फाटा,12.7
+136A-U,Kesnand Phata To Vadegaon,केसनंद फाटा ते वाडेगाव,12.7
+136-D,Vadegaon To Pune Station,वाडेगाव ते पुणे स्टेशन,27.5
+136-U,Pune Station To Vadegaon,पुणे स्टेशन ते वाडेगाव,27.5
+139A-D,Bhakti Shakti To Bhekrainagar,भक्ति शक्ति डेपो ते भेकराई नगर,30.7
+139A-U,Bhekrainagar To Bhakti Shakti,भेकराई नगर ते भक्ति शक्ति डेपो,30.7
+139-D,Bhakti Shakti To Shewalwadi,भक्ति शक्ति डेपो ते शेवाळवाडी,31.6
+139-U,Shewalwadi To Bhakti Shakti,शेवाळवाडी ते भक्ति शक्ति डेपो,31.6
+13A-D,Shivajinagar To VIT College,शिवाजीनगर ते व्ही आय टी कॉलेज,11.9
+13A-U,Vit College To Shivajinagar,व्ही आय टी कॉलेज ते शिवाजीनगर,11.9
+13B-D,Pune Vidhyapeeth To Upper Depo,पुणे विद्यापीठ ते अप्पर डेपो,14.5
+13B-U,Upper Depo To Pune Vidhyapeeth,अप्पर डेपो ते पुणे विद्यापीठ,14.5
+13C-U,Upper Depo To Pune Vidhyapeeth,अप्पर डेपो ते पुणे विद्यापीठ,14.5
+13-D,Shivajinagar To Upper Depot,शिवाजीनगर ते अप्पर डेपो,10
+13L-D,Shivajinagar To Lake Town Society,शिवाजीनगर ते लेकटाऊन सोसायटी,9.6
+13L-U,Lake Town Society To Shivajinagar,लेकटाऊन सोसायटी ते शिवाजीनगर,9.6
+13-U,Upper Depot To Shivajinagar,अप्पर डेपो ते शिवाजीनगर,10
+140-D,Pune Station To Upper Depot,पुणे स्टेशन ते अप्पर डेपो,11.3
+140-U,Upper Depot To Pune Station,अप्पर डेपो ते पुणे स्टेशन,11.3
+141A-D,Marketyard To Khandoba Mandir,मार्केटयार्ड ते खडोंबा मंदिर,6
+141A-U,Khandoba Mandir To Marketyard,खडोंबा मंदिर ते मार्केटयार्ड,6
+141-D,Pune Station To Khandoba Mandir,पुणे स्टेशन ते खडोंबा मंदिर,11.9
+141-U,Khandoba Mandir To Pune Station,खडोंबा मंदिर ते पुणे स्टेशन,11.9
+142-D,Ghotawade Phata To Pune Station,घोटावडे फाटा ते पुणे स्टेशन,31.8
+142-U,Pune Station To Ghotawade Phata,पुणे स्टेशन ते घोटावडे फाटा,31.8
+143A-D,Pune Station To Galinde Path (Vai Nal Stop),पुणे स्टेशन ते गालिंदे पथ (मार्गे नळ स्टॉप),11.3
+143A-U,Galinde Path To Pune Station (Vai Nal Stop),गालिंदे पथ ते पुणे स्टेशन (मार्गे नळ स्टॉप),11.3
+143-D,Pune Station To Galinde Path (Vai Mhatre Pul),पुणे स्टेशन ते गालिंदे पथ (मार्गे म्हात्रे पूल),11.3
+143-U,Galinde Path To Pune Station (Vai Mhatre Pul),गालिंदे पथ ते पुणे स्टेशन (मार्गे म्हात्रे पूल),11.3
+144A-D,Pune Station To Sai Sayajinagar,पुणे स्टेशन ते साई सयाजी नगर,13.9
+144A-U,Sai Sayajinagar To Pune Station,साई सयाजी नगर ते पुणे स्टेशन,13.9
+144B-D,Sainathnagar To Kumbre Park,साईनाथ नगर ते कुंबरे पार्क,22.7
+144B-U,Kumbre Park To Sainathnagar,कुंबरे पार्क ते साईनाथ नगर,22.7
+144-D,Pune Station To Kothrud Stand,पुणे स्टेशन ते कोथरुड स्टॅन्ड,9
+144D-D,Pune Station To Kumbare Park,पुणे स्टेशन ते कुंबरेपार्क,12.5
+144D-U,Kumbare Park To Pune Station,कुंबरेपार्क ते पुणे स्टेशन,12.5
+144K-D,Pune Station To Gujrat Colony,पुणे स्टेशन ते गुजराथ कॉलनी,9
+144K-U,Gujrat Colony To Pune Station,गुजराथ कॉलनी ते पुणे स्टेशन,9
+144-U,Kothrud Stand To Pune Station,कोथरुड स्टॅन्ड ते पुणे स्टेशन,9
+145A-D,D2 Circle To Pune Station,डी 2 सर्कल ते पुणे स्टेशन,25.75
+145A-U,Pune Station To D2 Circle,पुणे स्टेशन ते डी 2 सर्कल,25.75
+145B-D,Sutarwadi Pashan To Pune Station,सुतारवाडी ते पुणे स्टेशन,13
+145B-U,Pune Station To Sutarwadi Pashan,पुणे स्टेशन ते सुतारवाडी,13
+145-D,NDA Golmarket To Pune Station,एनडीए गोल मार्केट ते पुणे स्टेशन,23.15
+145-U,Pune Station To NDA Gol Market,पुणे स्टेशन ते एनडीए गोल मार्केट,23.15
+146-D,Gokhalenagar To Pune Station,गोखलेनगर ते पुणे स्टेशन,8.45
+146-U,Pune Station To Gokhalenagar,पुणे स्टेशन ते गोखलेनगर,8.45
+147A-D,Nhavi Sandas To Kesnand Phata,न्हावी सांडस ते केसनंद फाटा,23.2
+147A-U,Kesnand Phata To Nhavi Sandas,केसनंद फाटा ते न्हावी सांडस,23.2
+147-D,Nhavi Sandas To Pune Station,न्हावी सांडस ते पुणे स्टेशन,38
+147-U,Pune Station To Nhavi Sandas,पुणे स्टेशन ते न्हावी सांडस,38
+148A-D,Bhosari To Bhekrainagar,भोसरी ते भेकराई नगर,33.7
+148A-U,Bhekrainagar To Bhosari,भेकराई नगर ते भोसरी,33.7
+148-D,Pimplegurav To Shewalwadi,पिंपळे गुरव ते शेवाळवाडी,24.8
+148-U,Shewalwadi To Pimplegurav,शेवाळवाडी ते पिंपळे गुरव,24.8
+149A-D,Bhakti Shakti To Shewalwadi,भक्ति शक्ति डेपो ते शेवाळवाडी,42.9
+149A-U,Shewalwadi To Bhakti Shakti,शेवाळवाडी ते भक्ति शक्ति डेपो,42.9
+149-D,Pimpri To Shewalwadi,पिंपरी ते शेवाळवाडी,37.6
+149-U,Shewalwadi To Pimpri,शेवाळवाडी ते पिंपरी,37.6
+14-D,Kesnand Phata To Dhayari Maruti Mandir,केसनंद फाटा ते धायरी मारूती मंदिर,31.6
+14-U,Dhayari Maruti Mandir To Kesnand Phata,धायरी मारूती मंदिर ते केसनंद फाटा,31.6
+151-D,Alandi To Pune Station,आळंदी ते पुणे स्टेशन,22
+151-U,Pune Station To Alandi,पुणे स्टेशन ते आळंदी,22
+152A-D,Munjabavasti To Ma Na Pa,मुंजाबावस्ती ते मनपा,12.3
+152A-U,Ma Na Pa To Munjabavasti,मनपा ते मुंजाबावस्ती,12.3
+152D-D,Ma Na Pa To Dhanorigaon,मनपा ते धानोरी गांव,11.6
+154-D,Vishrantwadi To Pune Station,विश्रांतवाडी ते पुणे स्टेशन,8.5
+154-U,Pune Station To Vishrantwadi,पुणे स्टेशन ते विश्रांतवाडी,8.5
+155-D,Lohgaon To Pune Station (Via Dhanori),लोहगांव ते पुणे स्टेशन (मार्गे धानोरी ),15.7
+155-U,Pune Station To Lohgaon (Via Dhanori),पुणे स्टेशन ते लोहगांव (मार्गे धानोरी ),15.7
+158A-D,Dadachi Padal To Ma Na Pa,दादाची पडळ ते मनपा,15.5
+158A-U,Ma Na Pa To Dadachi Padal,मनपा ते दादाची पडळ,15.5
+158-D,Lohgaon To Ma Na Pa,लोहगांव ते मनपा,13.5
+158-U,Ma Na Pa To Lohgaon,मनपा ते लोहगांव,13.5
+159-D,Talegaon Dhamdhere To Ma Na Pa,तळेगाव ढमढेरे ते मनपा,40.5
+159K-D,Koregaon Bhima To Ma Na Pa,कोरेगांव भिमा ते मनपा,29
+159K-U,Ma Na Pa To Koregaon Bhima,मनपा ते कोरेगांव भिमा,29
+159P-D,Pabal Phata To Ma Na Pa,पाबळ फाटा ते मनपा,40.8
+159P-U,Ma Na Pa To Pabal Phata,मनपा ते पाबळ फाटा,40.8
+159-U,Ma Na Pa To Talegaon Dhamdhere,मनपा ते तळेगाव ढमढेरे,40.5
+160-D,Mundhwagaon To Ma Na Pa,मुंढवा गांव ते मनपा,10.9
+160-U,Ma Na Pa To Mundhwagaon,मनपा ते मुंढवा गांव,10.9
+161-D,Vimannagar To  Warje Malwadi,विमान नगर ते वारजे माळवाडी  ,23
+161-U, Warje Malwadi To Vimannagar, वारजे माळवाडी ते विमान नगर,23
+162-D,Kendurgaon To Pune Station,केंदूरगांव ते पुणे स्टेशन,43
+162-U,Pune Station To Kendurgaon,पुणे स्टेशन ते केंदूरगांव,43
+163-D,Kharadi Gaon To Pune Station,खराडी गाव ते पुणे स्टेशन,11
+163-U,Pune Station To Kharadi Gaon,पुणे स्टेशन ते खराडी गाव,11
+164-D,Vimannagar To Swargate,विमान नगर ते स्वारगेट,15.5
+164-U,Swargate To Vimannagar,स्वारगेट ते विमान नगर,15
+165-D,Vadgaonsheri To Ma Na Pa,वडगावशेरी ते मनपा,11.1
+165-U,Ma Na Pa To Vadgaonsheri,मनपा ते वडगावशेरी,11.1
+166-D,Vimannagar To Pune Station,विमान नगर ते पुणे स्टेशन,9.5
+166-U,Pune Station To Vimannagar,पुणे स्टेशन ते विमान नगर,9.5
+167-D,Kesnand Phata To Hadapsar Gadital,केसनंद फाटा ते हडपसर गाडीतळ,14.2
+167-U,Hadapsar Gadital To Kesnand Phata,हडपसर गाडीतळ ते केसनंद फाटा,14.2
+168-D,Keshavnagar To Ma Na Pa,केशवनगर ते मनपा,11.6
+168-U,Ma Na Pa To Keshavnagar,मनपा ते केशवनगर,11.6
+169-D,Keshavnagar To Ma Na Pa (Vai Koregaon Park),केशवनगर ते मनपा (मार्गे कोरेगाव पार्क ),12
+169-U,Ma Na Pa To Keshavnagar (Vai Koregaon Park),मनपा ते केशवनगर (मार्गे कोरेगाव पार्क ),12
+170A-D,Kondhwa Bk To Pune Station,कोंढवा बु. ते पुणे स्टेशन,11.3
+170A-U,Pune Station To Kondhwa Bk,पुणे स्टेशन ते कोंढवा बु.,11.3
+170B-D,Kondhwa Hospital To Pune Station,कोंढवा हॉस्पिटल ते पुणे स्टेशन,12
+170B-U,Pune Station To Kondhwa Hospital,पुणे स्टेशन ते कोंढवा हॉस्पिटल,12
+170-D,Kondhwa Bk To Pune Station,कोंढवा बु. ते पुणे स्टेशन,11.3
+170-U,Pune Station To Kondhwa Bk,पुणे स्टेशन ते कोंढवा बु.,11.3
+174A-D,NDA Golmarket To Pune Station,एनडीए गोल मार्केट ते पुणे स्टेशन,21
+174A-U,Pune Station To NDA Gol Market,पुणे स्टेशन ते एनडीए गोल मार्केट,21
+174B-D,D2 Circle To Pune Station,डी 2 सर्कल ते पुणे स्टेशन,23.4
+174B-U,Pune Station To D2 Circle,पुणे स्टेशन ते डी 2 सर्कल,23.4
+174-D,Kondhwa Gate To Pune Station,कोंढवा गेट ते पुणे स्टेशन,18.8
+174-U,Pune Station To Kondhwa Gate,पुणे स्टेशन ते कोंढवा गेट,18.8
+175-D,Hadapsar Gadital To Ma Na Pa,हडपसर गाडीतळ ते मनपा,16
+175-U,Ma Na Pa To Hadapsar Gadital,मनपा ते हडपसर गाडीतळ,16
+176A-D,Krushnanagar Mohammadwadi To  Swargate (Vai NIBM),कृष्णा नगर ते स्वारगेट (मार्गे एनआयबीएम),12.1
+176A-U,Swrgate To Krushnanagar Mohammadwadi (Vai NIBM),स्वारगेट ते कृष्णा नगर (मार्गे एनआयबीएम),12.1
+176-D,Mahammad Wadi To Swargate  ,महंमदवाडी ते स्वारगेट,12.1
+176-U,Swargate To Mahammad Wadi,स्वारगेट ते महंमदवाडी,12.1
+177A-D,Azadnagar To Vishrantwadi,आझाद नगर ते विश्रांतवाडी,18.4
+177A-U,Vishrantwadi To Azadnagar,विश्रांतवाडी ते आझाद नगर,18.4
+177B-D,Siddharthnagar To Pune Station,सिध्दार्थनगर ते पुणे स्टेशन,9.7
+177B-U,Pune Station To Siddharthnagar,पुणे स्टेशन ते सिध्दार्थनगर,9.7
+177-D,Salunke Vihar To Pune Station,साळुंकेविहार ते पुणे स्टेशन,9.2
+177D-D,Azadnagar To Pune Station,आझाद नगर ते पुणे स्टेशन,9.5
+177D-U,Pune Station To Azadnagar,पुणे स्टेशन ते आझाद नगर,9.5
+177K-D,Krushnanagar Mohammadwadi To Pune Station,कृष्णा नगर ते पुणे स्टेशन,10.9
+177K-U,Pune Station To Krushnanagar Mohammadwadi,पुणे स्टेशन ते कृष्णा नगर,10.9
+177M-D,Mahammad Wadi To Pune Station,महंमदवाडी ते पुणे स्टेशन,13.3
+177M-U,Pune Station To Mahammad Wadi,पुणे स्टेशन ते महंमदवाडी,13.3
+177-U,Pune Station To Salunke Vihar,पुणे स्टेशन ते साळुंकेविहार,9.2
+179A-D,Vadachiwadi To Hadapsar Gadital,वडाची वाडी ते हडपसर गाडीतळ,9.6
+179A-U,Hadapsar Gadital To Vadachiwadi,हडपसर गाडीतळ ते वडाची वाडी,9.6
+179-D,Vadachiwadi To swargate,वडाची वाडी ते स्वारगेट,14.2
+179-U,Swargate To Vadachiwadi,स्वारगेट ते वडाची वाडी,14.2
+17A-D,Narhegaon To Natraj Stand,नऱ्हे आंबेगांव ते नटराज,11
+17A-U,Natraj Stand To Narhegaon,नटराज ते नऱ्हे आंबेगांव,11
+17B-D,Shaniwarwada Stand To Swargate,शनिवारवाडा स्‍टॅण्ड ते स्वारगेट,2.8
+17B-U,Swargate To Shaniwarwada Stand,स्वारगेट ते शनिवारवाडा स्‍टॅण्ड,2.8
+17-D,Narhegaon To Shaniwarwada,नऱ्हे आंबेगांव ते शनिवारवाडा,13.2
+17-U,Shaniwarwada To Narhegaon,शनिवारवाडा ते नऱ्हे आंबेगांव,13.2
+180-D,Bhekrainagar To Na Ta Wadi,भेकराई नगर ते नतावाडी,15.5
+180-U,Na Ta Wadi To Bhekrainagar,नतावाडी ते भेकराई नगर,15.5
+181A-D,SRP Camp To Na Ta Wadi,एस आर पी कॅम्प ते नतावाडी,12.3
+181A-U,Na Ta Wadi To SRP Camp,नतावाडी ते एस आर पी कॅम्प,12.3
+181B-D,Siddharthnagar To Na Ta Wadi,सिध्दार्थनगर ते नतावाडी,11.5
+181B-U,Na Ta Wadi To Siddharthnagar,नतावाडी ते सिध्दार्थनगर,11.5
+181C-D,Kondhwa Bk To Na Ta Wadi,कोंढवा बु. ते नतावाडी,13.8
+181C-U,Na Ta Wadi To Kondhwa Bk,नतावाडी ते कोंढवा बु.,13.8
+181-D,Kondhwa Kh To Na Ta Wadi,कोंढवा खुर्द ते नतावाडी,11.5
+181-U,Na Ta Wadi To Kondhwa Kh,नतावाडी ते कोंढवा खुर्द,11.5
+183A-D,Theur Factory To Sarasbaug,थेऊर फॅक्टरी ते सारसबाग,27.9
+183A-U,Sarasbaug To Theur Factory,सारसबाग ते थेऊर फॅक्टरी,27.9
+183-D,Theur To Hadapsar Gadital,थेऊर गांव ते हडपसर गाडीतळ,17.4
+183-U,Hadapsar Gadital To Theur,हडपसर गाडीतळ ते थेऊर गांव,14.7
+184A-D,Bhekrainagar To Swargate,भेकराई नगर ते स्वारगेट,12.1
+184A-NGT-D,Hadapsar Gadital To Swargate,हडपसर गाडीतळ ते स्वारगेट,9.5
+184A-NGT-U,Swargate To Hadapsar Gadital,स्वारगेट ते हडपसर गाडीतळ,9.5
+184A-U,Swargate To Bhekrainagar,स्वारगेट ते भेकराई नगर,12.1
+184B-D,Fursungi To Swargate,फुरूसूंगी ते स्वारगेट,15.3
+184B-U,Swargate To Fursungi,स्वारगेट ते फुरूसूंगी,15.3
+184-D,Fursungi To Padmawati,फुरूसूंगी ते पद्मावती,19.6
+184-U,Padmawati To Fursungi,पद्मावती ते फुरूसूंगी,16.9
+185-D,Manjari Kh To Hadapsar Gadital,मांजरी खुर्द ते हडपसर गाडीतळ,8.3
+185-U,Hadapsar Gadital To Manjari Kh,हडपसर गाडीतळ ते मांजरी खुर्द,8.3
+186A-D,Swargate To Jspm College,स्वारगेट ते जे एस पी एम कॉलेज,13.3
+186A-U,Jspm College To Swargate,जे एस पी एम कॉलेज ते स्वारगेट,13.3
+186B-D,Hadapsar Gadital To JSPM college,हडपसर गाडीतळ ते जे एस पी एम कॉलेज,4.7
+186B-U,JSPM college To Hadapsar Gadital,जे एस पी एम कॉलेज ते हडपसर गाडीतळ,4.7
+186-D,Pune Station To Jspm College,पुणे स्टेशन ते जे एस पी एम कॉलेज,14.2
+186-U,Jspm College To Pune Station,जे एस पी एम कॉलेज ते पुणे स्टेशन,14.2
+187-D,Pune Station To Bhekrainagar,पुणे स्टेशन ते भेकराई नगर,15
+187-U,Bhekrainagar To Pune Station,भेकराई नगर ते पुणे स्टेशन,15
+188-D,Katraj To Hadapsar Gadital,कात्रज ते हडपसर गाडीतळ,18
+188-U,Hadapsar Gadital To Katraj,हडपसर गाडीतळ ते कात्रज,18
+189-D,Devachi Uruli To Hadapsar Gadital,देवाची उरूळी ते हडपसर गाडीतळ,6.7
+189-U,Hadapsar Gadital To Devachi Uruli,हडपसर गाडीतळ ते देवाची उरूळी,6.7
+18-D,Bhansali Complex To Swargate,भन्साळी कॉम्प्लेक्स ते स्वारगेट,8.5
+18-U,Swargate To Bhansali Complex,स्वारगेट ते भन्साळी कॉम्प्लेक्स,8.5
+190A-D,Vadkigaon To Hadapsar Gadital,वड्कीगाव ते हडपसर गाडीतळ,8.7
+190A-U,Hadapsar Gadital To Vadkigaon,हडपसर गाडीतळ ते वड्कीगाव,8.7
+190-D,Fursungi To Hadapsar Gadital,फुरूसूंगी ते हडपसर गाडीतळ,6
+190-U,Hadapsar Gadital To Fursungi,हडपसर गाडीतळ ते फुरूसूंगी,6
+191-D,Trinity College To Pune Station,ट्रीनिटी कॉलेज ते पुणे स्टेशन,14.5
+191-U,Pune Station To Trinity College,पुणे स्टेशन ते ट्रीनिटी कॉलेज,14.5
+192A-D,Mohammadwadigaon To Hadapsar Gadital,मंहमदवाडी गांव ते हडपसर गाडीतळ,6
+192A-U,Hadapsar Gadital To Mohammadwadigaon,हडपसर गाडीतळ ते मंहमदवाडी गांव,6
+192-D,Undrigaon To Hadapsar Gadital,उंड्री गांव ते हडपसर गाडीतळ,8
+192-U,Hadapsar Gadital To Undrigaon,हडपसर गाडीतळ ते उंड्री गांव,8
+193-D,Uruli Kanchan To Hadapsar Gadital,ऊरूळी कांचन ते हडपसर गाडीतळ,22.8
+193-U,Hadapsar Gadital To Uruli Kanchan,हडपसर गाडीतळ ते ऊरूळी कांचन,22.8
+195-D,Holkarwadi To Hadapsar Gadital,होळकरवाडी ते हडपसर गाडीतळ,8.5
+195-U,Hadapsar Gadital To Holkarwadi,हडपसर गाडीतळ ते होळकरवाडी,8.5
+196A-D,Mahammad Wadi To Swargate (Vai Ram Takedi),महंमदवाडी ते स्वारगेट (मार्गे राम टेकडी),13.1
+196A-U,Swargate To Mahammad Wadi  (Vai Ram Takedi),स्वारगेट ते महंमदवाडी (मार्गे राम टेकडी),13.1
+196-D, Hadapsar Gadital To Pune Station,हडपसर गाडीतळ ते पुणे स्टेशन,12.4
+196-U,Pune Station To Hadapsar Gadital  ,पुणे स्टेशन ते हडपसर गाडीतळ ,12.4
+197-D,Kothrud Depot To Hadapsar Gadital,कोथरुड डेपो ते हडपसर गाडीतळ,17.6
+197-U,Hadapsar Gadital To Kothrud Depot,हडपसर गाडीतळ ते कोथरुड डेपो,17.6
+198-D,Manjari Bk To Hadapsar Gadital,मांजरी बुद्रंक ते हडपसर गाडीतळ,11
+198-U,Hadapsar Gadital To Manjari Bk,हडपसर गाडीतळ ते मांजरी बुद्रंक,11
+19A-D,Shivajinagar To Marketyard,शिवाजीनगर ते मार्केटयार्ड,7.6
+19A-U,Marketyard To Shivajinagar,मार्केटयार्ड ते शिवाजीनगर,7.6
+19B-D,Kondhwa Hospital To Marketyard,कोंढवा हॉस्पिटल ते मार्केटयार्ड,9
+19B-U,Marketyard To Kondhwa Hospital,मार्केटयार्ड ते कोंढवा हॉस्पिटल,9
+19-D,Shivajinagar To Kondhwa Hospital,शिवाजीनगर ते कोंढवा हॉस्पिटल,16.6
+19-U,Kondhwa Hospital To Shivajinagar,कोंढवा हॉस्पिटल ते शिवाजीनगर,16.6
+200A-D,Hadapsar Gadital To Sadesatranali,हडपसर गाडीतळ ते साडेसतरानळी,3
+200A-U,Sadesatranali To Hadapsar Gadital,साडेसतरानळी ते हडपसर गाडीतळ,3
+200-D,Swargate To Sadesatranali,स्वारगेट ते साडेसतरानळी,12.4
+200-U,Sadesatranali To Swargate,साडेसतरानळी ते स्वारगेट,12.4
+201-D,Alandi To Bhekrainagar,आळंदी ते भेकराई नगर,34.3
+201-U,Bhekrainagar To Alandi,भेकराई नगर ते आळंदी,34.3
+202A-U,Mahatma Gandhi Stand To Warje Malwadi,महात्मा गांधी स्टॅण्ड ते वारजे माळवाडी,13.1
+202B-D,Mahatma Gandhi Stand To Swargate,महात्मा गांधी स्टॅण्ड ते स्वारगेट,13.1
+202B-U,Swargate To Mahatma Gandhi Stand,स्वारगेट ते महात्मा गांधी स्टॅण्ड,3
+202-D,Warje Malwadi To Hadapsar Gadital,वारजे माळवाडी ते हडपसर गाडीतळ,19.2
+202-U,Hadapsar Gadital To Ganpati Matha,हडपसर गाडीतळ ते वारजे माळवाडी,19.2
+203-D,Pune Station To Bhekrainagar,पुणे स्टेशन ते भेकराई नगर,12.6
+203-NGT-D,Pune Station To Hadapsar Gadital,पुणे स्टेशन ते हडपसर गाडीतळ,10
+203-NGT-U,Hadapsar Gadital To Pune Station,हडपसर गाडीतळ ते पुणे स्टेशन,10
+203P-D,Pune Station To Shewalwadi,पुणे स्टेशन ते शेवाळवाडी,13.5
+203P-U,Shewalwadi To Pune Station,शेवाळवाडी ते पुणे स्टेशन,13.5
+203-U,Bhekrainagar To Pune Station,भेकराई नगर ते पुणे स्टेशन,12.6
+204-D,Chinchwadgaon To Bhekrainagar,चिंचवडगांव ते भेकराई नगर,31.9
+204-U,Bhekrainagar To Chinchwadgaon,भेकराई नगर ते चिंचवडगांव,31.9
+205-D,Vasantdada Putala Sangvi To Hadapsar Gadital,वंसतदादा पुतळा सांगवी ते हडपसर गाडीतळ,26.5
+205-U,Hadapsar Gadital To Vasantdada Putala Sangvi,हडपसर गाडीतळ ते वंसतदादा पुतळा सांगवी,26.5
+206-D,Vishalnagar To Hadapsar Gadital,विशालनगर ते हडपसर गाडीतळ,26.8
+206-U,Hadapsar Gadital To Vishalnagar,हडपसर गाडीतळ ते विशालनगर,26.8
+207A-D,Saswad To Hadapsar Gadital,सासवड ते हडपसर गाडीतळ,23
+207A-U,Hadapsar Gadital To Saswad,हडपसर गाडीतळ ते सासवड,23
+207-D,Saswad To Swargate,सासवड ते स्वारगेट,32.7
+207-U,Swargate To Saswad,स्वारगेट ते सासवड,32.7
+208A-D,Bhakti Shakti To Hadapsar Gadital,भक्ति शक्ति डेपो ते हडपसर गाडीतळ,28.2
+208A-U,Hadapsar Gadital To Bhakti Shakti,हडपसर गाडीतळ ते भक्ति शक्ति डेपो,28.2
+208-D,Hinjawadi Maan Phase 3 To Hadapsar Gadital,हिंजवडी माण फेज ३ ते हडपसर गाडीतळ,36.3
+208-U,Hadapsar Gadital To Hinjawadi Maan Phase 3,हडपसर गाडीतळ ते हिंजवडी माण फेज ३,36.3
+20A-D,Sahkarnagar To Swargate Depo,सहकारनगर ते स्वारगेट डेपो,3.4
+20A-U,Swargate Depo To Sahkarnagar,स्वारगेट डेपो ते सहकारनगर,3.4
+20B-D,Hadapsar Gadital To Swargate,हडपसर गाडीतळ ते स्वारगेट,9.5
+20B-U,Swargate To Hadapsar Gadital,स्वारगेट ते हडपसर गाडीतळ,9.5
+20-D,Pune Station To Sahkarnagar,पुणे स्टेशन ते सहकारनगर,9.5
+20-U,Sahkarnagar To Pune Station,सहकारनगर ते पुणे स्टेशन,9.5
+213-D,Vimannagar To Katraj,विमान नगर ते कात्रज,21.9
+213-U,Katraj To Vimannagar,कात्रज ते विमान नगर,21.9
+215A-U,Chintamani Dnyanpith To Swargate,चिंतामणी ज्ञानपीठ ते स्वारगेट  ,8.6
+215A-D,SwargateTo Chintamani Dnyanpith,स्वारगेट ते चिंतामणी ज्ञानपीठ,8.6
+215-D,Swargate To Chintamani Dnyanpith,स्वारगेट ते चिंतामणी ज्ञानपीठ,7.5
+215-U,Chintamani Dnyanpith To Swargate,चिंतामणी ज्ञानपीठ ते स्वारगेट,7.5
+216A-D,Mandai To Katraj,महात्मा फुले मंडई ते कात्रज,7.7
+216A-U,Katraj To Mandai,कात्रज ते महात्मा फुले मंडई,7.7
+216B-D,Pune Vidhyapeeth To Bharati Vidyapeeth,पुणे विद्यापीठ ते भारती विद्यापीठ गेट,16.5
+216B-U,Bharati Vidyapeeth To Pune Vidhyapeeth,भारती विद्यापीठ गेट ते पुणे विद्यापीठ,16.5
+216C-D,Mandai To Bharati Vidyapeeth,महात्मा फुले मंडई ते भारती विद्यापीठ गेट,7.7
+216C-U,Bharati Vidyapeeth To Mandai,भारती विद्यापीठ गेट ते महात्मा फुले मंडई,7.7
+216-R,Bharati Vidyapeeth To Bharati Vidyapeeth,भारती विद्यापीठ ते भारती विद्यापीठ,15.5
+217A-D,Gujarwadi To Katraj,गुजरवाडी ते कात्रज,3.8
+217A-U,Katraj To Gujarwadi,कात्रज ते गुजरवाडी,3.8
+217B-D,Gujarwadi To Swargate,गुजरवाडी ते स्वारगेट,9.9
+217B-U,Swargate To Gujarwadi,स्वारगेट ते गुजरवाडी,9.9
+217-D,Gujarwadi To Jambhulwadi,गुजरवाडी ते जांभूळवाडी,7
+217-U,Jambhulwadi To Gujarwadi,जांभूळवाडी ते गुजरवाडी,7
+218-D,Balewadi Depot To Katraj,बालेवाडी डेपो ते कात्रज,23
+218-U,Katraj To Balewadi Depot,कात्रज ते बालेवाडी डेपो,23
+21A-D,Ammunition Factory To Swargate,अ‍ॅम्युनिशन फॅक्टरी ते स्वारगेट,9.5
+21A-U,Swargate To Ammunition Factory,स्वारगेट ते अ‍ॅम्युनिशन फॅक्टरी,9.5
+21B-D,HEMRL Company To Swargate,एचइएमआ एल कंपनी ते स्वारगेट,12.2
+21B-U,Swargate To HEMRL Company,स्वारगेट ते एचइएमआ एल कंपनी,12.2
+21-D,Vasantdada Putala Sangvi To Swargate,वंसतदादा पुतळा सांगवी ते स्वारगेट,14.85
+21N-D,Pimplenilakh To Swargate,पिंपळे निलख ते स्वारगेट,15.1
+21N-U,Swargate To Pimplenilakh,स्वारगेट ते पिंपळे निलख,15.1
+21-U,Swargate To Vasantdada Putala Sangvi,स्वारगेट ते वंसतदादा पुतळा सांगवी,14.85
+226-D,Dhayari Maruti Mandir To Pune Station,धायरी मारूती मंदिर ते पुणे स्टेशन,15.9
+226-U,Pune Station To Dhayari Maruti Mandir,पुणे स्टेशन ते धायरी मारूती मंदिर,15.9
+227A-D,Shivajinagar To Marketyard,शिवाजीनगर ते मार्केटयार्ड,7.6
+227A-U,Marketyard To Shivajinagar,मार्केटयार्ड ते शिवाजीनगर,7.6
+227-D,Marnewadi To Marketyard,मारणेवाडी ते मार्केटयार्ड,33.5
+227-U,Marketyard To Marnewadi,मार्केटयार्ड ते मारणेवाडी,33.5
+22A-D,Khandoba Mandir To Swargate,खडोंबा मंदिर ते स्वारगेट,6
+22A-U,Swargate To Khandoba Mandir,स्वारगेट ते खडोंबा मंदिर,6
+22-D,Shivajinagar To Khandoba Mandir,शिवाजीनगर ते खडोंबा मंदिर,10
+22-U,Khandoba Mandir To Shivajinagar,खडोंबा मंदिर ते शिवाजीनगर,10
+230-D,Pune Station To Bharati Vidyapeeth,पुणे स्टेशन ते भारती विद्यापीठ गेट,10.9
+230-U,Bharati Vidyapeeth To Pune Station,भारती विद्यापीठ गेट ते पुणे स्टेशन,10.9
+233-D,Paudgaon To Marketyard,पौडगाव ते मार्केटयार्ड,35.6
+233-U,Marketyard To Paudgaon,मार्केटयार्ड ते पौडगाव,35.6
+234-D,Kharadi Gaon To Ma Na Pa,खराडी गाव ते मनपा,14
+234-U,Ma Na Pa To Kharadi Gaon,मनपा ते खराडी गाव,14
+235-D,Kharadi Gaon To Katraj,खराडी गाव ते कात्रज,22.4
+235-U,Katraj To Kharadi Gaon,कात्रज ते खराडी गाव,22.4
+236-D,Khulewadi To Ma Na Pa,खुळेवाडी ते मनपा,13.5
+236-U,Ma Na Pa To Khulewadi,मनपा ते खुळेवाडी,13.5
+237-D,Kharadi Gaon To Warje Malwadi,खराडी गाव ते वारजे माळवाडी,24.2
+237-U,Warje Malwadi To Kharadi Gaon,वारजे माळवाडी ते खराडी गाव,24.2
+23-D,Pune Station To Upper Depot,पुणे स्टेशन ते अप्पर डेपो,11.4
+23-U,Upper Depot To Pune Station,अप्पर डेपो ते पुणे स्टेशन,11.4
+24A-D,Maharashtra Housing Board Samtanagar To Katraj,महाराष्ट्र हौसिंग बोर्ड (समतानगर) ते कात्रज,18
+24A-U,Katraj To Maharashtra Housing Board Samtanagar,कात्रज ते महाराष्ट्र हौसिंग बोर्ड (समतानगर),18
+24B-D,Lohgaon To Katraj,लोहगांव ते कात्रज,21.1
+24B-U,Katraj To Lohgaon,कात्रज ते लोहगांव,21.1
+24-D,Maharashtra Housing Board Samtanagar To Katraj,महाराष्ट्र हौसिंग बोर्ड (समतानगर) ते कात्रज,18
+24-NGT-D,Pune Station To Katraj,पुणे स्टेशन ते कात्रज,10.8
+24-NGT-U,Katraj To Pune Station,कात्रज ते पुणे स्टेशन,10.8
+24-U,Katraj To Maharashtra Housing Board Samtanagar,कात्रज ते महाराष्ट्र हौसिंग बोर्ड (समतानगर),18
+252A-D,Charholigaon To Vishrantwadi,चऱ्होली गांव ते विश्रांतवाडी,12.4
+252A-U,Vishrantwadi To Charholigaon,विश्रांतवाडी ते चऱ्होली गांव,12.4
+252-D,Charholigaon To Ma Na Pa,चऱ्होली गांव ते मनपा,21.6
+252-U,Ma Na Pa To Charholigaon,मनपा ते चऱ्होली गांव,21.6
+256B-D,Banergaon To Ma Na Pa,बाणेरगांव ते मनपा,11
+256B-U,Ma Na Pa To Banergaon,मनपा ते बाणेरगांव,11
+256-D,Balewadi Depot To Ma Na Pa,बालेवाडी डेपो ते मनपा,13.5
+256S-D,Someshwarwadi To Ma Na Pa,सोमेश्वरवाडी ते मनपा,8.1
+256S-U,Ma Na Pa To Someshwarwadi,मनपा ते सोमेश्वरवाडी,8.1
+256-U,Ma Na Pa To Balewadi Depot,मनपा ते बालेवाडी डेपो,13.5
+257-D,Alandi To Kesnand Phata,आळंदी ते केसनंद फाटा,24
+257-U,Kesnand Phata To Alandi,केसनंद फाटा ते आळंदी,24
+262A-D,Dehugaon To Nigdi,देहू गांव ते निगडी,11.8
+262A-U,Nigdi To Dehugaon,निगडी ते देहू गांव,11.8
+262-D,Dehugaon To Ma Na Pa,देहू गांव ते मनपा,31.3
+262-U,Ma Na Pa To Dehugaon,मनपा ते देहू गांव,31.3
+264-D,Bahulgaon To Ma Na Pa,बहुळ गाव ते मनपा,38
+264-U,Ma Na Pa To Bahulgaon,मनपा ते बहुळ गाव,38
+26-D,Shivajinagar To Dhankawadi,शिवाजीनगर ते धनकवडी,10.2
+26-U,Dhankawadi To Shivajinagar,धनकवडी ते शिवाजीनगर,10.2
+276-D,Chinchwadgaon To Warje Malwadi,चिंचवडगांव ते वारजे माळवाडी,24.9
+276-U,Warje Malwadi To Chinchwadgaon,वारजे माळवाडी ते चिंचवडगांव,24.9
+277A-D,Kothrud Stand To Kondhwagate,कोथरुड स्टॅन्ड ते कोंढवा गेट,10
+277A-U,Kondhwagate To Kothrud Stand,कोंढवा गेट ते कोथरुड स्टॅन्ड,10
+277-D,Khadki Bazar To Kondhwagate,खडकी बाजार ते कोंढवा गेट,24
+277-U,Kondhwagate To Khadki Bazar,कोंढवा गेट ते खडकी बाजार,24
+279A-U,Kothrud Depo To Khamboli,कोथरुड डेपो ते खांबोली,28.6
+279B-U,Deccan Gymkhana To Kothrud Depo,डेक्कन जिमखाना ते कोथरुड डेपो,6
+279-D,Khamboli To Deccan Gymkhana,खांबोली ते डेक्कन जिमखाना,34.6
+279-U,Deccan Gymkhana To Khamboli,डेक्कन जिमखाना ते खांबोली,34.6
+27-D,Shivajinagar To Bharati Vidyapeeth,शिवाजीनगर ते भारती विद्यापीठ गेट,10.9
+27-U,Bharati Vidyapeeth To Shivajinagar,भारती विद्यापीठ गेट ते शिवाजीनगर,10.9
+280-D,Ma Na Pa To Warje Hanuman Chowk,"मनपा ते वारजे, हनुमान चौक",9.9
+280-U,Warje Hanuman Chowk To Ma Na Pa,"वारजे, हनुमान चौक ते मनपा",9.9
+281-D,Bhakti Shakti To Warje Malwadi,भक्ति शक्ति डेपो ते वारजे माळवाडी,28.4
+281-U,Warje Malwadi To Bhakti Shakti,वारजे माळवाडी ते भक्ति शक्ति डेपो,28.4
+282-D,Bhosarigaon To Warje Malwadi,भोसरीगाव ते वारजे माळवाडी,25.6
+282-U,Warje Malwadi To Bhosarigaon,वारजे माळवाडी ते भोसरीगाव,25.6
+283-D,Pune Station To Kumbare Park,पुणे स्टेशन ते कुंबरेपार्क,12.5
+283-U,Kumbare Park To Pune Station,कुंबरेपार्क ते पुणे स्टेशन,12.5
+284-D,Bhakti Shakti To Kothrud Depot,भक्ति शक्ति डेपो ते कोथरुड डेपो,26.5
+284-U,Kothrud Depot To Bhakti Shakti,कोथरुड डेपो ते भक्ति शक्ति डेपो,26.5
+286-D,Azadnagar To Warje Malwadi  ,आझाद नगर ते वारजे माळवाडी  ,18.7
+286-U, Warje Malwadi To Azadnagar,वारजे माळवाडी ते आझाद नगर,18.7
+28-D,Shivajinagar To Katraj,शिवाजीनगर ते कात्रज,11.1
+28-U,Katraj To Shivajinagar,कात्रज ते शिवाजीनगर,11.1
+290A-D,Katraj To Shaninagar,कात्रज ते शनिनगर,1.1
+290A-U,Shaninagar To Katraj,शनिनगर ते कात्रज,1.1
+290-D,Shivajinagar To Shaninagar,शिवाजीनगर ते शनिनगर,11.6
+290-U,Shaninagar To Shivajinagar,शनिनगर ते शिवाजीनगर,11.6
+291A-D,Hadapsar Gadital To Upper Depot,हडपसर गाडीतळ ते अप्पर डेपो,15.6
+291A-U,Upper Depot To Hadapsar Gadital,अप्पर डेपो ते हडपसर गाडीतळ,15.6
+291-D,Hadapsar Gadital To Katraj,हडपसर गाडीतळ ते कात्रज,14.2
+291-U,Katraj To Hadapsar Gadital,कात्रज ते हडपसर गाडीतळ,14.2
+292A-D,Kalyangaon To Swargate,कल्याणगांव ते स्वारगेट,34
+292A-U,Swargate To Kalyangaon,स्वारगेट ते कल्याणगांव,34
+292B-D,Rahatwadegaon To Swargate,रहाटवडे गांव ते स्वारगेट,30
+292B-U,Swargate To Rahatwadegaon,स्वारगेट ते रहाटवडे गांव,30
+292C-D,Avsarwadi To Swargate,अवसरवाडी ते स्वारगेट,31
+292C-U,Swargate To Avsarwadi,स्वारगेट ते अवसरवाडी,31
+292-D,Kondhanpur To Swargate,कोंढणपुर ते स्वारगेट,29
+292D-D,Swargate To Kondhanpur,स्वारगेट ते कोंढणपुर,29
+292-U,Swargate To Kondhanpur,स्वारगेट ते कोंढणपुर,29
+293A-D,Kusgaon To Swargate,कुसगांव ते स्वारगेट,25.3
+293A-U,Swargate To Kusgaon,स्वारगेट ते कुसगांव,25.3
+293D-D,Khed Shivapur To Swargate,खेड शिवापुर ते स्वारगेट,19.8
+293D-U,Swargate To Khed Shivapur,स्वारगेट ते खेड शिवापुर,19.8
+294-D,Khadakwasla Dharan To Katraj,खडकवासला धरण ते कात्रज,13
+294-U,Katraj To Khadakwasla Dharan,कात्रज ते खडकवासला धरण,13
+295A-D,Ambegaon To Katraj,आंबेगांव ते कात्रज,3
+295A-U,Katraj To Ambegaon,कात्रज ते आंबेगांव,3
+295B-D,Katraj To Pune Station,कात्रज ते पुणे स्टेशन,13.7
+295-D,Pune Station To Ambegaon,पुणे स्टेशन ते आंबेगांव,16.7
+295-U,Ambegaon To Pune Station,आंबेगांव ते पुणे स्टेशन,16.7
+296A-D,Jambhulwadi To Katraj,जांभूळवाडी ते कात्रज,5
+296A-U,Katraj To Jambhulwadi,कात्रज ते जांभूळवाडी,5
+296-D,Shivajinagar To Jambhulwadi,शिवाजीनगर ते जांभूळवाडी,13.3
+296-U,Jambhulwadi To Shivajinagar,जांभूळवाडी ते शिवाजीनगर,13.3
+297-D,Shivajinagar To Rajas Society,शिवाजीनगर ते राजेश सोसायटी,11.5
+297-U,Rajas Society To Shivajinagar,राजेश सोसायटी ते शिवाजीनगर,11.5
+298-D,Chinchwadgaon To Katraj,चिंचवडगांव ते कात्रज,26.75
+298-U,Katraj To Chinchwadgaon,कात्रज ते चिंचवडगांव,26.75
+299-D,Bhosarigaon To Katraj,भोसरीगाव ते कात्रज,26.9
+299-U,Katraj To Bhosarigaon,कात्रज ते भोसरीगाव,26.9
+29A-D,Alandi To Swargate,आळंदी ते स्वारगेट,28.6
+29A-U,Swargate To Alandi,स्वारगेट ते आळंदी,28.6
+29-D,Vishrantwadi To Swargate,विश्रांतवाडी ते स्वारगेट,12.6
+29-U,Swargate To Vishrantwadi,स्वारगेट ते विश्रांतवाडी,12.6
+2A-D,Shivajinagar To Katraj Ladies Special,शिवाजीनगर ते कात्रज लेडीज स्पेशिअल,10.5
+2A-U,Katraj To Shivajinagar Ladies Special,कात्रज ते शिवाजीनगर लेडीज स्पेशिअल,10.5
+2B-D,Shivajinagar To Bhilarewadi,शिवाजीनगर ते भिलारेवाडी,12
+2B-U,Bhilarewadi To Shivajinagar,भिलारेवाडी ते शिवाजीनगर,12
+2-D,Shivajinagar To Katraj,शिवाजीनगर ते कात्रज,10.5
+2D-D,Sachchai Mata Mandir To Katraj,सच्चाई माता मंदिर ते कात्रज,2
+2E-D,Sachchai Mata Mandir To Swargate,सच्चाई माता मंदिर ते स्वारगेट,8
+2E-U,Swargate To Sachchai Mata Mandir,स्वारगेट ते सच्चाई माता मंदिर,8
+2F-D,Taljai Pathar To Swargate,तळजाई पठार ते स्वारगेट,6.5
+2G-U,Taljai Pathar To Shivajinagar,तळजाई पठार ते शिवाजीनगर,10.1
+2H-D,Sachchai Mata Mandir To Shivajinagar,सच्चाई माता मंदिर ते शिवाजीनगर,12.4
+2H-U,Shivajinagar To Sachchai Mata Mandir,शिवाजीनगर ते सच्चाई माता मंदिर,12.4
+2I-D,Pune Vidhyapeeth To Katraj,पुणे विद्यापीठ ते कात्रज,14
+2I-U,Katraj To Pune Vidhyapeeth,कात्रज ते पुणे विद्यापीठ,14
+2J-D,Bhilarewadi To Katraj,भिलारेवाडी ते कात्रज,1.5
+2J-U,Katraj To Bhilarewadi,कात्रज ते भिलारेवाडी,1.5
+2K-D,Shivajinagar To Narhegaon,शिवाजीनगर ते नऱ्हे आंबेगांव,13
+2K-U,Narhegaon To Shivajinagar,नऱ्हे आंबेगांव ते शिवाजीनगर,13
+2L-D,Katraj To Narhegaon,कात्रज ते नऱ्हे आंबेगांव,2.5
+2L-U,Narhegaon To Katraj,नऱ्हे आंबेगांव ते कात्रज,2.5
+2-NGT-D,Shivajinagar To Katraj Night Service,शिवाजीनगर ते कात्रज नाईट सर्विस,10.5
+2-NGT-U,Katraj To Shivajinagar Night Service,कात्रज ते शिवाजीनगर नाईट सर्विस,10.5
+2-U,Katraj To Shivajinagar,कात्रज ते शिवाजीनगर,10.5
+301-D,Shewalwadi To Katraj,शेवाळवाडी ते कात्रज,19
+301-U,Katraj To Shewalwadi,कात्रज ते शेवाळवाडी,19
+302A-D,Alandi To Pimprigaon,आळंदी ते पिंपरी गाव,17.7
+302A-U,Pimprigaon To Alandi,पिंपरी गाव ते आळंदी,17.7
+302B-D,Bopkhel To Pimprigaon,बोपखेल ते पिंपरी गाव,19.85
+302B-U,Pimprigaon To Bopkhel,पिंपरी गाव ते बोपखेल,19.5
+302C-D,Gavhanevasti Bhosari To Nehrunagar Depo,गव्हाणे वस्ती भोसरी ते नेहरूनगर डेपो,3.5
+302C-U,Nehrunagar Depo To Gavhanevasti Bhosari,नेहरूनगर डेपो ते गव्हाणे वस्ती भोसरी,3.5
+302-D,Gavhanevasti Bhosari To Pimprigaon,गव्हाणे वस्ती भोसरी ते पिंपरी गाव,8.65
+302D-D,Pimprigaon To Nehrunagar Depo,पिंपरी गाव ते नेहरूनगर डेपो,5.7
+302D-U,Nehrunagar Depo To Pimprigaon,नेहरूनगर डेपो ते पिंपरी गाव,5.7
+302-U,Pimprigaon To Gavhanevasti Bhosari,पिंपरी गाव ते गव्हाणे वस्ती भोसरी,8.65
+303A-D, Mukai Chowk To Nigdi,मुकईचौक ते निगडी,8.6
+303A-U, Nigdi To  Mukai Chowk,निगडी ते मुकईचौक  ,8.6
+303-D,Akurdi Railway Station To Nigdi,आकुर्डी रेल्वे स्टेशन ते निगडी,6.2
+303-U,Nigdi To Akurdi Railway Station,निगडी ते आकुर्डी रेल्वे स्टेशन,6.2
+304A-D,Bhosari To Nehrunagar Depo,भोसरी ते नेहरूनगर डेपो,3.5
+304A-U,Nehrunagar Depo To Bhosari,नेहरूनगर डेपो ते भोसरी,3.5
+304-D,Gavhanevasti Bhosari To Chinchwadgaon,गव्हाणे वस्ती भोसरी ते चिंचवडगांव,10.2
+304-U,Chinchwadgaon To Gavhanevasti Bhosari,चिंचवडगांव ते गव्हाणे वस्ती भोसरी,10.2
+305A-D,Dy Patil College Wadgaonmawal To Nigdi,डी.वाय.पाटील कॉलेज ते निगडी,22
+305A-U,Nigdi To Dy Patil College Wadgaonmawal,निगडी ते डी.वाय.पाटील कॉलेज,22
+305B-D,Navlakh Umbre To Nigdi,नवलाख उंबरे ते निगडी,26
+305B-U,Nigdi To Navlakh Umbre,निगडी ते नवलाख उंबरे,26
+305-D,Vadgaon Mawal To Nigdi,वडगांव मावळ ते निगडी,22
+305-U,Nigdi To Vadgaon Mawal,निगडी ते वडगांव मावळ,22
+306-D,Hinjawadi Maan Phase 3 To Dange Chowk,हिंजवडी माण फेज ३ ते डांगे चौक,13.3
+306-U,Dange Chowk To Hinjawadi Maan Phase 3,डांगे चौक ते हिंजवडी माण फेज ३,13.3
+307A-D,Chinchwadgaon To Bhakti Shakti,चिंचवडगांव ते भक्ति शक्ति डेपो,4.6
+307A-U,Bhakti Shakti To Chinchwadgaon,भक्ति शक्ति डेपो ते चिंचवडगांव,4.6
+307-D,Walhekarwadi To Chinchwadgaon,वाल्हेकरवाडी ते चिंचवडगांव,2.3
+307-U,Chinchwadgaon To Walhekarwadi,चिंचवडगांव ते वाल्हेकरवाडी,2.3
+308-D,Gharkul Vasahat Chikhli To Bhakti Shakti,घरकुल वसाहत चिखली ते भक्ति शक्ति डेपो,5.4
+308-U,Bhakti Shakti To Gharkul Vasahat Chikhli,भक्ति शक्ति डेपो ते घरकुल वसाहत चिखली,5.4
+309-D,Dehugaon To Alandi,देहू गांव ते आळंदी,16
+309-U,Alandi To Dehugaon,आळंदी ते देहू गांव,16
+30A-D,Rautwadi To Marketyard,राऊतवाडी ते मार्केटयार्ड,28
+30A-U,Marketyard To Rautwadi,मार्केटयार्ड ते राऊतवाडी,28
+30-D,Ghotawade Phata To Marketyard,घोटावडे फाटा ते मार्केटयार्ड,31.5
+30-U,Marketyard To Ghotawade Phata,मार्केटयार्ड ते घोटावडे फाटा,31.5
+310A-D,Walhekarwadi To Nehrunagar Depo,वाल्हेकरवाडी ते नेहरूनगर डेपो,7.7
+310A-U,Nehrunagar Depo To Walhekarwadi,नेहरूनगर डेपो ते वाल्हेकरवाडी,7.7
+310-D,Walhekarwadi To Pune Station,वाल्हेकरवाडी ते पुणे स्टेशन,24.8
+310-U,Pune Station To Walhekarwadi,पुणे स्टेशन ते वाल्हेकरवाडी,24.8
+311-D,Pimprigaon To Pune Station,पिंपरी गाव ते पुणे स्टेशन,21.8
+311-U,Pune Station To Pimprigaon,पुणे स्टेशन ते पिंपरी गाव,21.8
+312-D,Chinchwadgaon To Pune Station,चिंचवडगांव ते पुणे स्टेशन,22.5
+312-U,Pune Station To Chinchwadgaon,पुणे स्टेशन ते चिंचवडगांव,22.5
+313A-D,Kasarsai Karkhana To Chinchwadgaon,कासरसाई कारखाना ते चिंचवडगांव,17.2
+313A-U,Chinchwadgaon To Kasarsai Karkhana,चिंचवडगांव ते कासरसाई कारखाना,17.2
+313B-D,Bhakti Shakti To Kasarsai Karkhana,भक्ति शक्ति डेपो ते कासरसाई कारखाना,21.5
+313C-D,Nehrunagar Depo To Chandkhed,नेहरूनगर डेपो ते चांदखेड,25.7
+313-D,Chandkhed To Chinchwadgaon,चांदखेड ते चिंचवडगांव,19.3
+313D-D,Bhakti Shakti To Chandkhed,भक्ति शक्ति डेपो ते चांदखेड,21.5
+313-U,Chinchwadgaon To Chandkhed,चिंचवडगांव ते चांदखेड,19.3
+314-D,Mhalunge MIDC To Bhakti Shakti,म्हाळुंगे एमआयडीसी ते भक्ति शक्ति डेपो,11.2
+314-U,Bhakti Shakti To Mhalunge MIDC,भक्ति शक्ति डेपो ते म्हाळुंगे एमआयडीसी,11.2
+315A-D,Moshigaon To Pune Station,मोशी गांव ते पुणे स्टेशन,25.6
+315A-U,Pune Station To Moshigaon,पुणे स्टेशन ते मोशी गांव,25.6
+315-D,Bhosari To Pune Station (Vai Alandi Road),भोसरी ते पुणे स्टेशन (मार्गे आळंदी रोड ),18.5
+315D-U,Ma Na Pa To Dhanorigaon,मनपा ते धानोरी गांव,11.6
+315-U,Pune Station To Bhosari (Vai Alandi Road),पुणे स्टेशन ते भोसरी (मार्गे आळंदी रोड ),18.5
+316-D,Hinjawadi Maan Phase 3 To Chinchwadgaon,हिंजवडी माण फेज ३ ते चिंचवडगांव,14.2
+316-U,Chinchwadgaon To Hinjawadi Maan Phase 3,चिंचवडगांव ते हिंजवडी माण फेज ३,14.2
+317A-D,Dapodi To Sambhajinagar,दापोडी ते संभाजी नगर,14.2
+317B-D,Pune Station To Dapodi,पुणे स्टेशन ते दापोडी,9.8
+317-D,Sambhajinagar To Pune Station,संभाजी नगर ते पुणे स्टेशन,23.7
+317-U,Pune Station To Sambhajinagar,पुणे स्टेशन ते संभाजी नगर,23.7
+318A-D,Gharkul Vasahat Chikali To Pune Station,घरकुल वसाहत चिकलि ते पुणे स्टेशन,25.6
+318A-U,Pune Station To Gharkul Vasahat Chikali,पुणे स्टेशन ते घरकुल वसाहत चिकलि,25.6
+318-D,Krishanagar To Pune Station,कृष्णागर ते पुणे स्टेशन,26
+318-U,Pune Station To Krushnanagar,पुणे स्टेशन ते कृष्णानगर,26
+319-D,Vadgaon Mawal To Alandi,वडगांव मावळ ते आळंदी,32.8
+319-U,Alandi To Vadgaon Mawal,आळंदी ते वडगांव मावळ,32.8
+31A-D,Pune Station To Padmawati,पुणे स्टेशन ते पद्मावती,10.1
+31A-U,Padmawati To Pune Station,पद्मावती ते पुणे स्टेशन,10.1
+31-D,Pune Station To Taljai Pathar,पुणे स्टेशन ते तळजाई पठार,12
+31-U,Taljai Pathar To Pune Station,तळजाई पठार ते पुणे स्टेशन,12
+320-D,Mahalungegaon To Alandi,महाळुंगेगाव ते आळंदी,30.5
+320-U,Alandi To Mahalungegaon,आळंदी ते महाळुंगेगाव,30.5
+321A-D,Hinjawadi Maan Phase 3 To Pimpale Gurav,हिंजवडी माण फेज ३ ते पिंपळे गुरव,21.8
+321A-U,Pimple Gurav To Hinjawadi Maan Phase 3,पिंपळे गुरव ते हिंजवडी माण फेज ३,21.8
+321-D,Hinjawadi Maan Phase 3 To Vasasantdada Putla Sangvi,हिंजवडी माण फेज ३ ते वसासंतदादा पुतळा सांगवी,23.1
+321-U,Vasasantdada Putla Sangvi To Hinjawadi Maan Phase 3,वसासंतदादा पुतळा सांगवी ते हिंजवडी माण फेज ३,23.1
+322A-D,Akurdi Railway Station To Warje Malwadi,आकुर्डी रेल्वे स्टेशन ते वारजे माळवाडी,30.8
+322A-U,Warje Malwadi To Akurdi Railway Station,वारजे माळवाडी ते आकुर्डी रेल्वे स्टेशन,30.8
+322K-D,Akurdi Railway Station To Ma Na Pa,आकुर्डी रेल्वे स्टेशन ते मनपा,23.5
+322K-U,Ma Na Pa To Akurdi Railway Station,मनपा ते आकुर्डी रेल्वे स्टेशन,23.5
+323A-D,Gharkul Vasahat Chikhli To Ma Na Pa,घरकुल वसाहत चिखली ते मनपा,23.4
+323A-U,Ma Na Pa To Gharkul Vasahat Chikhli,मनपा ते घरकुल वसाहत चिखली,23.4
+323B-D,Chikhali To Nehrunagar Depo,चिखली ते नेहरूनगर डेपो,8.9
+323B-U,Nehrunagar Depo To Chikhali,नेहरूनगर डेपो ते चिखली,8.9
+323C-D,Gharkul Vasahat Chikhali To Nehrunagar Depo,घरकुल वासहत चिखली ते नेहरूनगर डेपो,6.6
+323C-U,Nehrunagar Depo To Gharkul Vasahat Chikhali,नेहरूनगर डेपो ते घरकुल वासहत चिखली,6.6
+323-D,Chikhali To Ma Na Pa,चिखली ते मनपा,23.4
+323-U,Ma Na Pa To Chikhali,मनपा ते चिखली,23.4
+324-D,Hinjawadi Maan Phase 3 To Bhosari,हिंजवडी माण फेज ३ ते भोसरी,25.3
+324-U,Bhosari To Hinjawadi Maan Phase 3,भोसरी ते हिंजवडी माण फेज ३,25.3
+325A-D,Masulkar Colony To Nehrunagar Depo,मासुळकर कॉलनी ते नेहरूनगर डेपो,2.7
+325A-U,Nehrunagar Depo To Masulkar Colony,नेहरूनगर डेपो ते मासुळकर कॉलनी,2.7
+325-D,Masulkar Colony To Pune Station,मासुळकर कॉलनी ते पुणे स्टेशन,18.7
+325-U,Pune Station To Masulkar Colony,पुणे स्टेशन ते मासुळकर कॉलनी,18.7
+326A-D,Chikhali To Nehrunagar Depo,चिखली ते नेहरूनगर डेपो,7.4
+326A-U,Nehrunagar Depo To Chikhali,नेहरूनगर डेपो ते चिखली,7.4
+326B-D,Nehrunagar Depo To Chikhali,नेहरूनगर डेपो ते चिखली,7.4
+326-D,Chikhali To Pimprigaon,चिखली ते पिंपरी गाव,10.1
+326-U,Pimprigaon To Chikhali,पिंपरी गाव ते चिखली,10.1
+327A-D,Hinjawadi Maan Phase 3 To Nehrunagar Depo,हिंजवडी माण फेज ३ ते नेहरूनगर डेपो,21.3
+327A-U,Nehrunagar Depo To Hinjawadi Maan Phase 3,नेहरूनगर डेपो ते हिंजवडी माण फेज ३,21.3
+327B-D,Bhosari To Hinjawadi Maan Phase 3,भोसरी ते हिंजवडी माण फेज ३,27.1
+327C-D,Alandi To Nehrunagar Depo,आळंदी ते नेहरूनगर डेपो,13.3
+327C-U,Nehrunagar Depo To Alandi,नेहरूनगर डेपो ते आळंदी,13.3
+327-D,Hinjawadi Maan Phase 3 To Alandi,हिंजवडी माण फेज ३ ते आळंदी,35.7
+327-U,Alandi To Hinjawadi Maan Phase 3,आळंदी ते हिंजवडी माण फेज ३,35.7
+328A-D,Rupeenagar To Nigdi,रूपीनगर ते निगडी,3
+328A-U,Nigdi To Rupeenagar,निगडी ते रूपीनगर,3
+329A-D,Dehugaon To Pune Station (Via Yarwada),देहू गांव ते पुणे स्टेशन (मार्गे येरवडा),34
+329A-U,Pune Station To Dehugaon (Via Yarwada),पुणे स्टेशन ते देहू गांव  (मार्गे येरवडा),34
+329-D,Dehugaon To Pune Station (Via Wakdevadi),देहू गांव ते पुणे स्टेशन (मार्गे वाकडेवाडी),33
+329-U,Pune Station To Dehugaon (Via Wakdevadi),पुणे स्टेशन ते देहू गांव (मार्गे वाकडेवाडी),33
+32-D,Alandi To Bharati Vidyapeeth,आळंदी ते भारती विद्यापीठ,34.1
+32-U,Bharati Vidyapeeth To Alandi,भारती विद्यापीठ ते आळंदी,34.1
+331A-D,Rahatnigaon To Gavhanevasti Bhosari,रहाटणी गांव ते गव्हाणे वस्ती भोसरी,13
+331A-U,Gavhanevasti Bhosari To Rahatnigaon,गव्हाणे वस्ती भोसरी ते रहाटणी गांव,13
+331B-D,Rahatnigaon To Charholigaon,रहाटणी गांव ते चऱ्होली गांव,22
+331B-U,Charholigaon To Rahatnigaon,चऱ्होली गांव ते रहाटणी गांव,22
+331C-U,Nehrunagar Depo To Rahatnigaon,नेहरूनगर डेपो ते रहाटणी गांव,9.5
+331-D,Rahatnigaon To Charholigaon,रहाटणी गांव ते चऱ्होली गांव,22
+331D-U,Charholigaon To Nehrunagar Depo,चऱ्होली गांव ते नेहरूनगर डेपो,12.5
+331-U,Charholigaon To Rahatnigaon,चऱ्होली गांव ते रहाटणी गांव,22
+332A-D,Pimple Saudagar To Ma Na Pa,पिंपळे सौदागर ते मनपा,15.7
+332A-U,Ma Na Pa To Pimple Saudagar,मनपा ते पिंपळे सौदागर,15.7
+332-D,Pimpri To Pune Station,पिंपरी ते पुणे स्टेशन,26.4
+332-U,Pune Station To Pimpri,पुणे स्टेशन ते पिंपरी,26.4
+333-D,Hinjawadi Maan Phase 3 To Pune Station,हिंजवडी माण फेज ३ ते पुणे स्टेशन,26.6
+333-U,Pune Station To Hinjawadi Maan Phase 3,पुणे स्टेशन ते हिंजवडी माण फेज ३,26.6
+334-D,Gharkul Vasahat Chikhali To Pimprigaon,घरकुल वासहत चिखली ते पिंपरी गाव,8.2
+334-U,Pimprigaon To Gharkul Vasahat Chikhli,पिंपरी गाव ते घरकुल वसाहत चिखली,8.2
+335A-D,Jambe To Dange Chowk,जांबे ते डांगे चौक,7.6
+335A-U,Dange Chowk To Jambe,डांगे चौक ते जांबे,7.6
+335B-D,Dange Chowk To Nehrunagar Depo,डांगे चौक ते नेहरूनगर डेपो,8.9
+335B-U,Nehrunagar Depo To Dange Chowk,नेहरूनगर डेपो ते डांगे चौक,8.9
+336-D,Bhakti Shakti To Kesnand Phata,भक्ति शक्ति डेपो ते केसनंद फाटा,31
+336-U,Kesnand Phata To Bhakti Shakti,केसनंद फाटा ते भक्ति शक्ति डेपो,31
+337-D,Bhakti Shakti To Dhayari Maruti Mandir,भक्ति शक्ति डेपो ते धायरी मारूती मंदिर,37.7
+337-U,Dhayari Maruti Mandir To Bhakti Shakti,धायरी मारूती मंदिर ते भक्ति शक्ति डेपो,37.7
+339B-D,Indrayaninagar To Pune Station,इंद्रायणी नगर ते पुणे स्टेशन,22.6
+339B-U,Pune Station To Indrayaninagar,पुणे स्टेशन ते इंद्रायणी नगर,22.6
+339-D,Santnagar MIDC Police Station To Katraj,संत नगर एमआयडीसी पोलीस स्टेशन ते कात्रज,32.5
+339-U,Katraj To Santnagar MIDC Police Station,कात्रज ते संत नगर एमआयडीसी पोलीस स्टेशन,32.5
+33A-D,Na Ta Wadi To Padmawati,नतावाडी ते पद्मावती,8
+33A-U,Padmawati To Na Ta Wadi,पद्मावती ते नतावाडी,8
+33-D,Na Ta Wadi To Taljai Pathar,नतावाडी ते तळजाई पठार,10.2
+33-U,Taljai Pathar To Na Ta Wadi,तळजाई पठार ते नतावाडी,10.2
+341-D,Mohannagar To Ma Na Pa,मोहननगर ते मनपा,22.2
+341-U,Ma Na Pa To Mohannagar,मनपा ते मोहननगर,22.2
+344A-U,Nehrunagar Depo To Pimple Nilakh,नेहरूनगर डेपो ते पिपळे निलख,13.7
+344B-U,Alandi To Nehrunagar Depo,आळंदी ते नेहरूनगर डेपो,13.7
+344-D,Pimple Nilakh To Alandi,पिपळे निलख ते आळंदी,26.1
+344-U,Alandi To Pimple Nilakh,आळंदी ते पिपळे निलख,26.1
+345-D,Thergaon To Pune Station,थेरगाव ते पुणे स्टेशन,19.3
+345-U,Pune Station To Thergaon,पुणे स्टेशन ते थेरगाव,19.3
+347A-U,Nehrunagar Depo To Dapodi Mantri Niketan,नेहरूनगर डेपो ते दापोडी मंत्री निकेतन,18.4
+347-D,Dapodi To Alandi,दापोडी ते आळंदी,30.9
+347-U,Alandi To Dapodi,आळंदी ते दापोडी,30.9
+348-D,Nigdi To Pune Station,निगडी ते पुणे स्टेशन,24
+348-U,Pune Station To Nigdi,पुणे स्टेशन ते निगडी,24
+350A-D,Dehugaon To Pimprigaon,देहू गांव ते पिंपरी गाव,17.1
+350A-U,Pimprigaon To Dehugaon,पिंपरी गाव ते देहू गांव,17.1
+350B-D,Bhakti Shakti To Pimprigaon,भक्ति शक्ति डेपो ते पिंपरी गाव,8.3
+350B-U,Pimprigaon To Bhakti Shakti,पिंपरी गाव ते भक्ति शक्ति डेपो,8.3
+350-D,Dehugaon To Nigdi,देहू गांव ते निगडी,8.8
+350-U,Nigdi To Dehugaon,निगडी ते देहू गांव,8.8
+351A-D,Jambe To Bhosari,जांबे ते भोसरी,24
+351A-U,Bhosari To Jambe,भोसरी ते जांबे,24
+351-D,Jambe To Alandi,जांबे ते आळंदी,32.5
+351-U,Alandi To Jambe,आळंदी ते जांबे,32.5
+354A-D,Pimpri To Marketyard,पिंपरी ते मार्केटयार्ड,28.5
+354A-U,Marketyard To Pimpri,मार्केटयार्ड ते पिंपरी,28.5
+354-D,Pimprigaon To Marketyard,पिंपरी गाव ते मार्केटयार्ड,28.8
+354-U,Marketyard To Pimprigaon,मार्केटयार्ड ते पिंपरी गाव,28.8
+355-D,Chikhali To Dange Chowk,चिखली ते डांगे चौक,13
+355-U,Dange Chowk To Chikhali,डांगे चौक ते चिखली,13
+357-D,Rajgurunagar To Pune Station,राजगुरूनगर ते पुणे स्टेशन,46.6
+357-U,Pune Station To Rajgurunagar,पुणे स्टेशन ते राजगुरूनगर,46.6
+358-D,Rajgurunagar To Bhosari,राजगुरूनगर ते भोसरी,27.6
+358-U,Bhosari To Rajgurunagar,भोसरी ते राजगुरूनगर,27.6
+360-D,Balewadi Depot To Alandi,बालेवाडी डेपो ते आळंदी,35
+360-U,Alandi To Balewadi Depot,आळंदी ते बालेवाडी डेपो,35
+361-D,Bhosari Terminal To Alandi,भोसरी टर्मिनल ते आळंदी,8.5
+361-U,Alandi To Bhosari Terminal,आळंदी ते भोसरी टर्मिनल,8.5
+362A-D,Alandi To YCM Hospital (Via Moshi),आळंदी ते वायसीएम हॉस्‍पीटल (मार्गे मोशी),16
+362A-U,YCM Hospital To Alandi (Via Moshi),वायसीएम हॉस्‍पीटल ते आळंदी (मार्गे मोशी),16
+362B-D,YCM Hospital To Bhosari,वायसीएम हॉस्‍पीटल ते भोसरी,5.5
+362B-U,Bhosari To YCM Hospital,भोसरी ते वायसीएम हॉस्‍पीटल,5.5
+362-D,YCM Hospital To Alandi,वायसीएम हॉस्‍पीटल ते आळंदी,14
+362-U,Alandi To YCM Hospital,आळंदी ते वायसीएम हॉस्‍पीटल,14
+363A-D,Kiwalegaon To Nigdi,किवळेगांव ते निगडी,10.7
+363A-U,Nigdi To Kiwalegaon,निगडी ते किवळेगांव,10.7
+363-D,Adarshnagar To Nigdi,आदर्शनगर ते निगडी,9
+363-U,Nigdi To Adarshnagar,निगडी ते आदर्शनगर,9
+366A-D,Bhapkar Petrol Pump To Bhakti Shakti,भापकर पेट्रोल पंप ते भक्ति शक्ति डेपो,24.9
+366A-U,Bhakti Shakti To Bhapkar Petrol Pump,भक्ति शक्ति डेपो ते भापकर पेट्रोल पंप,25.9
+366B-U,Pune Station To Pimpri,पुणे स्टेशन ते पिंपरी,16.9
+366C-D,Katraj To Pimpri,कात्रज ते पिंपरी,24.7
+366-D,Bhakti Shakti To Pune Station (Via Yerwada),भक्ति शक्ति डेपो ते पुणे स्टेशन (मार्गे येरवडा),22.7
+366-U,Pune Station To Bhakti Shakti (Via Yerwada),पुणे स्टेशन ते भक्ति शक्ति डेपो (मार्गे येरवडा),22.7
+367A-D,Santnagar MIDC Police Station To Akurdi Railway Station,संत नगर एमआयडीसी पोलीस स्टेशन ते आकुर्डी रेल्वे स्टेशन,18.5
+367A-U,Akurdi Railway Station To Santnagar MIDC Police Station,आकुर्डी रेल्वे स्टेशन ते संत नगर एमआयडीसी पोलीस स्टेशन,18.5
+367B-D,Gharkul Vasahat To Bhosari Terminal,घरकुल वासहत ते भोसरी टर्मिनल,11.4
+367B-U,Bhosari Terminal To Gharkul Vasahat,भोसरी टर्मिनल ते घरकुल वासहत,11.4
+367C-D,Akurdi Railway Station To Bhosari,आकुर्डी रेल्वे स्टेशन ते भोसरी,17
+367C-U,Bhosari To Akurdi Railway Station,भोसरी ते आकुर्डी रेल्वे स्टेशन,17
+367-D,Gavhanevasti Bhosari To Nigdi,गव्हाणे वस्ती भोसरी ते निगडी,10.8
+367-U,Nigdi To Gavhanevasti Bhosari,निगडी ते गव्हाणे वस्ती भोसरी,10.8
+36-D,Chinchwadgaon To Ma Na Pa,चिंचवडगांव ते मनपा,17.1
+36-U,Ma Na Pa To Chinchwadgaon,मनपा ते चिंचवडगांव,17.1
+370-R,Pimpri To Pimpri,पिंपरी ते पिंपरी,14.5
+372-D,Hinjawadi Maan Phase 3 To Bhakti Shakti,हिंजवडी माण फेज ३ ते भक्ति शक्ति डेपो,20.9
+372-U,Bhakti Shakti To Hinjawadi Maan Phase 3,भक्ति शक्ति डेपो ते हिंजवडी माण फेज ३,20.9
+373-D,Hinjawadi Maan Phase 3 To Wakad pul,हिंजवडी माण फेज ३ ते वाकड पूल,10
+373-U,Wakad Pul To Hinjawadi Maan Phase 3,वाकड पूल ते हिंजवडी माण फेज ३,10
+376A-D,Bhakti Shakti To Warje Malwadi (Vai YCM),भक्ति शक्ति डेपो ते वारजे माळवाडी (मार्गे वायसीएम),31.2
+376A-U,Warje Malwadi To Bhakti Shakti (Vai YCM),वारजे माळवाडी ते भक्ति शक्ति डेपो (मार्गे वायसीएम),31.2
+376B-D,Bhakti Shakti To Shewalwadi (Vai YCM),भक्ति शक्ति डेपो ते शेवाळवाडी (मार्गे वायसीएम),35.7
+376B-U,Shewalwadi To Bhakti Shakti (Vai YCM),शेवाळवाडी ते भक्ति शक्ति डेपो (मार्गे वायसीएम),35.7
+376-D,Bhakti Shakti To Katraj (Vai YCM),भक्ति शक्ति डेपो ते कात्रज (मार्गे वायसीएम),30.9
+376D-D,Bhakti Shakti To Nehrunagar Depo,भक्ति शक्ति डेपो ते नेहरूनगर डेपो,9.3
+376D-U,Nehrunagar Depo To Bhakti Shakti,नेहरूनगर डेपो ते भक्ति शक्ति डेपो,9.3
+376E-D,Warje Malwadi To Nehrunagar Depo (Vai YCM),वारजे माळवाडी ते नेहरूनगर डेपो (मार्गे वायसीएम),23.5
+376F-D,Sambhajinagar To Nehrunagar Depo,संभाजी नगर ते नेहरूनगर डेपो,23
+376F-U,Nehrunagar Depo To Sambhajinagar,नेहरूनगर डेपो ते संभाजी नगर,9.6
+376G-D,Shewalwadi To Nehrunagar Depo (Vai YCM),शेवाळवाडी ते नेहरूनगर डेपो (मार्गे वायसीएम),28
+376H-U,Katraj To Nehrunagar Depo (Vai YCM),कात्रज ते नेहरूनगर डेपो (मार्गे वायसीएम),23.2
+376K-D,Sambhajinagar To Katraj (Vai YCM),संभाजी नगर ते कात्रज (मार्गे वायसीएम),32.9
+376K-U,Katraj To Sambhajinagar (Vai YCM),कात्रज ते संभाजी नगर (मार्गे वायसीएम),32.9
+376-U,Katraj To Bhakti Shakti (Vai YCM),कात्रज ते भक्ति शक्ति डेपो (मार्गे वायसीएम),30.9
+37-D,Na Ta Wadi To Sahkarnagar,नतावाडी ते सहकारनगर,7
+37-U,Sahkarnagar To Na Ta Wadi,सहकारनगर ते नतावाडी,7
+38-D,Na Ta Wadi To Dhankawadi,नतावाडी ते धनकवडी,9
+38-U,Dhankawadi To Na Ta Wadi,धनकवडी ते नतावाडी,9
+39-D,Pune Station To Dhankawadi,पुणे स्टेशन ते धनकवडी,10.5
+39-U,Dhankawadi To Pune Station,धनकवडी ते पुणे स्टेशन,10.5
+3-D,Pune Station To Swargate,पुणे स्टेशन ते स्वारगेट,7.5
+3-U,Swargate To Pune Station,स्वारगेट ते पुणे स्टेशन,7.5
+40-D,Mandai To Saket Society,महात्मा फुले मंडई ते साकेत सोसायटी,5.3
+40-U,Saket Society To Mandai,साकेत सोसायटी ते महात्मा फुले मंडई,5.3
+41-U, Upper Depot To Sangvi ,अप्पर डेपो ते सांगवी,19
+41-D,Sangvi To Upper Depot,सांगवी ते अप्पर डेपो,19
+42-D,Bhakti Shakti To Katraj,भक्ति शक्ति डेपो ते कात्रज,28.95
+42-U,Katraj To Bhakti Shakti,कात्रज ते भक्ति शक्ति डेपो,28.95
+43A-D,Hinjawadi Maan Phase 3 To Katraj,हिंजवडी माण फेज ३ ते कात्रज,33.7
+43A-U,Katraj To Hinjawadi Maan Phase 3,कात्रज ते हिंजवडी माण फेज ३,33.7
+43-D,Bhakti Shakti To Katraj,भक्ति शक्ति डेपो ते कात्रज,33.7
+43-U,Katraj To Bhakti Shakti,कात्रज ते भक्ति शक्ति डेपो,33.7
+46-D,Lohgaon To  Upper Depot,लोहगांव ते अप्पर डेपो  ,25.9
+46-U, Upper Depot To Lohgaon,अप्पर डेपो ते लोहगांव,25.9
+47A-D,Vadgaon Bk To Shaniwarwada Stand,वडगाव बु. ते शनिवारवाडा स्‍टॅण्ड,9.4
+47A-U,Shaniwarwada Stand To Vadgaon Bk,शनिवारवाडा स्‍टॅण्ड ते वडगाव बु.,9.4
+47-D,Sanaswadi Nandoshi To Shaniwarwada,सणस वाडी ते शनिवारवाडा,17.7
+47-U,Shaniwarwada To Sanaswadi Nandoshi,शनिवारवाडा ते सणस वाडी,17.7
+48-D,Venutai Chavan College To Pune Station,वेणुताई कॉलेज ते पुणे स्टेशन,16.8
+48-U,Pune Station To Venutai Chavan College,पुणे स्टेशन ते वेणुताई कॉलेज,16.8
+49-D,Khanapur To Pune Station,खानापूर ते पुणे स्टेशन,27.7
+49-U,Pune Station To Khanapur,पुणे स्टेशन ते खानापूर,27.7
+50B-D,Sinhgad Paytha To Natraj Stand,सिंहगड पायथा ते नटराज,22.8
+50B-U,Natraj Stand To Sinhgad Paytha,नटराज ते सिंहगड पायथा,22.8
+50-D,Sinhagad To Shaniwarwada,सिंहगड ते शनिवारवाडा,24.8
+50-U,Shaniwarwada To Sinhagad,शनिवारवाडा ते सिंहगड,24.8
+51A-D,DSK Vishwa To Shivajinagar,डि.एस.के. विश्व ते शिवाजीनगर,13.2
+51A-U,Shivajinagar To DSK Vishwa,शिवाजीनगर ते डि.एस.के. विश्व,13.2
+51-D,Dhayari Maruti Mandi To Shivajinagar,धायरी मारूती मंदिर ते शिवाजीनगर,13.2
+51-U,Shivajinagar To Dhayari Maruti Mandi,शिवाजीनगर ते धायरी मारूती मंदिर,13.2
+52A-D,Osade Phata To Swargate,ओसाडे फाटा ते स्वारगेट,30.1
+52A-U,Swargate To Osade Phata,स्वारगेट ते ओसाडे फाटा,30.1
+52B-D,Khanapur To Marketyard,खानापूर ते मार्केटयार्ड,26
+52B-U,Marketyard To Khanapur,मार्केटयार्ड ते खानापूर,26
+52-D,Khanapur To Swargate,खानापूर ते स्वारगेट,23.2
+52-U,Swargate To Khanapur,स्वारगेट ते खानापूर,23.2
+53B-D,Swargate To Shivajinagar,स्वारगेट ते शिवाजीनगर,4.3
+53-D,DSK Vishwa To Shivajinagar,डि.एस.के. विश्व ते शिवाजीनगर,15.4
+53-U,Shivajinagar To DSK Vishwa,शिवाजीनगर ते डि.एस.के. विश्व,14.4
+54A-D,Vadgaon Bk To Na Ta Wadi,वडगाव बु. ते नतावाडी,11.5
+54A-U,Na Ta Wadi To Vadgaon Bk,नतावाडी ते वडगाव बु.,11.5
+54B-D,Na Ta Wadi To Swargate,नतावाडी ते स्वारगेट,4.3
+54B-U,Swargate To Na Ta Wadi,स्वारगेट ते नतावाडी,4.3
+54-D,Venutai Chavan College To Na Ta Wadi,वेणुताई कॉलेज ते नतावाडी,13.9
+54-U,Na Ta Wadi To Venutai Chavan College,नतावाडी ते वेणुताई कॉलेज,13.9
+55-D,Mandai To Suncity,महात्मा फुले मंडई ते सनसिटी,7.8
+55-U,Suncity To Mandai,सनसिटी ते महात्मा फुले मंडई,7.8
+56-D,Mandai To Vadgaon Bk,महात्मा फुले मंडई ते वडगाव बु.,9.4
+56-U,Vadgaon Bk To Mandai,वडगाव बु. ते महात्मा फुले मंडई,9.4
+57A-D,Suncity To Pune Station,सनसिटी ते पुणे स्टेशन,10.3
+57A-U,Pune Station To Suncity,पुणे स्टेशन ते सनसिटी,10.3
+57-D,Vadgaon Bk To Pune Station,वडगाव बु. ते पुणे स्टेशन,12.3
+57-U,Pune Station To Vadgaon Bk,पुणे स्टेशन ते वडगाव बु.,12.3
+58A-D,Pandavnagar To Shanipar,पांडवनगर ते शनिपार,7.5
+58A-U,Shanipar To Pandavnagar,शनिपार ते पांडवनगर,7.5
+58-D,Gokhalenagar To Shanipar,गोखलेनगर ते शनिपार,5.6
+58P-D,Pandavnagar Senapati Bapat Road To Shanipar,पांडव नगर ते शनिपार,7.8
+58P-U,Shanipar To Pandavnagar Senapati Bapat Road,शनिपार ते पांडव नगर,7.8
+58-U,Shanipar To Gokhalenagar,शनिपार ते गोखलेनगर,5.6
+59-D,Niljyoti To Shanipar,निलज्योती सोसायटी ते शनिपार,6.2
+59-U,Shanipar To Niljyoti,शनिपार ते निलज्योती सोसायटी,6.2
+5A-D,Tadiwala Road To Swargate,ताडीवाला रोड ते स्वारगेट,6.3
+5A-U,Swargate To Tadiwala Road,स्वारगेट ते ताडीवाला रोड,6.3
+5-D,Pune Station To Swargate,पुणे स्टेशन ते स्वारगेट,5.45
+5-U,Swargate To Pune Station,स्वारगेट ते पुणे स्टेशन,5.45
+60A-D,Ghulenagar To Natraj Stand,घुलेनगर ते नटराज,9
+60A-U,Natraj Stand To Ghulenagar,नटराज ते घुलेनगर,9
+60-D,Ghulenager To  Shaniwarwada Stand,घुलेनगर ते शनिवारवाडा स्‍टॅण्ड  ,12
+60-U, Shaniwarwada Stand To Ghulenager,शनिवारवाडा स्‍टॅण्ड ते घुलेनगर,12
+61-D,Nasrapur To Swargate,नसरापुर ते स्वारगेट,32
+61-U,Swargate To Nasrapur,स्वारगेट ते नसरापुर,32
+62A-D,Marketyard To Sangamwadi,मार्केटयार्ड ते संगमवाडी,10.2
+62-D,Sangamwadi To Sukhsagarnagar,संगमवाडी ते सुखसागर नगर,15.5
+62-U,Sukhsagarnagar To Sangamwadi,सुखसागर नगर ते संगमवाडी,15.5
+63-D,Kalyaninagar To Swargate,कल्याणीनगर ते स्वारगेट,11.5
+63-U,Swargate To Kalyaninagar,स्वारगेट ते कल्याणीनगर,11.5
+64A-D,Warje Malwadi To Swargate,वारजे माळवाडी ते स्वारगेट,10
+64A-U,Swargate To Warje Malwadi,स्वारगेट ते वारजे माळवाडी,10
+64B-D,Gujrat Colony To Upper Depot,गुजराथ कॉलनी ते अप्पर डेपो,11.7
+64B-U,Upper Depot To Gujrat Colony,अप्पर डेपो ते गुजराथ कॉलनी,11.7
+64C-D,Swargate To Gujrat Colony,स्वारगेट ते गुजराथ कॉलनी,6.5
+64-D,Warje Malwadi To Hadapsar Gadital,वारजे माळवाडी ते हडपसर गाडीतळ,20
+64-U,Hadapsar Gadital To Warje Malwadi,हडपसर गाडीतळ ते वारजे माळवाडी,20
+65A-D,Marketyard To Upper Depo,मार्केटयार्ड ते अप्पर डेपो,4.8
+65A-U,Upper Depo To Marketyard,अप्पर डेपो ते मार्केटयार्ड,4.8
+65-D,Maharashtra Housing Board Samtanagar To Upper Depot,महाराष्ट्र हौसिंग बोर्ड (समतानगर) ते अप्पर डेपो,16.5
+65-U,Upper Depot To Maharashtra Housing Board Samtanagar,अप्पर डेपो ते महाराष्ट्र हौसिंग बोर्ड (समतानगर),16.5
+66A-D,Shaniwarwada To Marketyard,शनिवारवाडा ते मार्केटयार्ड,6
+66A-U,Marketyard To Shaniwarwada,मार्केटयार्ड ते शनिवारवाडा,6
+66-D,Agalambegaon To Marketyard,आगळंबे गांव ते मार्केटयार्ड,29.1
+66-U,Marketyard To Agalambegaon,मार्केटयार्ड ते आगळंबे गांव,29
+67-D,Kharadi Gaon To Swargate,खराडी गाव ते स्वारगेट,17.2
+67-U,Swargate To Kharadi Gaon,स्वारगेट ते खराडी गाव,17.2
+68A-D, Sukhsagarnagar To Kumbare Park,सुखसागरनगर ते कुंबरेपार्क,13.5
+68A-U,Kumbare Park To Sukhsagarnagar,कुंबरेपार्क ते सुखसागरनगर  ,13.5
+68B-D,Venutai Chavan College To Kothrud Depo,वेणुताई कॉलेज ते कोथरुड डेपो,15
+68B-U,Kothrud Depo To Venutai Chavan College,कोथरुड डेपो ते वेणुताई कॉलेज,15
+68S-D,Upper Depot To Sutardara, अप्पर डेपो ते सुतारदरा,14.8
+68S-U,Sutardara To  Upper Depot,सुतारदरा ते अप्पर डेपो ,14.8
+69-D,Ghotawadegaon To Marketyard,घोटावडे गांव ते मार्केटयार्ड,31.3
+69-U,Marketyard To Ghotawadegaon,मार्केटयार्ड ते घोटावडे गांव,31.3
+70A-D,Shasakiya Vishramgruha Paudgaon To Deccan Gymkhana,शासकीय विश्रामगृह पौंडगांव ते डेक्कन जिमखाना,28
+70A-U,Deccan Gymkhana To Shasakiya Vishramgruha Paudgaon,डेक्कन जिमखाना ते शासकीय विश्रामगृह पौंडगांव,28
+70B-D,Shasakiya Vishramgruha Paudgaon To Kothrud Depo,शासकीय विश्रामगृह पौंडगांव ते कोथरुड डेपो,22
+70B-U,Kothrud Depo To Shasakiya Vishramgruha Paudgaon,कोथरुड डेपो ते शासकीय विश्रामगृह पौंडगांव,22
+70C-D,Sheregaon To Kothrud Depo,शेरेगांव ते कोथरुड डेपो,27.3
+70C-U,Kothrud Depo To Sheregaon,कोथरुड डेपो ते शेरेगांव,27.3
+70-D,Sheregaon To Deccan Gymkhana,शेरेगांव ते डेक्कन जिमखाना,33.3
+70-U,Deccan Gymkhana To Sheregaon,डेक्कन जिमखाना ते शेरेगांव,33.3
+71-D,Sukhsagarnagar To Kothrud Depot,सुखसागर नगर ते कोथरुड डेपो,14.3
+71-U,Kothrud Depot To Sukhsagarnagar,कोथरुड डेपो ते सुखसागर नगर,14.3
+72A-D,Swargate To Upper Depo,स्वारगेट ते अप्पर डेपो,5.2
+72A-U,Upper Depo To Swargate,अप्पर डेपो ते स्वारगेट,5.2
+72-D,Kondhwagate To Upper Depot,कोंढवा गेट ते अप्पर डेपो,20.9
+72-U,Upper Depot To Kondhwagate,अप्पर डेपो ते कोंढवा गेट,20.9
+73-D,Kothrud Depot To Hadapsar Gadital,कोथरुड डेपो ते हडपसर गाडीतळ,18.7
+73-U,Hadapsar Gadital To Kothrud Depot,हडपसर गाडीतळ ते कोथरुड डेपो,18.7
+75-D,Vidyanagar To Deccan Gymkhana,विद्यानगर ते डेक्कन जिमखाना,13.5
+75-U,Deccan Gymkhana To Vidyanagar,डेक्कन जिमखाना ते विद्यानगर,13.5
+76-D,  Upper Depot To Kumbare Park,अप्पर डेपोते कुंबरेपार्क,13.8
+76-U,Kumbare Park To Upper Depot,कुंबरेपार्क ते अप्पर डेपो,13.8
+77-R,Warje Malwadi To Warje Malwadi,वारजे माळवाडी ते वारजे माळवाडी,24.5
+78A-D,Warje Malwadi To Marketyard,वारजे माळवाडी ते मार्केटयार्ड,14.2
+78A-U,Marketyard To Warje Malwadi,मार्केटयार्ड ते वारजे माळवाडी,14.2
+78-D,Kondhwagate To Marketyard,कोंढवा गेट ते मार्केटयार्ड,19.1
+78-U,Marketyard To Kondhwagate,मार्केटयार्ड ते कोंढवा गेट,19.1
+79B-U,Kothrud Depo To Ghotawade Phata,कोथरुड डेपो ते घोटावडे फाटा,13.9
+79C-D,Deccan Gymkhana To Kothrud Depo,डेक्कन जिमखाना ते कोथरुड डेपो,6
+79C-U,Kothrud Depo To Deccan Gymkhana,कोथरुड डेपो ते डेक्कन जिमखाना,6
+79-D,Mugawade To Deccan Gymkhana,मुगावडे ते डेक्कन जिमखाना,29.9
+79D-D,Deccan Gymkhana To Warje Malwadi,डेक्कन जिमखाना ते वारजे माळवाडी,7.9
+79D-U,Warje Malwadi To Deccan Gymkhana,वारजे माळवाडी ते डेक्कन जिमखाना,7.9
+79-U,Deccan Gymkhana To Mugawade,डेक्कन जिमखाना ते मुगावडे,29.9
+7A-D,Uruli Kanchan To Hadapsar Gadital,ऊरूळी कांचन ते हडपसर गाडीतळ,20.8
+7A-U,Hadapsar Gadital To Uruli Kanchan,हडपसर गाडीतळ ते ऊरूळी कांचन,20.8
+7B-D,Manjari Kh To Hadapsar Gadital,मांजरी खुर्द ते हडपसर गाडीतळ,8.3
+7B-U,Hadapsar Gadital To Manjari Kh,हडपसर गाडीतळ ते मांजरी खुर्द,8.3
+7-D,Uruli Kanchan To Sarasbaug,ऊरूळी कांचन ते सारसबाग,31.5
+7-U,Sarasbaug To Uruli Kanchan,सारसबाग ते ऊरूळी कांचन,31.5
+80A-D,Aditya Garden City To Ma Na Pa,आदित्यनगर गार्डन सिटी ते मनपा,12.3
+80A-U,Ma Na Pa To Aditya Garden City,मनपा ते आदित्यनगर गार्डन सिटी,12.3
+80B-D,Popularnagar To Ma Na Pa,पॉप्युलर नगर ते मनपा,9.5
+80B-U,Ma Na Pa To Popularnagar,मनपा ते पॉप्युलर नगर,9.5
+80-D,Cipla Center To Ma Na Pa,सिप्ला सेंटर ते मनपा,10.7
+80-U,Ma Na Pa To Cipla Center,मनपा ते सिप्ला सेंटर,10.4
+81-D,Pune Station To Kumbare Park,पुणे स्टेशन ते कुंबरेपार्क,12.9
+81-U,Kumbare Park To Pune Station,कुंबरेपार्क ते पुणे स्टेशन,12.9
+82A-D,Ma Na Pa To Warje Malwadi,मनपा ते वारजे माळवाडी,9.9
+82A-U,Warje Malwadi To Ma Na Pa,वारजे माळवाडी ते मनपा,9.9
+82B-D,Kondhwagate To Kothrud Stand,कोंढवा गेट ते कोथरुड स्टॅन्ड,9
+82C-U,Kondhwagate To Warje Malwadi,कोंढवा गेट ते वारजे माळवाडी,5.6
+82D-U,Kothrud Depo To Kondhwagate,कोथरुड डेपो ते कोंढवा गेट,23.6
+82E-U,Kondhwagate To Ma Na Pa,कोंढवा गेट ते मनपा,16.4
+82-R,Kondhwagate To Kondhwagate,कोंढवा गेट ते कोंढवा गेट,30.8
+84A-D,Kondhur Phata To Deccan Gymkhana,कोंढूर फाटा ते डेक्कन जिमखाना,37.4
+84A-U,Deccan Gymkhana To Kondhur Phata,डेक्कन जिमखाना ते कोंढूर फाटा,37.4
+84B-U,Kothrud Stand To Sangrun,कोथरुड स्टॅन्ड ते सांगरुण,24.5
+84C-D,Kondhur Phata To Kothrud Stand,कोंढूर फाटा ते कोथरुड स्टॅन्ड,33.5
+84C-U,Kothrud Stand To Kondhur Phata,कोथरुड स्टॅन्ड ते कोंढूर फाटा,33.5
+84-D,Sangrun To Deccan Gymkhana,सांगरुण ते डेक्कन जिमखाना,28.4
+84-U,Deccan Gymkhana To Sangrun,डेक्कन जिमखाना ते सांगरुण,28.4
+85A-U,Khothrud Stand To Mohakarwadi,कोथरुड स्‍टॅण्ड ते मोहकरवाडी,15.3
+85-D,Mohakarwadi To Ma Na Pa,मोहकरवाडी ते मनपा,20.8
+85-U,Ma Na Pa To Mohakarwadi,मनपा ते मोहकरवाडी  ,20.8
+86-R,Kothrud Depot To Kothrud Depot,कोथरुड डेपो ते कोथरुड डेपो,16.9
+87-D,Sutarwadi To Deccan Gymkhana (Vai Bhagvatinagar),सुतारवाडी ते डेक्कन जिमखाना (भाग्यवतीनगर),12
+87-U,Deccan Gymkhana To Sutarwadi (Vai Bhagvatinagar),डेक्कन जिमखाना ते सुतारवाडी (भाग्यवतीनगर),12
+87A-D,SusgaonTo Deccan Gymkhana,सूसगांव ते डेक्कन जिमखाना,15
+87A-U,Deccan Gymkhana To Susgaon ,डेक्कन जिमखाना ते सूसगांव,15
+87B-D,Sutarwadi Pashan To Mandai,सुतारवाडी ते महात्मा फुले मंडई,10.8
+87B-U,Mandai To Sutarwadi Pashan,महात्मा फुले मंडई ते सुतारवाडी,10.8
+87C-D,HMR Company To Deccan Gymkhana,एचएमआर कंपनी ते डेक्कन जिमखाना,12.5
+87C-U,Deccan Gymkhana To HMR Company,डेक्कन जिमखाना ते एचएमआर कंपनी,12.5
+87D-D,Sutarwadi To Deccan Gymkhana (Vai Sai Chowk),सुतारवाडी ते डेक्कन जिमखाना (साई चौक),12
+87D-U,Deccan Gymkhana To Sutarwadi (Vai Sai Chowk),डेक्कन जिमखाना ते सुतारवाडी (साई चौक),12
+87F-D,Balewadi Mhalunge Phata To Deccan Gymkhana,बालेवाडी म्हाळुंगे फाटा ते डेक्कन जिमखाना,15.5
+87F-U,Deccan Gymkhana To Balewadi Mhalunge Phata,डेक्कन जिमखाना ते बालेवाडी म्हाळुंगे फाटा,15.5
+88A-D,Swargate To Medi Point,स्वारगेट ते मेडी पॉर्इंट,11.6
+88-D,Medi Point To Upper Depot,मेडी पॉर्इंट ते अप्पर डेपो,16.8
+88-U,Upper Depot To Medi Point,अप्पर डेपो ते मेडी पॉर्इंट,16.8
+89-D,Niljyoti To Swargate,निलज्योती सोसायटी ते स्वारगेट,7.5
+89-U,Swargate To Niljyoti,स्वारगेट ते निलज्योती सोसायटी,7.5
+8-D,Mhatobachi Alandi To Hadapsar Gadital,म्हातोबाची आंळदी ते हडपसर गाडीतळ,19
+8-U,Hadapsar Gadital To Mhatobachi Alandi,हडपसर गाडीतळ ते म्हातोबाची आंळदी,19
+90-D,Gokhalenagar To Swargate,गोखलेनगर ते स्वारगेट,7.3
+90P-D,Pandavnagar Senapati Bapat Road To Swargate,पांडव नगर ते स्वारगेट,9
+90P-U,Swargate To Pandavnagar Senapati Bapat Road,स्वारगेट ते पांडव नगर,9
+90-U,Swargate To Gokhalenagar,स्वारगेट ते गोखलेनगर,7.3
+91-D,Ishanyanagari To Ma Na Pa,ईशान्यनगरी ते मनपा,9
+91-U,Ma Na Pa To Ishanyanagari,मनपा ते ईशान्यनगरी,9
+92-D,Pune Station To Gujrat Colony,पुणे स्टेशन ते गुजराथ कॉलनी,9.5
+92-U,Gujrat Colony To Pune Station,गुजराथ कॉलनी ते पुणे स्टेशन,9.5
+93-D,Pimplenilakh To Deccan Gymkhana,पिंपळे निलख ते डेक्कन जिमखाना,12.6
+93-U,Deccan Gymkhana To Pimplenilakh,डेक्कन जिमखाना ते पिंपळे निलख,12.6
+94A-D,Vadgaonsheri To Kumbre park,वडगावशेरी ते कुंबरे पार्क,19.1
+94A-U,Kumbre park To Vadgaonsheri,कुंबरे पार्क ते वडगावशेरी,19.1
+94B-U,Kumbare Park To Pune Station,कुंबरेपार्क ते पुणे स्टेशन,11.2
+94-D,Pune Station To Kothrud Depot,पुणे स्टेशन ते कोथरुड डेपो,11.4
+94-U,Kothrud Depot To Pune Station,कोथरुड डेपो ते पुणे स्टेशन,11.4
+95A-D, Pimplegurav To Gujrat Colony,  पिंपळे गुरवते गुजराथ कॉलनी,18.2
+95A-U,Gujrat Colony To  Pimplegurav,गुजराथ कॉलनी ते पिंपळे गुरव ,18.2
+95-D,Pimplegurav To Kothrud Depot,पिंपळे गुरव ते कोथरुड डेपो,21.1
+95-U,Kothrud Depot To Pimplegurav,कोथरुड डेपो ते पिंपळे गुरव,21.1
+96-D,Gharkul Vasahat Warje To Pimplegurav,"वारजे, घरकुल वसाहत ते पिंपळे गुरव",23.3
+96-U,Pimplegurav To Gharkul Vasahat Warje,"पिंपळे गुरव ते वारजे, घरकुल वसाहत",23.3
+97-D,Sahkarnagar To Warje Malwadi,सहकारनगर ते वारजे माळवाडी,12.5
+97-U,Warje Malwadi To Sahkarnagar,वारजे माळवाडी ते सहकारनगर,12.5
+9-D,Uruli Railway Station To Hadapsar Gadital,उरूळी रेल्वे स्टेशन ते हडपसर गाडीतळ,27.1
+9-U,Hadapsar Gadital To Uruli Railway Station,हडपसर गाडीतळ ते उरूळी रेल्वे स्टेशन,27.1
+VJR1-D,Dhayari Maruti Mandir To Hadapsar Gadital,धायरी मारूती मंदिर ते हडपसर गाडीतळ,21.7
+VJR1-U,Hadapsar Gadital To Dhayari Maruti Mandir,हडपसर गाडीतळ ते धायरी मारूती मंदिर,21.7
+VJR2-D,Kesnand Phata To Warje Malwadi,केसनंद फाटा ते वारजे माळवाडी,29.4
+VJR2-U,Warje Malwadi To Kesnand Phata,वारजे माळवाडी ते केसनंद फाटा,29.4
+VJR3-D,Hadapsar Gadital To Kothrud Depot,हडपसर गाडीतळ ते कोथरुड डेपो,17.9
+VJR3-U,Kothrud Depot To Hadapsar Gadital,कोथरुड डेपो ते हडपसर गाडीतळ,17.9
+VJR4-D,Vishrantwadi To Kothrud Depot,विश्रांतवाडी ते कोथरुड डेपो,15.9
+VJR4-U,Kothrud Depot To Vishrantwadi,कोथरुड डेपो ते विश्रांतवाडी,15.9
+VJR5-D,Mukai Chowk To Ma Na Pa,मुकईचौक ते मनपा,20.6
+VJR5-U,Ma Na Pa To Mukai Chowk,मनपा ते मुकईचौक,20.6
+VJR6-D,Hinjawadi Maan Phase 3 To Bhosari,हिंजवडी माण फेज ३ ते भोसरी,24
+VJR6-U,Bhosari To Hinjawadi Maan Phase 3,भोसरी ते हिंजवडी माण फेज ३,24
+VJR2A-U,Kothrud Stand To Kesnand Phata,कोथरुड स्टॅन्ड ते केसनंद फाटा,25.4
+14A-D,Kesnand Phata To Swargate ,केसनंद फाटा ते स्वारगेट,19.4
+14A-U,Swargate  To Kesnand Phata,स्वारगेट ते केसनंद फाटा,19.4
+58B-U,Swargate To Police Ground,स्वारगेट ते पोलिस ग्राउंड,4.5
+58B-D,Police Ground To Swargate ,पोलिस ग्राउंड ते स्वारगेट,4.5
+103D-U,Katraj To MIT College,कात्रज ते एमआयटी कॉलेज,12.5
+103D-D,MIT College To Katraj,एमआयटी कॉलेज ते कात्रज,12.5
+363B-D,Sainagar Mamurdi To Nigdi,साईनगर मामुर्डी ते निगडी,8.5
+363B-U,Nigdi To Sainagar Mamurdi,निगडी ते साईनगर मामुर्डी,8.5
+293S-U,Salunke Vihar To Khed Shivapur,साळुंके विहार ते खेड शिवापुर,21.9
+293S-D,Khed Shivapur To Salunke Vihar,खेड शिवापुर ते साळुंके विहार,21.9
+139S-U,Salunke Vihar To Bhakti Shakti,साळुंके विहार ते भक्ति शक्ति,26.5
+139S-D,Bhakti Shakti To  Salunke Vihar,भक्ति शक्ति ते  भक्ति शक्ति,26.5
+135 NGT-D,Kesnand Phata To Pune Station, केसनंद फाटा ते पुणे स्टेशन ,15.3
+135 NGT-U,Pune Station To Kesnand Phata , पुणे स्टेशन ते केसनंद फाटा,15.3
+117 NGT-D,Dhayari GaonTo Swargate,धायरीगांव  ते स्वारगेट,9.3
+117 NGT-U,Swargate To Dhayari Gaon,स्वारगेट ते धायरीगांव  ,9.3
+174 NGT-D,Kondhwa Gate To Pune Station,कोंढवा गेट ते पुणे स्टेशन,18.8
+174 NGT-U,Pune Station To Kondhwa Gate,पुणे स्टेशन ते कोंढवा गेट,18.8
+348 NGT-D, Bhakti Shakti To Pune Station,भक्ति शक्ति डेपो ते पुणे स्टेशन,24
+348 NGT-U,Pune Station To Bhakti Shakti,पुणे स्टेशन ते भक्ति शक्ति डेपो,24
+12 NGT-D,Bhakti Shakti To  Swargate,भक्ति शक्ति डेपो ते स्वारगेट  ,23
+12 NGT-U,Swargate To Bhakti Shakti,स्वारगेट ते भक्ति शक्ति डेपो,23
+158B-U,Ma Na Pa To  D.Y. Patil Vidhypith Lohgaon,डी वाय पाटील विद्यापीठ लोहगांव ते मनपा,17.9
+158B-D,D.Y. Patil Vidhypith Lohgaon To Ma Na Pa,डी वाय पाटील विद्यापीठ लोहगांव ते मनपा,17.9
+19D-U,Trinity College To Shivajinagar,ट्रीनिटी कॉलेज ते शिवाजीनगर,18.1
+19D-D,Shivajinagar To Trinity College,शिवाजीनगर ते ट्रीनिटी कॉलेज,18.1
+253-D,Vidyanagar To  Upper Depot,विद्यानगर ते अप्पर डेपो ,22.8
+253-U,Upper Depot To Vidyanagar,अप्पर डेपो ते विद्यानगर,22.8

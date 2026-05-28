@@ -1,2 +1,2 @@
 comparison,n_seeds,xgb_mse_regret_mean,nn_spo_regret_mean,mean_difference,statistic,p_value
-nn_spo < xgb_mse (one-sided Wilcoxon signed-rank),20,1.7326339773618202,3.565408827738247,1.832774850376427,200.0,0.9999685287475586
+nn_spo < xgb_mse (one-sided Wilcoxon signed-rank),20,3.935492697778318,4.934177351685685,0.9986846539073667,123.0,0.7509956359863281

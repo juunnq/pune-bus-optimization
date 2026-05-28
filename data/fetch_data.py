@@ -1,6 +1,21 @@
 """
 Data generation for pune-bus-optimization.
-Produces routes.csv, weather.csv, demand.csv, demand_matrix.csv in data/processed/.
+
+The route topology and equity priors come from real public sources (see
+``data/load_real_data.py``):
+  - OpenCity Pune Bus Stops and Routes (544 PMPML routes with origin /
+    destination / distance);
+  - OpenCity Pune Census 2011 ward-level (priority designation from per-ward
+    SC + ST population share).
+
+Ridership demand, the diurnal profile, and per-depot fleet capacity are
+synthetic: PMPML does not publish per-hour ridership, per-depot bus counts,
+or smart-card / AFC data. The synthetic generators are calibrated so the
+status-quo peak fleet sits near the real PMPML scale (~1{,}500--1{,}800
+buses).
+
+This script produces routes.csv, weather.csv, demand.csv, and
+demand_matrix.csv under data/processed/.
 """
 import os
 import sys
@@ -8,6 +23,11 @@ import random
 import numpy as np
 import pandas as pd
 import requests
+
+PROJECT_ROOT_FETCH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT_FETCH not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT_FETCH)
+from data.load_real_data import build_real_routes
 
 np.random.seed(42)
 random.seed(42)
@@ -46,80 +66,18 @@ def assign_depot(neighborhood):
     return "D1"
 
 
-# Routes
-def generate_routes(n_routes=340):
-    rows = []
-    for i in range(1, n_routes + 1):
-        rid = f"R{i:03d}"
-        r = np.random.random()
-        if r < 0.15:
-            category = "trunk"
-            length_km = np.random.uniform(15, 45)
-            peak_lo, peak_hi = 5, 10
-        elif r < 0.65:
-            category = "feeder"
-            length_km = np.random.uniform(5, 15)
-            peak_lo, peak_hi = 1, 5
-        else:
-            category = "suburban"
-            length_km = np.random.uniform(20, 40)
-            peak_lo, peak_hi = 2, 6
+# Routes -- real PMPML topology + Census-derived priority. The legacy
+# synthetic generator (random neighbourhood pairs + hardcoded LOW_INCOME /
+# AFFLUENT sets) is gone; see data/load_real_data.py.
+def generate_routes(n_routes=None, target_peak_fleet=1500):
+    """Build the routes table from real PMPML data and real Census priors.
 
-        origin = random.choice(PUNE_NEIGHBORHOODS)
-        dest = random.choice([n for n in PUNE_NEIGHBORHOODS if n != origin])
-
-        avg_trip_time = max(10.0, length_km * 3.5 + np.random.normal(0, 5))
-        num_stops = int(np.clip(length_km * 2.5 + np.random.normal(0, 3), 5, 80))
-        peak_freq = int(np.random.randint(peak_lo, peak_hi + 1))
-        offpeak_freq = max(1, int(round(peak_freq * np.random.uniform(0.5, 0.8))))
-
-        if origin in LOW_INCOME or dest in LOW_INCOME:
-            priority = float(np.random.uniform(0.7, 1.0))
-        elif origin in AFFLUENT or dest in AFFLUENT:
-            priority = float(np.random.uniform(0.0, 0.4))
-        else:
-            priority = float(np.random.uniform(0.3, 0.7))
-
-        rows.append({
-            "route_id": rid,
-            "route_name": f"{origin} - {dest}",
-            "length_km": round(length_km, 2),
-            "avg_trip_time_min": round(avg_trip_time, 1),
-            "num_stops": num_stops,
-            "current_peak_freq": peak_freq,
-            "current_offpeak_freq": offpeak_freq,
-            "route_category": category,
-            "priority_score": round(priority, 3),
-            "depot_id": assign_depot(origin),
-        })
-
-    df = pd.DataFrame(rows)
-
-    # Calibrate frequencies so the status-quo peak fleet leaves headroom for
-    # the MIP's equity floor (priority routes at k>=3 during peaks). With the
-    # round-trip cycle time tau = 2 * avg_trip + dwell (must match
-    # deterministic_model.DWELL_MIN), bus consumption per route is ~2x what it
-    # was under the old one-way-time approximation. Targeting peak_fleet ~1500
-    # gives the MIP roughly 300 buses of room for the equity-floor lift before
-    # hitting the operational fleet cap of B=1800.
-    DWELL_MIN = 7.5
-
-    def fleet(d):
-        tau = 2.0 * d['avg_trip_time_min'] + DWELL_MIN
-        return int(np.ceil(d['current_peak_freq'] * tau / 60).sum())
-
-    cur = fleet(df)
-    target = 1500
-    if abs(cur - target) > 100:
-        scale = target / cur
-        df['current_peak_freq'] = np.clip(
-            np.round(df['current_peak_freq'] * scale), 1, 12
-        ).astype(int)
-        df['current_offpeak_freq'] = np.clip(
-            np.round(df['current_peak_freq'] * np.random.uniform(0.5, 0.8, len(df))), 1, 10
-        ).astype(int)
-
-    return df
+    ``n_routes`` is ignored (the network has 544 real routes); the argument is
+    kept for backward compatibility with the previous synthetic signature.
+    ``target_peak_fleet`` is the calibration anchor for status-quo
+    current_peak_freq so the MIP has headroom above the equity floor.
+    """
+    return build_real_routes(target_peak_fleet=target_peak_fleet)
 
 
 # Weather
