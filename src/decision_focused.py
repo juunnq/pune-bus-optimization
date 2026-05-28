@@ -367,27 +367,42 @@ def run_decision_focused_pipeline(routes_df, demand_df, weather_df, demand_matri
     summary.to_csv(os.path.join(output_dir, "decision_focused_summary.csv"),
                    index=False)
 
-    # Paired Wilcoxon: NN-SPO+ regret vs XGB-MSE regret across seeds
-    xgb_regrets = (multiseed_df[multiseed_df['method'] == 'xgb_mse']
-                   .sort_values('seed')['regret'].values)
-    spo_regrets = (multiseed_df[multiseed_df['method'] == 'nn_spo']
-                   .sort_values('seed')['regret'].values)
-    if len(xgb_regrets) >= 2 and not np.allclose(xgb_regrets, spo_regrets):
-        stat, pval = wilcoxon(spo_regrets, xgb_regrets, alternative='less')
-    else:
-        stat, pval = float('nan'), float('nan')
-    test_df_out = pd.DataFrame([{
-        'comparison': 'nn_spo < xgb_mse (one-sided Wilcoxon signed-rank)',
-        'n_seeds': len(xgb_regrets),
-        'xgb_mse_regret_mean': float(np.mean(xgb_regrets)) if len(xgb_regrets) else float('nan'),
-        'nn_spo_regret_mean': float(np.mean(spo_regrets)) if len(spo_regrets) else float('nan'),
-        'mean_difference': float(np.mean(spo_regrets - xgb_regrets)) if len(spo_regrets) else float('nan'),
-        'statistic': float(stat) if not np.isnan(stat) else float('nan'),
-        'p_value': float(pval) if not np.isnan(pval) else float('nan'),
-    }])
+    # Paired Wilcoxon tests across seeds. Both decision-focused variants are
+    # tested against the MSE-XGBoost baseline; results land in
+    # decision_focused_wilcoxon.csv so the headline statistical claim in the
+    # paper is reproducible from the pipeline rather than from a notebook.
+    def _regrets(method):
+        return (multiseed_df[multiseed_df['method'] == method]
+                .sort_values('seed')['regret'].values)
+
+    base_regrets = _regrets('xgb_mse')
+    wilcoxon_rows = []
+    for treatment in ('xgb_weighted', 'nn_spo', 'nn_mse'):
+        t_regrets = _regrets(treatment)
+        if (len(t_regrets) >= 2 and len(t_regrets) == len(base_regrets)
+                and not np.allclose(t_regrets, base_regrets)):
+            stat, pval = wilcoxon(t_regrets, base_regrets, alternative='less')
+        else:
+            stat, pval = float('nan'), float('nan')
+        wilcoxon_rows.append({
+            'comparison': f'{treatment} < xgb_mse',
+            'treatment': treatment,
+            'baseline': 'xgb_mse',
+            'n_seeds': len(t_regrets),
+            'treatment_regret_mean': float(np.mean(t_regrets)) if len(t_regrets) else float('nan'),
+            'baseline_regret_mean': float(np.mean(base_regrets)) if len(base_regrets) else float('nan'),
+            'mean_difference': float(np.mean(t_regrets - base_regrets)) if len(t_regrets) else float('nan'),
+            'n_treatment_wins': int(np.sum(t_regrets < base_regrets)) if len(t_regrets) else 0,
+            'statistic': float(stat) if not np.isnan(stat) else float('nan'),
+            'p_value_one_sided': float(pval) if not np.isnan(pval) else float('nan'),
+        })
+    test_df_out = pd.DataFrame(wilcoxon_rows)
     test_df_out.to_csv(os.path.join(output_dir, "decision_focused_wilcoxon.csv"),
                        index=False)
-    log_metric("decision_focused_wilcoxon_p", round(float(pval), 6) if not np.isnan(pval) else 'NaN')
+    for row in wilcoxon_rows:
+        p = row['p_value_one_sided']
+        log_metric(f"wilcoxon_p_{row['treatment']}_vs_xgb_mse",
+                   round(float(p), 6) if not np.isnan(p) else 'NaN')
 
     # Backward-compat CSV: report seed=42 row per method (or first seed if 42 not in set)
     pick_seed = 42 if 42 in seeds else seeds[0]
@@ -437,11 +452,11 @@ if __name__ == "__main__":
     )
     summary = out['summary']
     multiseed = out['multiseed']
-    wilcoxon_row = out['wilcoxon'].iloc[0]
+    wilcoxon_df = out['wilcoxon']
     print("\nSummary (mean regret over seeds):")
     print(summary.to_string(index=False))
-    print("\nWilcoxon (one-sided): nn_spo < xgb_mse")
-    print(out['wilcoxon'].to_string(index=False))
+    print("\nPaired Wilcoxon (one-sided) vs xgb_mse:")
+    print(wilcoxon_df.to_string(index=False))
 
     expected_methods = ['xgb_mse', 'xgb_weighted', 'nn_mse', 'nn_spo', 'oracle']
     for m in expected_methods:
@@ -464,14 +479,22 @@ if __name__ == "__main__":
                        os.path.exists(full), "True", str(os.path.exists(full)))
 
     xgb_mse_mean = float(summary[summary['method'] == 'xgb_mse']['regret_mean'].iloc[0])
+    xgb_w_mean = float(summary[summary['method'] == 'xgb_weighted']['regret_mean'].iloc[0])
     spo_mean = float(summary[summary['method'] == 'nn_spo']['regret_mean'].iloc[0])
     log_metric("xgb_mse_regret_mean", round(xgb_mse_mean, 4))
+    log_metric("xgb_weighted_regret_mean", round(xgb_w_mean, 4))
     log_metric("nn_spo_regret_mean", round(spo_mean, 4))
-    log_metric("regret_mean_difference", round(spo_mean - xgb_mse_mean, 6))
-    p = float(wilcoxon_row['p_value'])
-    log_metric("decision_focused_wilcoxon_p",
-               round(p, 6) if not np.isnan(p) else 'NaN')
-    log_gate_check("wilcoxon_computed", not np.isnan(p), "non-NaN", round(p, 6))
+    log_metric("regret_diff_xgb_weighted_vs_xgb_mse",
+               round(xgb_w_mean - xgb_mse_mean, 6))
+    log_metric("regret_diff_nn_spo_vs_xgb_mse",
+               round(spo_mean - xgb_mse_mean, 6))
+    # Gate: at least the XGB-weighted vs XGB-MSE Wilcoxon test must have
+    # produced a non-NaN p-value (this is the paper's headline statistical
+    # claim and lives in the pipeline output now).
+    xw_row = wilcoxon_df[wilcoxon_df['treatment'] == 'xgb_weighted'].iloc[0]
+    pxw = float(xw_row['p_value_one_sided'])
+    log_gate_check("wilcoxon_xgb_weighted_computed", not np.isnan(pxw),
+                   "non-NaN", round(pxw, 6) if not np.isnan(pxw) else 'NaN')
 
     for f in ["decision_focused_results.csv",
               "decision_focused_multiseed.csv",

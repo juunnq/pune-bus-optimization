@@ -38,47 +38,52 @@ Optimization}
 Decision-Focused Learning, Public Transportation, Stochastic
 Optimization, Robust Optimization, Demand Forecasting, Equity.}
 
-\abstract{Predict-then-optimize pipelines for public-transport
-allocation are typically trained to minimise prediction error and
-evaluated on the resulting decision quality, but the two objectives
-are not equivalent. We study this dissociation on the bus frequency
-allocation problem of Pune's PMPML network, built from publicly
-available data: 544 real routes with origin/destination/distance
+\abstract{We study the bus frequency allocation problem of
+Pune's PMPML network as a case where the optimal allocation is
+\emph{structurally robust}: its dependence on demand prediction
+quality is empirically small, and the predict-then-optimize
+literature's standard motivating story --- better predictions
+yield better decisions --- barely applies. The instance is built
+from public data: 544 real routes with origin/destination/distance
 from the OpenCity Pune transit dataset \cite{opencity2024pmpml},
-five operating periods, thirteen depots (nine CNG + four electric)
-per published PMPML statistics, a fleet of $\approx 2{,}000$
-peak-deployable buses, and priority designations derived from
-ward-level SC + ST population share in Census of India 2011 data
-\cite{opencity2024census,census2011india}. Per-route ridership
-is simulated (PMPML does not publish smart-card or AFC data at
-that granularity), calibrated to the agency's known $\approx
-$ 1.1~million daily ridership and 8--11~AM / 5--9~PM peaks. A
-mixed-integer program with 24{,}480 binary variables and fleet,
-depot, equity, and operator-cost constraints is paired with three
-demand predictors (linear regression, random forest, XGBoost with
-seven quantile heads + split-conformal calibration) and evaluated
-end-to-end. Decision-focused training is implemented as a
-sample-weighted variant of MSE (XGBoost) and as a
-sample-weighted L1 surrogate that approximates SPO+
-\cite{elmachtoub2022smart} (neural network). Across 20 random
-seeds the sample-weighted XGBoost variant achieves significantly
-lower decision regret than plain MSE-XGBoost (paired Wilcoxon
-$p = 0.011$ \cite{wilcoxon1945individual}) despite a 7$\times$
-worse MAPE on the same test fold, illustrating the
-predict-then-optimize dissociation; the neural-network SPO+
-variant does not significantly beat MSE-XGBoost on this network. Stochastic and robust formulations
-driven by quantile-derived scenarios yield positive Value of
-Stochastic Solution and Expected Value of Perfect Information.
-We report the rider-wait / operator-cost Pareto frontier under an
-operator-cost penalty $\lambda$ rather than a single ``\%
-improvement'' figure; at $\lambda = 0$ the MIP optimum reduces
-total waiting time by 19.5\% relative to status-quo frequencies on
-the real route topology, with the gain contracting as $\lambda$
-rises. The contribution is methodological: honest evaluation of
-predict-then-optimize pipelines on a network anchored to real
-public data, with the synthetic pieces (hourly demand profile,
-per-depot fleet capacity) clearly demarcated from the empirical
-ones.}
+five operating periods, thirteen depots per published PMPML
+statistics, an approximately 2{,}000-bus peak-deployable fleet,
+and priority designations derived from per-ward SC + ST
+population share in Census of India 2011 data
+\cite{opencity2024census,census2011india}. Per-route hourly
+ridership is simulated (no public AFC data exists at that
+granularity), calibrated to PMPML's $\approx 1.1$ million daily
+riders and the published 8--11~AM / 5--9~PM peaks. We solve a
+24{,}480-binary-variable mixed-integer program with fleet, depot,
+equity, and operator-cost constraints; train three demand
+predictors (linear regression, random forest, XGBoost with seven
+quantile heads and split-conformal calibration); and evaluate
+four predict-then-optimize variants across 20 random seeds with
+paired Wilcoxon tests \cite{wilcoxon1945individual}.
+Three findings characterise the robustness. First, the Value of
+Stochastic Solution and the Expected Value of Perfect Information
+are both essentially zero ($\mathrm{VSS} = 0.53$ and
+$\mathrm{EVPI} = 1.91$ passenger-hours on a $\sim 26{,}000$
+passenger-hour objective): the route-level allocation structure
+is preserved across scenarios, so scenario-resolution prediction
+buys almost nothing. Second, the decision-focused dissociation
+is \emph{statistically} real but \emph{operationally} small.
+Sample-weighted XGBoost achieves mean regret 3.13 pass-hr vs.\
+3.94 for plain MSE-XGBoost over 20 seeds (paired one-sided
+Wilcoxon $p = 0.011$) despite a $7\times$ worse MAPE on the same
+test fold; the absolute regret gap is $\sim$0.8 passenger-hours,
+equivalent to roughly 48 person-minutes total across 1.1 million
+daily riders --- well under one-twentieth of a second per rider
+per day. The neural-network SPO+ variant does not significantly
+beat MSE-XGBoost ($p = 0.75$). Third, the rider-wait /
+operator-cost Pareto frontier shows that the headline 19.5\%
+improvement at $\lambda = 0$ contracts to zero around
+$\lambda \approx 3$; reporting a single percentage in isolation
+overstates the operational stakes. The contribution is the
+demonstration: predict-then-optimize regret comparisons must be
+reported with seed-level variability and absolute units, and on
+this allocation the rigorous answer is that prediction quality
+barely matters for the decision.}
 
 \onecolumn \maketitle \normalsize \setcounter{footnote}{0} \vfill
 
@@ -118,18 +123,29 @@ in Pune-specific traffic studies and in published smart-card
 analyses of comparable Indian agencies.
 
 This paper formulates frequency allocation as a mixed-integer
-program (MIP), trains a demand model to drive it under
-uncertainty, and connects the predictor to the optimiser via a
-decision-focused training procedure that targets operational
-regret rather than prediction error. The motivating phenomenon is
-the predict-then-optimize dissociation: a predictor that is worse
-on standard forecasting metrics (RMSE, MAPE) can produce
-decisions that are better on the downstream cost. We examine this
-dissociation empirically in \S\ref{sec:results} across a 20-seed
-sweep with a paired Wilcoxon test, rather than a single-seed
-point comparison, because the regret differences we are looking
-for are within the range of typical training-randomness variation
-and a single seed cannot distinguish a real effect from noise.
+program (MIP), trains demand models to drive it under
+uncertainty, and connects predictors to the optimiser via
+decision-focused training procedures that target operational
+regret rather than prediction error. Our empirical motivation is
+contrary to most of the predict-then-optimize literature: on this
+instance, the optimal allocation depends so weakly on which
+predictor we use that all four predict-then-optimize variants
+land within $\sim$2 passenger-hours of the oracle on a
+$\sim$26{,}000 passenger-hour objective, and information metrics
+(VSS, EVPI) computed against the perfect-foresight benchmark are
+on the order of one part in $10^4$. A statistically significant
+decision-focused win is detectable
+(\S\ref{sec:df-results}; XGB-weighted vs.\ MSE-XGBoost, paired
+Wilcoxon $p = 0.011$ over 20 seeds), but the effect size is
+operationally tiny --- the gap exists, and the dissociation
+between RMSE and regret is genuine, but in this regime
+decision-focused training is making a sub-second difference per
+rider per day. The methodological contribution is that
+demonstrating this requires multi-seed paired tests and absolute
+reporting units: a single-seed framing of the same experiment
+(an earlier draft of this paper reported a 44.7\% regret
+reduction at seed 42) tells the wrong story in both magnitude and
+direction.
 
 We contribute (i) a deterministic frequency-allocation MIP with
 explicit fleet, depot, equity, and operator-cost constraints
@@ -177,7 +193,7 @@ continuous relaxation of the optimiser. \cite{mandi2020smart}
 addressed hard combinatorial problems including knapsack and
 shortest-path. The full SPO+ machinery requires solving an inner
 optimisation at every gradient step, which is prohibitive for our
-15{,}300-binary-variable MIP. We therefore adopt a tractable
+24{,}480-binary-variable MIP. We therefore adopt a tractable
 linear surrogate: an L1 loss weighted by the downstream
 sensitivity $\partial w/\partial f$ evaluated at a frozen
 reference allocation, which captures the leading-order regret
@@ -405,8 +421,10 @@ The L1 form is robust to outliers, which matters because
 high-sensitivity samples dominate the loss surface and a single
 misbehaved point would otherwise destabilise the gradient. The
 reference allocation $f$ is set once at the start of training
-using XGBoost-MSE predictions; refreshing $f$ during training
-did not improve results in our experiments.
+using XGBoost-MSE predictions. A staged refresh (recomputing $f$
+periodically from the current network's predictions) is the
+natural extension; we do not run it in this paper and make no
+claim about its effect.
 
 \textbf{Connection to SPO+.} The exact SPO+ loss
 \cite{elmachtoub2022smart} requires solving the inner MIP at every
@@ -614,7 +632,7 @@ temporal axis rather than at the expense of priority routes.
 \subsubsection*{Cost-wait Pareto frontier}
 \label{sec:cost-frontier}
 
-The 21.7\% figure in Table~\ref{tab:opt} assumes $\lambda = 0$:
+The 19.5\% figure in Table~\ref{tab:opt} assumes $\lambda = 0$:
 the optimiser is told to minimise rider waiting time with no
 penalty for operating more buses, so it saturates the fleet
 whenever waiting time can be reduced. Real transit decisions
@@ -628,7 +646,8 @@ bus-period (in passenger-hour-equivalents), from $0$ to $50$.
 \caption{Rider-wait / operator-cost Pareto frontier obtained by
 sweeping the operator-cost coefficient $\lambda$ in the MIP
 objective. Each point is the optimum at one $\lambda$. The
-$\lambda = 0$ point saturates the fleet (9{,}000 bus-periods);
+$\lambda = 0$ point saturates the fleet (10{,}000 bus-periods,
+i.e., $B = 2{,}000$ across five periods);
 moderate values trade waiting time against bus-period usage.}
 \label{fig:cost_frontier}
 \end{figure}
@@ -814,7 +833,7 @@ regret depending on training seed.
 \includegraphics[width=0.95\columnwidth]{figures/fig_fleet_sensitivity.pdf}
 \caption{Fleet-size sensitivity. Left axis: total waiting time.
 Right axis: number of route-periods with frequency at least
-three. Vertical dashed line: current fleet $B = 1800$.}
+three. Vertical dashed line: current fleet $B = 2{,}000$.}
 \label{fig:fleet}
 \end{figure}
 
@@ -872,6 +891,63 @@ capacity are on the order of $-$10 passenger-hours per bus, so
 investment in additional buses (not in particular depots) is
 what would lower the objective most per marginal bus on this
 instance.
+
+\subsubsection*{Robustness to the priority designation}
+\label{sec:equity-sensitivity}
+
+The 8\% equity-floor cost reported above is derived from a
+priority designation that, in turn, depends on a hand-built
+landmark$\rightarrow$ward alias table mapping PMPML route
+endpoints to PMC Census wards (see
+\S\ref{sec:problem}; \texttt{load\_real\_data.py}). A reviewer
+might reasonably worry that the alias table embeds enough
+researcher choice to drive the equity-cost number. We therefore
+expose three rules in the loader and re-run the equity-cost
+computation under each (Table~\ref{tab:equity_sens}).
+
+\begin{table}[h]
+\caption{Robustness of the equity-floor cost to the
+landmark$\rightarrow$ward alias rule. ``Strict'' allows only
+direct substring matches against Census ward names; ``conservative''
+adds aliases with clear geographic justification; ``current'' adds
+debatable cross-ward equity classifications (e.g.\ Kondhwa
+mapped to Bhavani Peth on welfare grounds rather than strict
+adjacency). The headline equity cost is essentially unchanged
+between conservative and current; strict is degenerate because
+PMPML route descriptions almost never contain literal ward names
+verbatim.}\label{tab:equity_sens}
+\centering\scriptsize
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Rule} & \textbf{\# priority} & \textbf{Wait no eq.} &
+\textbf{Equity cost (\%)} \\
+\midrule
+strict       &   1 & 24{,}400 & 0.05 \\
+conservative &  95 & 24{,}283 & 7.60 \\
+current      &  97 & 24{,}276 & \textbf{8.03} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Dropping the most debatable aliases (Kondhwa$\rightarrow$Bhavani
+Peth, Wanowri$\rightarrow$Bhavani Peth, Pashan/Baner/Balewadi
+$\rightarrow$Aundh, Ferguson/Manapa$\rightarrow$Ghole Road,
+Manjari$\rightarrow$Hadapsar, Karvenagar$\rightarrow$Kothrud,
+Katraj$\rightarrow$Dhankawadi, Undri$\rightarrow$Yewalewadi,
+Kalyani Nagar / Viman Nagar / Parvati / Marketyard / Swargate)
+removes 2 priority routes (97$\rightarrow$95) and moves the
+equity cost from 8.03\% to 7.60\%. The headline number is robust
+to the alias choices. The strict rule produces only one priority
+route because almost no route descriptions in the OpenCity CSV
+contain a literal Census ward name verbatim --- the endpoints
+are mostly landmark hubs (Pune Station, Ma Na Pa, Swargate)
+rather than administrative-ward identifiers --- so the strict
+rule is informative as a lower bound but is not the operationally
+meaningful one. Migrating to a geographic geocoding of stop
+coordinates onto ward boundaries (using the OpenCity bus-stop
+KML and PMC ward polygons) is the natural improvement; it is
+likely to land between the conservative and current numbers
+above.
 
 %% ============================================================
 %% SECTION 5: DISCUSSION

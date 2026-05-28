@@ -24,6 +24,55 @@ from src.deterministic_model import (
 )
 
 
+# 6E. Equity-mapping sensitivity (priority-rule robustness)
+
+def equity_mapping_sensitivity(demand_matrix: pd.DataFrame,
+                               fleet_size: int = 2000) -> pd.DataFrame:
+    """Robustness check on the priority designation.
+
+    The landmark->ward alias table in ``data/load_real_data.py`` is
+    hand-built and is a researcher-degrees-of-freedom step on the way to
+    the headline equity-cost number. This routine re-runs the equity sweep
+    under three alias rules (``strict``, ``conservative``, ``current``)
+    and reports the resulting equity cost (objective at threshold 3 vs
+    threshold 1) so the reader can see how much the number depends on the
+    alias choices. ``strict`` is the most defensible mapping but produces
+    very few priority routes; ``conservative`` drops the debatable
+    cross-ward equity classifications (Kondhwa/Wanowri/etc.); ``current``
+    is the table used in the paper's main results.
+    """
+    from data.load_real_data import build_real_routes
+    rows = []
+    for rule in ("strict", "conservative", "current"):
+        routes_rule = build_real_routes(priority_rule=rule)
+        n_priority = int((routes_rule['priority_score'] > PRIORITY_THRESHOLD).sum())
+        # Threshold 1: vacuous equity (k >= 1 is always satisfied)
+        res1 = _build_mip_with_equity_threshold(
+            routes_rule, demand_matrix, fleet_size, 1, time_limit_sec=180)
+        wait1 = (res1['objective'] if res1 and res1.get('status') == 'Optimal'
+                 else float('nan'))
+        # Threshold 3: current operating floor
+        res3 = _build_mip_with_equity_threshold(
+            routes_rule, demand_matrix, fleet_size, 3, time_limit_sec=180)
+        wait3 = (res3['objective'] if res3 and res3.get('status') == 'Optimal'
+                 else float('nan'))
+        if wait1 > 0 and not np.isnan(wait3):
+            cost_pct = (wait3 - wait1) / wait1 * 100
+        else:
+            cost_pct = float('nan')
+        rows.append({
+            'priority_rule': rule,
+            'n_priority_routes': n_priority,
+            'priority_share': n_priority / len(routes_rule),
+            'wait_no_equity': wait1,
+            'wait_current_equity': wait3,
+            'equity_cost_pass_hr': wait3 - wait1 if (
+                not np.isnan(wait1) and not np.isnan(wait3)) else float('nan'),
+            'equity_cost_pct': cost_pct,
+        })
+    return pd.DataFrame(rows)
+
+
 # 6D. Cost-wait Pareto frontier (operator cost lambda sweep)
 
 def cost_wait_frontier(routes_df: pd.DataFrame,
@@ -291,8 +340,12 @@ def run_sensitivity_pipeline(routes_df, demand_matrix, output_dir="results/table
     cost_df = cost_wait_frontier(routes_df, demand_matrix, lambdas, fleet_size=2000)
     cost_df.to_csv(os.path.join(output_dir, "cost_wait_frontier.csv"), index=False)
 
+    eqs_df = equity_mapping_sensitivity(demand_matrix, fleet_size=2000)
+    eqs_df.to_csv(os.path.join(output_dir, "equity_mapping_sensitivity.csv"),
+                  index=False)
+
     return {'fleet': fleet_df, 'pareto': pareto_df, 'shadow': shadow_df,
-            'cost_frontier': cost_df}
+            'cost_frontier': cost_df, 'equity_mapping': eqs_df}
 
 
 if __name__ == "__main__":
@@ -355,6 +408,7 @@ if __name__ == "__main__":
     log_file_created(os.path.join(project_root, "results/tables/fleet_sensitivity.csv"))
     log_file_created(os.path.join(project_root, "results/tables/pareto_frontier.csv"))
     log_file_created(os.path.join(project_root, "results/tables/cost_wait_frontier.csv"))
+    log_file_created(os.path.join(project_root, "results/tables/equity_mapping_sensitivity.csv"))
     log_file_created(shadow_path)
 
     log_phase_end("PHASE_6_SENSITIVITY", "PASS")

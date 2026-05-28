@@ -69,15 +69,17 @@ def assign_depot(neighborhood):
 # Routes -- real PMPML topology + Census-derived priority. The legacy
 # synthetic generator (random neighbourhood pairs + hardcoded LOW_INCOME /
 # AFFLUENT sets) is gone; see data/load_real_data.py.
-def generate_routes(n_routes=None, target_peak_fleet=1500):
+def generate_routes(target_peak_fleet=1500, priority_rule="current"):
     """Build the routes table from real PMPML data and real Census priors.
 
-    ``n_routes`` is ignored (the network has 544 real routes); the argument is
-    kept for backward compatibility with the previous synthetic signature.
+    The network has 544 real routes; the caller does not choose a count.
     ``target_peak_fleet`` is the calibration anchor for status-quo
     current_peak_freq so the MIP has headroom above the equity floor.
+    ``priority_rule`` selects the landmark->ward alias table (see
+    ``data.load_real_data._aliases_for``).
     """
-    return build_real_routes(target_peak_fleet=target_peak_fleet)
+    return build_real_routes(target_peak_fleet=target_peak_fleet,
+                             priority_rule=priority_rule)
 
 
 # Weather
@@ -274,16 +276,18 @@ def hour_to_period(h):
 
 
 def generate_demand_matrix(routes_df, demand_df):
-    """340 routes x 5 periods.
+    """Per-(route, period) demand matrix; one row per route in ``routes_df``.
 
-    Modeled routes (50): per-(route, period) mean observed ridership.
+    Modeled routes (the 50 routes that appear in ``demand_df``): per-(route,
+    period) mean observed ridership.
 
-    Unmodeled routes (290): parametric base_per_hour x period_profile, then
-    multiplied by a per-period RESIDUAL RATIO estimated on the modeled subset.
-    The residual ratio for period t is the empirical mean of
-    (observed_demand_t / parametric_baseline_t) across modeled routes; it
-    corrects the parametric baseline for systematic period-level effects that
-    the hourly-profile constants alone do not capture.
+    Unmodeled routes (the remainder): parametric base_per_hour x
+    period_profile, then multiplied by a per-period RESIDUAL RATIO
+    estimated on the modeled subset. The residual ratio for period t is
+    the empirical mean of (observed_demand_t / parametric_baseline_t)
+    across modeled routes; it corrects the parametric baseline for
+    systematic period-level effects that the hourly-profile constants
+    alone do not capture.
     """
     d = demand_df.copy()
     d['period'] = d['hour'].apply(hour_to_period)
@@ -344,7 +348,7 @@ def main():
     os.makedirs(PROCESSED_DIR, exist_ok=True)
 
     print("Generating routes...")
-    routes_df = generate_routes(340)
+    routes_df = generate_routes()
     routes_path = os.path.join(PROCESSED_DIR, "routes.csv")
     routes_df.to_csv(routes_path, index=False)
     tau = 2.0 * routes_df['avg_trip_time_min'] + 7.5

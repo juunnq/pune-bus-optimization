@@ -59,74 +59,130 @@ _DIR_RE = re.compile(r"-[DU]$", re.IGNORECASE)
 # Census wards are administrative; route descriptions use landmarks. Without
 # this mapping only ~16% of routes match a ward by exact substring. Each
 # alias key is a canonicalised endpoint substring; the value is the canonical
-# ward name from ``data/raw/pune_census_2011.csv``. Sources cross-checked
-# against the OpenCity Pune ward map and the Pune Municipal Corporation
-# ward boundaries (https://data.opencity.in/dataset/pune-census-2011-data).
-_ENDPOINT_TO_WARD_ALIASES = {
-    # Sangamwadi (Yerawada) -- includes the Yerawada / Vishrantwadi catchment
+# ward name from ``data/raw/pune_census_2011.csv``.
+#
+# The mapping has researcher-degrees-of-freedom: each alias is a judgement
+# about which census ward best contains the landmark's catchment. We expose
+# three rules so the sensitivity check in ``sensitivity.equity_mapping_sensitivity``
+# can quantify how much the headline equity-cost figure depends on the
+# table:
+#
+#   ``strict``       -- empty alias table; only literal ward-name substrings
+#                       match. The most defensible mapping; produces the
+#                       smallest priority set.
+#   ``conservative`` -- alias entries with clear geographic justification
+#                       only. Drops cross-ward equity classifications such
+#                       as ``kondhwa -> Bhavani Peth``.
+#   ``current``      -- full alias table, including landmark-to-equity-ward
+#                       classifications that are defensible on welfare
+#                       grounds (a landmark in a low-income area is mapped
+#                       to a ward with comparable SC+ST share even if not
+#                       strictly adjacent). Used by default.
+#
+# Geographic notes underlie each entry where the mapping is non-obvious.
+_CONSERVATIVE_ALIASES = {
+    # Sangamwadi (Yerawada) -- Yerawada / Vishrantwadi catchment (adjacent)
     "yerwada": "Sangamwadi (Yerawada)",
     "yerawada": "Sangamwadi (Yerawada)",
     "vishrantwadi": "Sangamwadi (Yerawada)",
     "sangamwadi": "Sangamwadi (Yerawada)",
     "sangamvadi": "Sangamwadi (Yerawada)",
-    "kalyaninagar": "Sangamwadi (Yerawada)",
     # Dholepatil Road -- Pune Station / Wadgaon Sheri catchment
     "punestation": "Dholepatil Road",
     "wadgaonsheri": "Dholepatil Road",
-    "kharadi": "Dholepatil Road",
-    "viman": "Dholepatil Road",  # Viman Nagar
     "dholepatil": "Dholepatil Road",
     # Sahakarnagar
     "sahakarnagar": "Sahakarnagar",
     "sahakar": "Sahakarnagar",
-    "parvati": "Sahakarnagar",
-    # Bhavani Peth -- central old city, high SC+ST
+    # Bhavani Peth -- central old city
     "bhavanipeth": "Bhavani Peth",
     "bhavani": "Bhavani Peth",
-    "kondhwa": "Bhavani Peth",  # Kondhwa is south-central; classed here for equity
-    "wanowri": "Bhavani Peth",
     # Hadapsar
     "hadapsar": "Hadapsar",
     "mundhwa": "Hadapsar",
     "magarpatta": "Hadapsar",
-    "manjari": "Hadapsar",
-    # Aundh / Ghole Road area
+    # Aundh
     "aundh": "Aundh",
-    "pashan": "Aundh",
-    "baner": "Aundh",
-    "balewadi": "Aundh",
+    # Ghole Road -- Shivajinagar / Deccan area
     "shivajinagar": "Ghole Road",
     "deccan": "Ghole Road",
     "ghole": "Ghole Road",
-    "gokhalenagar": "Ghole Road",
-    "manapa": "Ghole Road",  # Ma Na Pa = Municipal HQ
-    "ferguson": "Ghole Road",
-    # Nagar Road
+    # Nagar Road -- Kharadi / Wagholi catchment (Kharadi is east-Pune, on
+    # Nagar Road corridor; this is the canonical Pune urban-planning
+    # classification).
     "nagarroad": "Nagar Road",
     "kharadi": "Nagar Road",
     "wagholi": "Nagar Road",
     # Kothrud
     "kothrud": "Kothrud",
-    "karvenagar": "Kothrud",
-    "warje": "Warje",
     "karve": "Kothrud",
-    # Dhankawadi / Bibvewadi / Sahakarnagar south
+    # Dhankawadi / Bibvewadi
     "dhankawadi": "Dhankawadi",
     "bibvewadi": "Bibvewadi",
-    "katraj": "Dhankawadi",
-    # Yewalewadi (south periphery)
+    # Yewalewadi
     "yewalewadi": "Yewalewadi",
-    "undri": "Yewalewadi",
-    # Kasbavish-Rambaug (central traditional, low SC+ST)
+    # Kasbavish-Rambaug
     "shaniwar": "Kasbavish-Rambaug",
     "narayanpeth": "Kasbavish-Rambaug",
     "sadashiv": "Kasbavish-Rambaug",
     "kasba": "Kasbavish-Rambaug",
-    "marketyard": "Kasbavish-Rambaug",
-    "swargate": "Kasbavish-Rambaug",  # adjacent
     # Tilak Road
     "tilak": "Tilak Road",
+    # Warje
+    "warje": "Warje",
 }
+
+# Additional aliases used by the "current" rule. These have weaker or more
+# debatable geographic justification; the sensitivity analysis quantifies
+# their effect on the equity-cost number.
+_DEBATABLE_ALIASES = {
+    # Kalyani Nagar sits between Yerawada and Koregaon Park; we classify it
+    # with Sangamwadi because most of its bus catchment connects through
+    # Yerawada landmarks.
+    "kalyaninagar": "Sangamwadi (Yerawada)",
+    # Viman Nagar is a Wadgaon Sheri / Dholepatil neighbour to the south.
+    "viman": "Dholepatil Road",
+    # Parvati is the southern slope below Sahakarnagar.
+    "parvati": "Sahakarnagar",
+    # Kondhwa / Wanowri are south-central low-income areas; not in Bhavani
+    # Peth ward geographically, but classified here on welfare grounds
+    # because their SC+ST shares are comparable.
+    "kondhwa": "Bhavani Peth",
+    "wanowri": "Bhavani Peth",
+    # Manjari is east of Hadapsar.
+    "manjari": "Hadapsar",
+    # Pashan / Baner / Balewadi are western suburbs that historically share
+    # an Aundh catchment for bus operations.
+    "pashan": "Aundh",
+    "baner": "Aundh",
+    "balewadi": "Aundh",
+    # Gokhalenagar / Ferguson / Ma Na Pa are in the Shivajinagar area.
+    "gokhalenagar": "Ghole Road",
+    "ferguson": "Ghole Road",
+    "manapa": "Ghole Road",
+    # Karve Nagar is between Kothrud and Warje.
+    "karvenagar": "Kothrud",
+    # Katraj is a south-Pune landmark adjacent to the Dhankawadi ward.
+    "katraj": "Dhankawadi",
+    # Undri is a southern peripheral landmark near Yewalewadi.
+    "undri": "Yewalewadi",
+    # Marketyard is in the Kasbavish-Rambaug central area.
+    "marketyard": "Kasbavish-Rambaug",
+    # Swargate is adjacent to the central old city, low SC+ST.
+    "swargate": "Kasbavish-Rambaug",
+}
+
+_CURRENT_ALIASES = {**_CONSERVATIVE_ALIASES, **_DEBATABLE_ALIASES}
+
+
+def _aliases_for(rule: str) -> dict:
+    if rule == "strict":
+        return {}
+    if rule == "conservative":
+        return _CONSERVATIVE_ALIASES
+    if rule == "current":
+        return _CURRENT_ALIASES
+    raise ValueError(f"unknown priority_rule: {rule!r}")
 
 
 def _canon(s: str) -> str:
@@ -166,15 +222,16 @@ def load_ward_priority() -> dict:
     return agg["share"].to_dict()
 
 
-def _match_endpoint_to_ward(endpoint: str, ward_canon_keys: list) -> str | None:
-    """Match a route endpoint to a Census ward. First tries the explicit
+def _match_endpoint_to_ward(endpoint: str, ward_canon_keys: list,
+                            aliases: dict) -> str | None:
+    """Match a route endpoint to a Census ward. First tries the supplied
     alias dict (landmark -> ward), then a substring match on the canonical
     ward names themselves. Returns None if no match."""
     ep = _canon(endpoint)
     if not ep:
         return None
     # 1. Alias-based match (landmark -> ward).
-    for alias, ward in _ENDPOINT_TO_WARD_ALIASES.items():
+    for alias, ward in aliases.items():
         if alias in ep:
             return ward
     # 2. Direct substring match on canonical ward names.
@@ -197,10 +254,12 @@ def _match_endpoint_to_depot(endpoint: str, depot_canon: list) -> str | None:
 
 def assign_route_metadata(routes: pd.DataFrame,
                           ward_priority: dict,
-                          rng: np.random.Generator) -> pd.DataFrame:
+                          rng: np.random.Generator,
+                          priority_rule: str = "current") -> pd.DataFrame:
     """Add depot_id, priority_score, route_category, num_stops, avg_trip_time_min
-    to the aggregated route table. Returns a routes_df ready for the existing
-    pipeline (same schema as the old synthetic generate_routes output)."""
+    to the aggregated route table. ``priority_rule`` selects the
+    landmark-to-ward alias table (see _aliases_for)."""
+    aliases = _aliases_for(priority_rule)
     ward_canon = [(w, _canon(w)) for w in ward_priority]
     depot_canon = [(d[0], _canon(d[0])) for d in DEPOTS]
     depot_names = [d[0] for d in DEPOTS]
@@ -227,8 +286,8 @@ def assign_route_metadata(routes: pd.DataFrame,
             fallback_depot_idx += 1
 
         # Ward: match origin first, then destination, then median priority.
-        ward = (_match_endpoint_to_ward(origin, ward_canon)
-                or _match_endpoint_to_ward(dest, ward_canon))
+        ward = (_match_endpoint_to_ward(origin, ward_canon, aliases)
+                or _match_endpoint_to_ward(dest, ward_canon, aliases))
         if ward is not None:
             share = float(ward_priority[ward])
         else:
@@ -303,28 +362,30 @@ def _calibrate_peak_fleet(df: pd.DataFrame, target: int = 1500,
     return df
 
 
-def build_real_routes(target_peak_fleet: int = 1500, seed: int = 42) -> pd.DataFrame:
+def build_real_routes(target_peak_fleet: int = 1500, seed: int = 42,
+                      priority_rule: str = "current") -> pd.DataFrame:
     """Top-level entry point: returns the same routes_df schema as the old
     synthetic generator, but anchored to real PMPML route topology and real
-    Census 2011 priority designations."""
+    Census 2011 priority designations.
+
+    ``priority_rule`` selects how route endpoints are mapped to Census
+    wards for the equity / priority score (see _aliases_for):
+    ``current`` (default), ``conservative``, or ``strict``.
+    """
     raw = load_routes_raw()
     agg = _aggregate_routes(raw)
     wards = load_ward_priority()
     rng = np.random.default_rng(seed)
-    routes = assign_route_metadata(agg, wards, rng)
+    routes = assign_route_metadata(agg, wards, rng, priority_rule=priority_rule)
     routes = _calibrate_peak_fleet(routes, target=target_peak_fleet)
     return routes
 
 
 if __name__ == "__main__":
-    df = build_real_routes()
-    print(f"Loaded {len(df)} real PMPML routes.")
-    print(f"Categories: {df['route_category'].value_counts().to_dict()}")
-    print(f"Depot route counts: {df['depot_id'].value_counts().to_dict()}")
-    print(f"Priority distribution: mean={df['priority_score'].mean():.3f}, "
-          f">0.7: {(df['priority_score'] > 0.7).sum()}")
-    print(f"Distance: {df['length_km'].min():.1f}-{df['length_km'].max():.1f} km, "
-          f"mean {df['length_km'].mean():.1f}")
-    tau = 2.0 * df['avg_trip_time_min'] + 7.5
-    peak_fleet = int(np.ceil(df['current_peak_freq'] * tau / 60).sum())
-    print(f"Status-quo peak fleet (with corrected tau): {peak_fleet}")
+    for rule in ("current", "conservative", "strict"):
+        df = build_real_routes(priority_rule=rule)
+        tau = 2.0 * df['avg_trip_time_min'] + 7.5
+        peak_fleet = int(np.ceil(df['current_peak_freq'] * tau / 60).sum())
+        n_pri = (df['priority_score'] > 0.7).sum()
+        print(f"[{rule:>12s}] n_routes={len(df)} n_priority={n_pri:3d} "
+              f"(pri_share={n_pri/len(df):.1%}) peak_fleet={peak_fleet}")

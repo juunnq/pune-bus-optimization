@@ -147,7 +147,7 @@ elif view == "Sensitivity Analysis":
     fs = data['fleet_sens']
     fleet_size = st.slider("Fleet size to highlight", min_value=int(fs['fleet_size'].min()),
                            max_value=int(fs['fleet_size'].max()),
-                           value=1800, step=200)
+                           value=2000, step=200)
     closest = fs.iloc[(fs['fleet_size'] - fleet_size).abs().argmin()]
     if closest['objective'] > 0:
         st.write(f"At **B = {int(closest['fleet_size'])}**: "
@@ -171,12 +171,15 @@ else:
     st.markdown("""
     This project optimizes bus frequency allocation for Pune's PMPML network.
 
-    **Pipeline.** A deterministic MIP allocates ~1800 buses across 340 routes and 5
+    **Pipeline.** A deterministic MIP allocates ~2000 buses across 544 routes and 5
     time periods to minimise total passenger waiting time, subject to fleet, equity,
     and depot capacity constraints.  An XGBoost demand model with quantile heads
-    drives stochastic and robust formulations; a decision-focused NN trades
-    prediction error for lower decision regret.  Sensitivity sweeps over fleet
-    size and equity threshold, and LP-relaxation duals reveal binding depots.
+    drives stochastic and robust formulations; a decision-focused XGBoost variant
+    trains with sample weights proportional to downstream sensitivity, and is
+    evaluated against MSE-XGBoost across 20 seeds with a paired Wilcoxon test.
+    Sensitivity sweeps over fleet size, equity threshold, operator-cost penalty
+    λ, and priority-mapping rule; LP-relaxation duals reveal binding
+    constraints.
 
     **Reproduce.**  `python scripts/run_all.py`.
     """)

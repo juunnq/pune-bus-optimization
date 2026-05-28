@@ -1,2 +1,4 @@
-comparison,n_seeds,xgb_mse_regret_mean,nn_spo_regret_mean,mean_difference,statistic,p_value
-nn_spo < xgb_mse (one-sided Wilcoxon signed-rank),20,3.935492697778318,4.934177351685685,0.9986846539073667,123.0,0.7509956359863281
+comparison,treatment,baseline,n_seeds,treatment_regret_mean,baseline_regret_mean,mean_difference,n_treatment_wins,statistic,p_value_one_sided
+xgb_weighted < xgb_mse,xgb_weighted,xgb_mse,20,3.132758408164045,3.935492697778318,-0.8027342896142727,14,44.0,0.0107421875
+nn_spo < xgb_mse,nn_spo,xgb_mse,20,4.934177351685685,3.935492697778318,0.9986846539073666,11,123.0,0.7509956359863281
+nn_mse < xgb_mse,nn_mse,xgb_mse,20,6.776507399833281,3.935492697778318,2.841014702054963,6,176.0,0.9972095489501953
